@@ -60,6 +60,7 @@ We provide a lightweight, modern, tracker-free static web interface with dark mo
 | [Dongsheng Zhao (赵东升)](https://blackman99.github.io/me/) | Dongsheng Zhao | AI 全栈工程师，Sveltepress 作者，把 LLM 落地到生产合规系统，记录生产 Agent 与开源工具。 | en, zh-CN | developer, portfolio, open-source |
 | [Edison AI Workshop](https://edison-zwteam.pages.dev) | Edison | AI 产品开发者，专注信息流自动化、研究效率工具、内容分发系统和 Discord 自动化。 | zh-CN | developer, portfolio, indie-hacker |
 | [Gdemoni's World](https://zshgdemoni.me) | Gdemoni | 一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。 | zh-CN, en | digital-garden, developer, blog |
+| [Huang's Blog](https://blog.clothpath.com/) | huanglizhuo | 独立开发者的个人博客与项目集(build in public):记录并展示 OctoCounts、EchoPod、QwenASR、Ketsuin 等自己从零构建的项目,以及学习笔记。 | en | developer, indie-hacker, maker, blog |
 | [Jack Flux](https://jack0813y.github.io) | Jack | 一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。 | zh-CN | blog, developer, digital-garden |
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |

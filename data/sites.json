@@ -174,6 +174,16 @@
     "tags": ["blog", "developer", "personnal-website"]
   },
   {
+    "name": "Huang's Blog",
+    "url": "https://blog.clothpath.com/",
+    "owner": "huanglizhuo",
+    "description": "独立开发者的个人博客与项目集(build in public):记录并展示 OctoCounts、EchoPod、QwenASR、Ketsuin 等自己从零构建的项目,以及学习笔记。",
+    "languages": ["en"],
+    "region": "China",
+    "tags": ["developer", "indie-hacker", "maker", "blog"],
+    "feed": "https://blog.clothpath.com/rss.xml"
+  },
+  {
     "name": "陈大黄 - 作品与内容",
     "url": "https://chendahuang.com",
     "owner": "陈大黄",
