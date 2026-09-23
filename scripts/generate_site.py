@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """从 data/sites.json 生成 GitHub Pages 静态网站（单文件 index.html）。
 
-设计准则：
-- 如无必要，勿增实体：彻底移除冗余大 Hero、空洞口号与虚假统计，正经内容首屏直达
-- 移动端极简精调：顶栏严禁折行溢出，标签单行水平平滑滑动，手机端首屏直接看卡片
+设计哲学：
+- 如无必要，勿增实体：彻底移除鸡肋的内嵌预览，点击一律新窗口直达网站
+- 搜索弹窗全端响应式：宽度自适应屏幕，内置支持左右手势滑动的标签过滤条，彻底消除溢出
+- 极致纯净卡片：高密度、舒适间距、真实 Favicon、一键新窗口直达
 - 顶栏一站式收拢：搜索、漫游、提交网站、双主题、GitHub 极简集成
-- 极致纯粹卡片：高密度、舒适间距、真实 Favicon、小窗预览与一键直达
 """
 import json
 from pathlib import Path
@@ -111,7 +111,7 @@ body {
   flex-direction: column;
 }
 
-/* ================= 顶栏 (精简、严禁折行) ================= */
+/* ================= 顶栏 ================= */
 .site-header {
   position: sticky;
   top: 0;
@@ -243,7 +243,7 @@ html[data-theme-mode="light"] .theme-icon-sun { display: block; }
 html[data-theme-mode="dark"] .theme-icon-moon { display: block; }
 html[data-theme-mode="system"] .theme-icon-system { display: block; }
 
-/* ================= 主内容容器 (首屏即内容) ================= */
+/* ================= 主内容容器 ================= */
 .main-wrapper {
   max-width: 1140px;
   margin: 0 auto;
@@ -345,7 +345,6 @@ html.dark .tag-btn.active {
   font-weight: 600;
 }
 
-/* 活跃搜索指示胶囊 */
 .active-search-chip {
   display: none;
   align-items: center;
@@ -388,6 +387,7 @@ html.dark .tag-btn.active {
   color: inherit;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
 }
 .site-card:hover {
   transform: translateY(-2px);
@@ -452,30 +452,23 @@ html.dark .tag-btn.active {
   text-overflow: ellipsis;
 }
 
-.card-preview-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  height: 22px;
-  padding: 0 0.45rem;
-  border-radius: var(--radius-sm);
-  background: var(--soft-surface);
-  border: 1px solid var(--line);
-  color: var(--mist);
-  font-size: 0.72rem;
-  font-weight: 500;
-  cursor: pointer;
+.card-arrow-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--fog);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.14s ease;
 }
-.card-preview-btn:hover {
-  background: var(--signal);
-  color: #ffffff;
-  border-color: var(--signal);
+.site-card:hover .card-arrow-icon {
+  color: var(--signal);
+  transform: translate(2px, -2px);
 }
-.card-preview-btn svg {
-  width: 11px;
-  height: 11px;
+.card-arrow-icon svg {
+  width: 14px;
+  height: 14px;
 }
 
 .site-desc {
@@ -542,21 +535,22 @@ html.dark .tag-btn.active {
   height: 12px;
 }
 
-/* ================= 全局搜索弹窗 (Command Palette) ================= */
+/* ================= 全屏/响应式搜索弹窗 ================= */
 .search-backdrop {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 3rem 1rem 1rem;
+  padding: 2.5rem 1rem 1rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.18s ease;
+  overflow-x: hidden;
 }
 .search-backdrop.open {
   opacity: 1;
@@ -565,22 +559,38 @@ html.dark .tag-btn.active {
 
 .search-box {
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-height: 75vh;
+  max-height: 80vh;
+  transform: translateY(-8px);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.search-backdrop.open .search-box {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .search-backdrop {
+    padding: 0.75rem;
+  }
+  .search-box {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 12px;
+  }
 }
 
 .search-input-row {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.95rem;
   border-bottom: 1px solid var(--line);
 }
 .search-input-row svg {
@@ -589,6 +599,7 @@ html.dark .tag-btn.active {
 }
 .search-input-field {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -596,15 +607,56 @@ html.dark .tag-btn.active {
   font-family: inherit;
   color: var(--ink);
 }
-.search-close-key {
+.search-close-btn {
   background: var(--soft-surface);
   border: 1px solid var(--line);
   color: var(--mist);
   border-radius: 4px;
-  padding: 0.15rem 0.4rem;
-  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.75rem;
   cursor: pointer;
-  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+/* 弹窗内置水平滑动标签栏 (支持手指左右滑动) */
+.search-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  padding: 0.45rem 0.85rem;
+  border-bottom: 1px solid var(--line-subtle);
+  background: var(--soft-surface);
+}
+.search-tags-row::-webkit-scrollbar {
+  display: none;
+}
+.s-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 0.72rem;
+  color: var(--mist);
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  transition: all 0.12s ease;
+}
+.s-tag-pill.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  font-weight: 600;
+}
+html.dark .s-tag-pill.active {
+  background: #ffffff;
+  color: #000000;
 }
 
 .search-results-list {
@@ -623,14 +675,23 @@ html.dark .tag-btn.active {
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background 0.12s ease;
+  text-decoration: none;
+  color: inherit;
 }
 .search-item:hover {
   background: var(--soft-surface);
+}
+.search-item-info {
+  min-width: 0;
+  flex: 1;
 }
 .search-item-title {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search-item-sub {
   font-size: 0.76rem;
@@ -639,148 +700,6 @@ html.dark .tag-btn.active {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-/* ================= 小窗预览 (Live Modal) ================= */
-.preview-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 110;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-.preview-backdrop.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.preview-window {
-  width: 100%;
-  max-width: 960px;
-  height: 86vh;
-  max-height: 800px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.preview-titlebar {
-  height: 42px;
-  background: var(--soft-surface);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.85rem;
-  gap: 0.75rem;
-  user-select: none;
-  flex-shrink: 0;
-}
-.p-dots {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 50px;
-}
-.p-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.p-close { background: #ff5f56; cursor: pointer; }
-.p-min { background: #ffbd2e; }
-.p-max { background: #27c93f; }
-
-.p-address {
-  flex: 1;
-  max-width: 500px;
-  height: 26px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.65rem;
-  font-size: 0.75rem;
-  color: var(--mist);
-  font-family: var(--font-mono);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-@media (max-width: 600px) {
-  .p-address { display: none; }
-}
-
-.p-ext-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--mist);
-  padding: 0.2rem 0.55rem;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  cursor: pointer;
-  text-decoration: none;
-}
-.p-ext-btn:hover { color: var(--ink); }
-
-.preview-frame-body {
-  flex: 1;
-  position: relative;
-  background: #ffffff;
-}
-html.dark .preview-frame-body {
-  background: #111114;
-}
-
-.preview-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.preview-loading {
-  position: absolute;
-  inset: 0;
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  color: var(--mist);
-  font-size: 0.82rem;
-  transition: opacity 0.2s ease;
-}
-.preview-loading.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.spinner {
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--line);
-  border-top-color: var(--signal);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 
 /* ================= Toast ================= */
 .toast-notice {
@@ -837,7 +756,7 @@ html.dark .preview-frame-body {
 </head>
 <body>
 
-<!-- 顶栏：紧凑一站式，彻底消除折行 -->
+<!-- 顶栏：单行绝对防折行 -->
 <header class="site-header">
   <div class="header-inner">
     <a href="./" class="brand" aria-label="一人一站 首页">
@@ -854,7 +773,7 @@ html.dark .preview-frame-body {
       </button>
 
       <!-- 漫游按钮 -->
-      <button id="btn-shuffle" class="h-btn" title="随机探索">
+      <button id="btn-shuffle" class="h-btn" title="随机漫游">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M16 8h.01"/><path d="M8 8h.01"/><path d="M8 16h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/></svg>
         <span>漫游</span>
       </button>
@@ -880,7 +799,7 @@ html.dark .preview-frame-body {
 </header>
 
 <main class="main-wrapper">
-  <!-- 控制条：标签单行横滑 + 排序分段 -->
+  <!-- 控制条：单行横滑标签 + 排序分段 -->
   <div class="bar-controls">
     <div class="tags-scroll">
       <div id="tags-bar" style="display:inline-flex;gap:0.35rem;"></div>
@@ -897,7 +816,7 @@ html.dark .preview-frame-body {
     </div>
   </div>
 
-  <!-- 正经内容：站点网格首屏直达 -->
+  <!-- 正经内容：卡片网格首屏直达 -->
   <div id="sites-grid" class="sites-grid"></div>
 
   <!-- 空状态 -->
@@ -907,40 +826,17 @@ html.dark .preview-frame-body {
   </div>
 </main>
 
-<!-- 全局搜索弹窗 (Command Palette) -->
+<!-- 全局响应式搜索弹窗 (带左右滑动手势标签栏) -->
 <div id="search-modal" class="search-backdrop" role="dialog" aria-modal="true" aria-label="搜索">
   <div class="search-box">
     <div class="search-input-row">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       <input id="search-input" class="search-input-field" placeholder="搜索站点名称、作者、简介或标签…" autocomplete="off">
-      <button id="search-esc" class="search-close-key">ESC</button>
+      <button id="search-close-btn" class="search-close-btn" title="关闭">✕</button>
     </div>
+    <!-- 弹窗内支持左右滑动的分类标签 -->
+    <div id="search-modal-tags" class="search-tags-row"></div>
     <div id="search-results" class="search-results-list"></div>
-  </div>
-</div>
-
-<!-- 小窗实时预览系统 (Live Modal) -->
-<div id="preview-modal" class="preview-backdrop" role="dialog" aria-modal="true" aria-label="预览">
-  <div class="preview-window">
-    <div class="preview-titlebar">
-      <div class="p-dots">
-        <div id="p-close-btn" class="p-dot p-close" title="关闭 (ESC)"></div>
-        <div class="p-dot p-min"></div>
-        <div class="p-dot p-max"></div>
-      </div>
-      <div id="p-address" class="p-address">https://example.com</div>
-      <a id="p-ext-link" href="#" target="_blank" rel="noopener noreferrer" class="p-ext-btn">
-        <span>新窗口打开 ↗</span>
-      </a>
-    </div>
-    <div class="preview-frame-body">
-      <iframe id="p-iframe" class="preview-iframe" src="about:blank" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" title="实时预览"></iframe>
-      <div id="p-loading" class="preview-loading">
-        <div class="spinner"></div>
-        <span>正在载入实时预览…</span>
-        <span style="font-size:0.75rem;color:var(--fog);">若站点限制内嵌，可点击右上角在新窗口直接打开</span>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1014,26 +910,19 @@ html.dark .preview-frame-body {
   var searchChip = document.getElementById("search-chip");
   var searchChipText = document.getElementById("search-chip-text");
 
-  // 搜索弹窗
+  // 搜索弹窗 DOM
   var searchModal = document.getElementById("search-modal");
   var btnSearch = document.getElementById("btn-search");
   var searchInput = document.getElementById("search-input");
-  var searchEsc = document.getElementById("search-esc");
+  var searchCloseBtn = document.getElementById("search-close-btn");
+  var searchModalTags = document.getElementById("search-modal-tags");
   var searchResults = document.getElementById("search-results");
-
-  // 小窗预览
-  var previewModal = document.getElementById("preview-modal");
-  var pCloseBtn = document.getElementById("p-close-btn");
-  var pAddress = document.getElementById("p-address");
-  var pExtLink = document.getElementById("p-ext-link");
-  var pIframe = document.getElementById("p-iframe");
-  var pLoading = document.getElementById("p-loading");
 
   var activeTag = null;
   var searchQuery = "";
+  var modalFilterTag = null;
   var sortMode = "default";
   var toastTimer = null;
-  var iframeTimer = null;
 
   function showToast(msg) {
     if (!toast) return;
@@ -1043,43 +932,25 @@ html.dark .preview-frame-body {
     toastTimer = setTimeout(function() { toast.classList.remove("show"); }, 2000);
   }
 
-  /* 3. 小窗预览 */
-  function openPreview(site) {
-    if (!previewModal) return;
-    pAddress.textContent = site.url;
-    pExtLink.href = site.url;
-    pLoading.classList.remove("hidden");
-    pIframe.src = site.url;
-
-    previewModal.classList.add("open");
-    document.body.style.overflow = "hidden";
-
-    pIframe.onload = function() { pLoading.classList.add("hidden"); };
-    clearTimeout(iframeTimer);
-    iframeTimer = setTimeout(function() { pLoading.classList.add("hidden"); }, 3500);
-  }
-
-  function closePreview() {
-    if (!previewModal) return;
-    previewModal.classList.remove("open");
-    document.body.style.overflow = "";
-    pIframe.src = "about:blank";
-  }
-
-  if (pCloseBtn) pCloseBtn.addEventListener("click", closePreview);
-  if (previewModal) {
-    previewModal.addEventListener("click", function(e) {
-      if (e.target === previewModal) closePreview();
+  /* 3. 统计标签 */
+  var tagCounts = {};
+  sites.forEach(function(s) {
+    (s.tags || []).forEach(function(t) {
+      tagCounts[t] = (tagCounts[t] || 0) + 1;
     });
-  }
+  });
+  var allTags = Object.keys(tagCounts).sort(function(a, b) {
+    return tagCounts[b] - tagCounts[a];
+  });
 
-  /* 4. 搜索功能 */
+  /* 4. 搜索弹窗逻辑 (全端响应式、新窗口直接直达) */
   function openSearch() {
     if (!searchModal) return;
     searchModal.classList.add("open");
     searchInput.value = searchQuery;
+    renderModalTags();
     renderSearchResults(searchQuery);
-    setTimeout(function() { searchInput.focus(); }, 50);
+    setTimeout(function() { searchInput.focus(); }, 60);
   }
 
   function closeSearch() {
@@ -1088,10 +959,39 @@ html.dark .preview-frame-body {
   }
 
   if (btnSearch) btnSearch.addEventListener("click", openSearch);
-  if (searchEsc) searchEsc.addEventListener("click", closeSearch);
+  if (searchCloseBtn) searchCloseBtn.addEventListener("click", closeSearch);
   if (searchModal) {
     searchModal.addEventListener("click", function(e) {
       if (e.target === searchModal) closeSearch();
+    });
+  }
+
+  // 弹窗内标签横向滑动条
+  function renderModalTags() {
+    searchModalTags.textContent = "";
+
+    var allBtn = document.createElement("button");
+    allBtn.type = "button";
+    allBtn.className = "s-tag-pill" + (modalFilterTag === null ? " active" : "");
+    allBtn.textContent = "全部";
+    allBtn.addEventListener("click", function() {
+      modalFilterTag = null;
+      renderModalTags();
+      renderSearchResults(searchInput.value);
+    });
+    searchModalTags.appendChild(allBtn);
+
+    allTags.forEach(function(t) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "s-tag-pill" + (modalFilterTag === t ? " active" : "");
+      btn.textContent = t;
+      btn.addEventListener("click", function() {
+        modalFilterTag = modalFilterTag === t ? null : t;
+        renderModalTags();
+        renderSearchResults(searchInput.value);
+      });
+      searchModalTags.appendChild(btn);
     });
   }
 
@@ -1100,6 +1000,9 @@ html.dark .preview-frame-body {
     searchResults.textContent = "";
 
     var matches = sites.filter(function(s) {
+      if (modalFilterTag && (s.tags || []).indexOf(modalFilterTag) === -1) {
+        return false;
+      }
       if (!q) return true;
       var pool = [s.name, s.owner, s.description, (s.tags || []).join(" "), s.region, s.url].join(" ").toLowerCase();
       return pool.indexOf(q) !== -1;
@@ -1116,17 +1019,20 @@ html.dark .preview-frame-body {
       return;
     }
 
-    matches.slice(0, 8).forEach(function(s) {
-      var item = document.createElement("div");
+    matches.slice(0, 10).forEach(function(s) {
+      var item = document.createElement("a");
       item.className = "search-item";
+      item.href = s.url;
+      item.target = "_blank";
+      item.rel = "noopener noreferrer";
       var domain = extractDomain(s.url);
-      item.innerHTML = '<div><div class="search-item-title">' + escapeHtml(s.name) + '</div>' +
+      item.innerHTML = '<div class="search-item-info">' +
+        '<div class="search-item-title">' + escapeHtml(s.name) + '</div>' +
         '<div class="search-item-sub">' + escapeHtml(s.owner || domain) + ' · ' + escapeHtml(s.description) + '</div></div>' +
-        '<span style="font-size:0.75rem;color:var(--signal);font-weight:600;flex-shrink:0;">预览 ↗</span>';
+        '<span style="font-size:0.75rem;color:var(--signal);font-weight:600;flex-shrink:0;">直达 ↗</span>';
 
       item.addEventListener("click", function() {
         closeSearch();
-        openPreview(s);
       });
       searchResults.appendChild(item);
     });
@@ -1159,17 +1065,7 @@ html.dark .preview-frame-body {
     });
   }
 
-  /* 5. 标签栏 */
-  var tagCounts = {};
-  sites.forEach(function(s) {
-    (s.tags || []).forEach(function(t) {
-      tagCounts[t] = (tagCounts[t] || 0) + 1;
-    });
-  });
-  var allTags = Object.keys(tagCounts).sort(function(a, b) {
-    return tagCounts[b] - tagCounts[a];
-  });
-
+  /* 5. 主页标签栏 (单行水平滑动) */
   function renderTagsBar() {
     tagsBar.textContent = "";
 
@@ -1218,7 +1114,7 @@ html.dark .preview-frame-body {
     return clean ? clean.charAt(0).toUpperCase() : "?";
   }
 
-  /* 7. 卡片生成 */
+  /* 7. 卡片生成 (点击新窗口直达) */
   function createCard(site) {
     var domain = extractDomain(site.url);
     var faviconUrl = domain ? "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=64" : "";
@@ -1233,8 +1129,11 @@ html.dark .preview-frame-body {
     ];
     var grad = PALETTE[(firstChar.charCodeAt(0) || 0) % PALETTE.length];
 
-    var card = document.createElement("div");
+    var card = document.createElement("a");
     card.className = "site-card";
+    card.href = site.url;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
 
     // 顶行
     var topRow = document.createElement("div");
@@ -1281,18 +1180,12 @@ html.dark .preview-frame-body {
     headerMain.appendChild(favBox);
     headerMain.appendChild(titleWrap);
 
-    var previewBtn = document.createElement("button");
-    previewBtn.type = "button";
-    previewBtn.className = "card-preview-btn";
-    previewBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><span>预览</span>';
-    previewBtn.title = "小窗预览";
-    previewBtn.addEventListener("click", function(e) {
-      e.stopPropagation();
-      openPreview(site);
-    });
+    var arrowIcon = document.createElement("div");
+    arrowIcon.className = "card-arrow-icon";
+    arrowIcon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>';
 
     topRow.appendChild(headerMain);
-    topRow.appendChild(previewBtn);
+    topRow.appendChild(arrowIcon);
 
     // 描述
     var descEl = document.createElement("p");
@@ -1322,6 +1215,7 @@ html.dark .preview-frame-body {
       rssBtn.title = "复制 RSS 订阅源";
       rssBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>';
       rssBtn.addEventListener("click", function(e) {
+        e.preventDefault();
         e.stopPropagation();
         navigator.clipboard.writeText(site.feed).then(function() { showToast("已复制 RSS 源"); });
       });
@@ -1334,20 +1228,11 @@ html.dark .preview-frame-body {
     copyBtn.title = "复制网址";
     copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
     copyBtn.addEventListener("click", function(e) {
+      e.preventDefault();
       e.stopPropagation();
       navigator.clipboard.writeText(site.url).then(function() { showToast("已复制网址"); });
     });
     actionsWrap.appendChild(copyBtn);
-
-    var extBtn = document.createElement("a");
-    extBtn.className = "mini-action-btn";
-    extBtn.href = site.url;
-    extBtn.target = "_blank";
-    extBtn.rel = "noopener noreferrer";
-    extBtn.title = "在新标签页打开";
-    extBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
-    extBtn.addEventListener("click", function(e) { e.stopPropagation(); });
-    actionsWrap.appendChild(extBtn);
 
     bottomRow.appendChild(tagsWrap);
     bottomRow.appendChild(actionsWrap);
@@ -1355,11 +1240,6 @@ html.dark .preview-frame-body {
     card.appendChild(topRow);
     card.appendChild(descEl);
     card.appendChild(bottomRow);
-
-    card.addEventListener("click", function(e) {
-      if (e.target.closest("button") || e.target.closest("a")) return;
-      openPreview(site);
-    });
 
     return card;
   }
@@ -1393,11 +1273,14 @@ html.dark .preview-frame-body {
     emptyState.style.display = filtered.length === 0 ? "block" : "none";
   }
 
-  /* 9. 随机漫游 */
+  /* 9. 随机漫游 (直接新窗口打开) */
   function handleShuffle() {
     if (!sites || sites.length === 0) return;
     var randomSite = sites[Math.floor(Math.random() * sites.length)];
-    openPreview(randomSite);
+    showToast("前往：" + randomSite.name);
+    setTimeout(function() {
+      window.open(randomSite.url, "_blank", "noopener,noreferrer");
+    }, 250);
   }
 
   if (btnShuffle) btnShuffle.addEventListener("click", handleShuffle);
@@ -1428,9 +1311,7 @@ html.dark .preview-frame-body {
 
   window.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
-      if (previewModal && previewModal.classList.contains("open")) {
-        closePreview();
-      } else if (searchModal && searchModal.classList.contains("open")) {
+      if (searchModal && searchModal.classList.contains("open")) {
         closeSearch();
       }
     } else if (e.key === "/" && (!searchModal || !searchModal.classList.contains("open")) && document.activeElement.tagName !== "INPUT") {
