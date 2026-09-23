@@ -13,7 +13,7 @@ Issue 表单后，工作流调用本脚本解析结构化字段、做格式校�
 结果状态：
     skipped      不是站点提交（例如 bug 反馈），工作流不应做任何回应
     invalid      解析失败或必填字段缺失，需要提交者补充（--force 不覆盖）
-    blocked      命中公开排除清单（第三方社交平台账号页等），--force 可覆盖
+    blocked      命中公开排除清单（平台账号页、商业产品落地页），--force 可覆盖
     unreachable  可用性探测失败，--force 可覆盖
     duplicate    站点已在目录中，无需收录
     accepted     已写入 data/sites.json
@@ -209,8 +209,8 @@ def is_social_host(url: str) -> bool:
 
 # ---------------------------------------------------------------- 可用性探测
 
-def check_reachable(url: str) -> tuple[bool, str]:
-    """探测站点是否可访问：域名能解析、服务器有响应即视为可用。"""
+def fetch(url: str, limit: int = 300_000) -> tuple[int, str]:
+    """抓取页面，返回 (状态码, HTML)；网络异常向上抛出。"""
     request = urllib.request.Request(
         url,
         headers={
@@ -219,21 +219,89 @@ def check_reachable(url: str) -> tuple[bool, str]:
             "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
         },
     )
+    with urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT) as response:
+        status = int(getattr(response, "status", 200))
+        raw = response.read(limit)
+        charset = response.headers.get_content_charset() or "utf-8"
     try:
-        with urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT) as response:
-            status = int(getattr(response, "status", 200))
-            response.read(4096)
+        html = raw.decode(charset, "replace")
+    except LookupError:
+        html = raw.decode("utf-8", "replace")
+    return status, html
+
+
+def probe_site(url: str) -> tuple[bool, str, str]:
+    """探测站点可用性，返回 (是否可访问, 详情, 首页 HTML)。"""
+    try:
+        status, html = fetch(url)
     except urllib.error.HTTPError as exc:
-        status = int(exc.code)
+        status, html = int(exc.code), ""
     except Exception as exc:  # DNS 失败、连接超时、证书错误等
-        return False, f"{type(exc).__name__}: {exc}"
+        return False, f"{type(exc).__name__}: {exc}", ""
 
     if 200 <= status < 400:
-        return True, f"HTTP {status}"
+        return True, f"HTTP {status}", html
     if status in (401, 403, 429):
         # 常见于反爬拦截，域名本身是活的，按可访问处理
-        return True, f"HTTP {status}（疑似反爬拦截，已放行）"
-    return False, f"HTTP {status}"
+        return True, f"HTTP {status}（疑似反爬拦截，已放行）", html
+    return False, f"HTTP {status}", html
+
+
+# ------------------------------------------------------------ 商业落地页识别
+
+PRICE_RE = re.compile(r"(?:us\$|\$|¥|￥|€)\s?\d{2,4}(?!\d)", re.IGNORECASE)
+# 销售 / 结账类文案，覆盖中英文（部分站点按 Accept-Language 返回中文界面）
+COMMERCIAL_PHRASES = (
+    "get access", "book a demo", "start free trial", "add to cart", "buy now",
+    "license key", "per seat", "subscribe now", "pricing plan",
+    "获取访问", "立即购买", "加入购物车", "免费试用", "预约演示", "开始试用",
+    "定价", "价格方案", "订阅方案", "购买", "付费",
+)
+PRICING_PATHS = ("/pricing", "/plans", "/price")
+STRIP_RE = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.IGNORECASE | re.DOTALL)
+
+
+def html_to_text(html: str) -> str:
+    return collapse(re.sub(r"<[^>]+>", " ", STRIP_RE.sub(" ", html or "")))
+
+
+def has_pricing_path(base: str) -> bool:
+    for path in PRICING_PATHS:
+        try:
+            status, _ = fetch(base + path)
+        except Exception:
+            continue
+        if 200 <= status < 400:
+            return True
+    return False
+
+
+def commercial_signals(url: str, home_html: str) -> tuple[bool, list[str]]:
+    """判断是否像商业产品落地页。
+
+    单个信号不足以定性，避免误伤在文章里提到价格的个人博客。
+    仅当「明码价格 + 销售文案」（或「独立定价页 + 价格」）同时出现时，才交维护者确认。
+    """
+    text = html_to_text(home_html).lower()
+    has_price = bool(PRICE_RE.search(text))
+    phrases = [phrase for phrase in COMMERCIAL_PHRASES if phrase in text]
+
+    base_match = re.match(r"^https?://[^/]+", url)
+    # 已有价格或销售文案时才进一步探测定价页，避免给正常站点多发请求
+    has_pricing_page = bool(
+        base_match and (has_price or phrases) and has_pricing_path(base_match.group(0))
+    )
+
+    reasons = []
+    if has_price:
+        reasons.append("明码价格")
+    if has_pricing_page:
+        reasons.append("独立定价页")
+    if phrases:
+        reasons.append("销售文案（" + "、".join(phrases[:2]) + "）")
+
+    hold = has_price and has_pricing_page and bool(phrases)
+    return hold, reasons
 
 
 # ---------------------------------------------------------------- 数据写入
@@ -373,8 +441,9 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
 
     if force:
         probe = "（维护者已人工放行，跳过探测）"
+        home_html = ""
     else:
-        reachable, detail = check_reachable(url)
+        reachable, detail, home_html = probe_site(url)
         if not reachable:
             return make_result(
                 "unreachable",
@@ -386,6 +455,19 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
                 revision=revision,
             )
         probe = detail
+
+        hold, reasons = commercial_signals(url, home_html)
+        if hold:
+            return make_result(
+                "blocked",
+                "暂时没能收录 ⏳\n\n"
+                f"`{url}` 看起来是商业产品落地页（" + "、".join(reasons) + "）。\n\n"
+                "本目录专注于独立个人网站、博客与数字花园，不收产品转化页面"
+                "（详见 README 收录标准）。若判断有误，请维护者在本 Issue 上添加 `accepted` 标签重新收录。",
+                name=name,
+                url=url,
+                revision=revision,
+            )
 
     entry: dict[str, object] = {
         "name": name,
