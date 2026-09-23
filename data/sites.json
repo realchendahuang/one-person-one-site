@@ -165,6 +165,15 @@
     "tags": ["blog", "developer", "notes"]
   },
   {
+    "name": "自动化流水线验证站",
+    "url": "https://example.com",
+    "owner": "Pipeline Tester",
+    "description": "用于端到端验证 issue 自动收录流水线的临时站点，验证完成后会被移除。",
+    "languages": ["zh-CN"],
+    "region": "Global",
+    "tags": ["test", "automation"]
+  },
+  {
     "name": "陈大黄 - 作品与内容",
     "url": "https://chendahuang.com",
     "owner": "陈大黄",
