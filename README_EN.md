@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 Browse Online</a> · 
-  <a href="#how-to-submit-a-site">📮 Submit Your Site</a> · 
+  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 Browse Online (with Live Quick View)</a> · 
+  <a href="#-how-to-submit-a-site">📮 Submit Your Site</a> · 
   <a href="./DIRECTORY.md">📑 Full Directory</a> · 
   <a href="./CONTRIBUTING.md">🤝 Contributing Guide</a> · 
   <a href="./README.md">中文说明</a>
@@ -44,9 +44,9 @@ We provide a lightweight, modern, tracker-free static web interface with dark mo
 
 👉 **[https://realchendahuang.github.io/one-person-one-site/](https://realchendahuang.github.io/one-person-one-site/)**
 
-- ⚡️ **Blazing Fast**: Zero client-side framework bloat, hosted on GitHub Pages.
-- 🎨 **Dual-Theme Design**: Warm paper light mode & OLED dark mode with subtle signal orange accents.
-- 🔍 **Interactive Discovery**: Instant full-text search (shortcut `/` or `⌘K`), tag filters, and "Shuffle / Random Discovery".
+- 🖥️ **Live Quick View Modal**: Interactive browser preview popup to browse websites without context switching.
+- 🎨 **Dual-Theme Design**: Warm paper light mode & OLED dark mode with refined signal orange accents.
+- 🔍 **Interactive Discovery**: Instant search, tag filters, segmented sorting, and "Shuffle / Random Discovery".
 - 📡 **RSS Friendly**: Direct feed links with one-click clipboard copying.
 
 ---
@@ -115,8 +115,7 @@ Use our [**Submit a site template**](https://github.com/realchendahuang/one-pers
    ```
 3. Run local validation:
    ```bash
-   python3 scripts/validate.py
-   python3 scripts/generate_directory.py
+   python3 scripts/validate.py && python3 scripts/generate_directory.py
    ```
 4. Commit your changes and open a Pull Request.
 
@@ -133,27 +132,27 @@ Use our [**Submit a site template**](https://github.com/realchendahuang/one-pers
 
 ---
 
-## 🛠️ Local Development & Scripts
-
-This repository uses Python standard library scripts with zero extra dependencies:
-
-```bash
-python3 scripts/validate.py           # Validates sites.json against schema & rules
-python3 scripts/generate_directory.py  # Synchronizes DIRECTORY.md & README tables
-python3 scripts/generate_site.py       # Compiles static site/index.html
-```
-
----
-
 ## 🗺️ Roadmap
 
 - [x] Establish the initial seed of high-quality independent sites
 - [x] Build and launch a modern, responsive static web directory on GitHub Pages
-- [x] Support search, tag filters, dark/light themes, and random site exploration
+- [x] Support live quick-view modal, instant search, tag filters, and random exploration
 - [x] Direct RSS feed detection and one-click copy
 - [ ] Export consolidated OPML file for major feed readers
 - [ ] Automated health checking to detect broken links
 - [ ] Community showcase and annual indie web highlights
+
+---
+
+## 📈 Star History
+
+<a href="https://star-history.com/#realchendahuang/one-person-one-site&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
+ </picture>
+</a>
 
 ---
 

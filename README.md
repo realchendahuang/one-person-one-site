@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 在线浏览 (推荐体验)</a> · 
-  <a href="#提交你的网站">📮 提交网站</a> · 
+  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 在线浏览 (支持小窗预览与漫游)</a> · 
+  <a href="#-提交你的网站">📮 提交网站</a> · 
   <a href="./DIRECTORY.md">📑 完整目录</a> · 
   <a href="./CONTRIBUTING.md">🤝 贡献指南</a> · 
   <a href="./README_EN.md">English Version</a>
@@ -38,15 +38,16 @@
 
 ---
 
-## 🌟 在线精选网站 (Live Directory)
+## 🌟 在线体验 (Live Directory)
 
 我们为所有收录站点打造了现代极简、无广告、纯静态且支持暗黑模式的浏览网站：
 
 👉 **[https://realchendahuang.github.io/one-person-one-site/](https://realchendahuang.github.io/one-person-one-site/)**
 
-- ⚡️ **极速加载**：零外部框架依赖，纯静态托管于 GitHub Pages。
-- 🎨 **双主题系统**：自适应纸感浅色与深邃暗黑模式，信号橙微动效。
-- 🔍 **多维过滤**：支持全文即时搜索（快捷键 `/` 或 `⌘K`）、标签过滤与随机漫游探索。
+- 🖥️ **小窗实时预览**：内置 macOS 风格拟态浏览器弹窗，无需跳转即可快速沉浸式预览站点内容。
+- 🎨 **双主题系统**：自适应纸感浅色与深邃暗黑模式，高对比度信号橙交互。
+- 🔍 **即时检索与筛选**：支持全文即时搜索、分类标签筛选与分段排序。
+- 🎲 **随机漫游探索**：一键开启漫游，随机发现意想不到的优质独立站点。
 - 📡 **RSS 便捷订阅**：卡片直达订阅源并支持一键复制。
 
 ---
@@ -95,10 +96,10 @@
 
 ## 📮 提交你的网站
 
-### 方式一：Issue 提交（零门槛，小白推荐）
+### 方式一：Issue 提交（最简便捷）
 直接点击 [**Submit a site 模板**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)，按提示填写网站名称、网址、站长名与一句话简介即可，维护者会定期合并。
 
-### 方式二：Pull Request 提交（极客与开发者推荐）
+### 方式二：Pull Request 提交
 1. Fork 本仓库并 Clone 到本地。
 2. 在 `data/sites.json` 中追加你的站点信息：
    ```json
@@ -113,18 +114,15 @@
      "feed": "https://your-domain.com/rss.xml"
    }
    ```
-3. 运行本地自动化校验与构建脚本：
+3. 运行本地校验并重新生成目录：
    ```bash
-   python3 scripts/validate.py          # 校验数据格式
-   python3 scripts/generate_directory.py # 同步 Markdown 目录与表格
+   python3 scripts/validate.py && python3 scripts/generate_directory.py
    ```
 4. 提交修改并发起 Pull Request。
 
 ---
 
 ## 🏷️ 推荐标签一览
-
-提交时建议从以下常用标签中选择 1~5 个，也可以提出贴合你站点特色的简洁新标签：
 
 | 领域分类 | 常见推荐标签 |
 |---|---|
@@ -135,42 +133,11 @@
 
 ---
 
-## 🛠️ 项目工程与本地构建
-
-本项目采用极简、高效、无冗余依赖的纯 Python 标准库驱动架构：
-
-```text
-one-person-one-site/
-├── data/
-│   ├── sites.json            # 站点核心数据源（唯一事实来源）
-│   └── sites.example.json    # 格式范例
-├── scripts/
-│   ├── validate.py           # 数据模式与合法性严格校验
-│   ├── generate_directory.py # 自动生成 DIRECTORY.md 与同步 README 表格
-│   └── generate_site.py      # 构建零依赖的高颜值静态网站到 site/
-├── schema/
-│   └── site.schema.json      # JSON Schema 定义
-├── site/                     # 静态页面产物（由 CI 自动发布至 Pages）
-└── .github/
-    └── workflows/
-        ├── validate.yml      # PR 自动化数据合规检查
-        └── deploy.yml        # main 分支变更时自动构建部署
-```
-
-本地执行一键构建：
-```bash
-python3 scripts/validate.py           # 校验 sites.json
-python3 scripts/generate_directory.py  # 刷新 DIRECTORY.md 和 README 站点表格
-python3 scripts/generate_site.py       # 本地生成 site/index.html 网页
-```
-
----
-
 ## 🗺️ 发展路线 (Roadmap)
 
 - [x] 建立第一批高质量中文独立博客与个人站点种子库
-- [x] 搭建现代化高质感静态展示站（GitHub Pages 纯静态上线）
-- [x] 支持全文检索、多标签筛选、暗黑模式与随机漫游
+- [x] 搭建极简高质感静态展示站（GitHub Pages 纯静态上线）
+- [x] 支持小窗实时交互预览、全文检索、分类筛选与随机漫游
 - [x] 支持 RSS 订阅源提取与一键复制
 - [ ] 导出统一 OPML 订阅文件，支持一键导入主流 RSS 阅读器
 - [ ] 自动化站点可用性健康检查机制（死链巡检）
@@ -178,9 +145,21 @@ python3 scripts/generate_site.py       # 本地生成 site/index.html 网页
 
 ---
 
+## 📈 Star History
+
+<a href="https://star-history.com/#realchendahuang/one-person-one-site&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
+ </picture>
+</a>
+
+---
+
 ## 📄 开源许可
 
-本项目代码与自动化脚本遵循 [MIT License](./LICENSE)。  
+本项目遵循 [MIT License](./LICENSE)。  
 收录之站点数据仅供独立互联网社区索引与交流展示使用，各站点内容知识产权归其各自作者所有。
 
 ---
