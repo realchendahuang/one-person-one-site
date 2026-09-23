@@ -58,14 +58,17 @@
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
 | [CouCouYa 可可鸭](https://coucouya.com) | CouCouYa | KOSX.ai 社群增长操盘手，分享 AI、Web3、金融与公开学习。 | zh-CN | blog, maker, notes |
+| [Dongsheng Zhao (赵东升)](https://blackman99.github.io/me/) | Dongsheng Zhao | AI 全栈工程师，Sveltepress 作者，把 LLM 落地到生产合规系统，记录生产 Agent 与开源工具。 | en, zh-CN | developer, portfolio, open-source |
 | [Edison AI Workshop](https://edison-zwteam.pages.dev) | Edison | AI 产品开发者，专注信息流自动化、研究效率工具、内容分发系统和 Discord 自动化。 | zh-CN | developer, portfolio, indie-hacker |
 | [Gdemoni's World](https://zshgdemoni.me) | Gdemoni | 一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。 | zh-CN, en | digital-garden, developer, blog |
 | [Jack Flux](https://jack0813y.github.io) | Jack | 一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。 | zh-CN | blog, developer, digital-garden |
+| [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
+| [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |

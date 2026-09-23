@@ -137,6 +137,34 @@
     "tags": ["developer", "writer", "ai"]
   },
   {
+    "name": "Jask",
+    "url": "https://jask.dev/",
+    "owner": "Jask",
+    "description": "独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。",
+    "languages": ["en", "zh-CN"],
+    "region": "Asia",
+    "tags": ["developer", "indie-hacker", "security"],
+    "feed": "https://blog.jask.dev/index.xml"
+  },
+  {
+    "name": "Dongsheng Zhao (赵东升)",
+    "url": "https://blackman99.github.io/me/",
+    "owner": "Dongsheng Zhao",
+    "description": "AI 全栈工程师，Sveltepress 作者，把 LLM 落地到生产合规系统，记录生产 Agent 与开源工具。",
+    "languages": ["en", "zh-CN"],
+    "region": "China",
+    "tags": ["developer", "portfolio", "open-source"]
+  },
+  {
+    "name": "QianFan 千帆",
+    "url": "https://blog.mapin.net/",
+    "owner": "QianFan",
+    "description": "00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "developer", "notes"]
+  },
+  {
     "name": "陈大黄 - 作品与内容",
     "url": "https://chendahuang.com",
     "owner": "陈大黄",
