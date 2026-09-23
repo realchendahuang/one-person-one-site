@@ -46,11 +46,20 @@ Example entry:
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full rules.
 
+## Online directory
+
+The directory is published as a fully static website on GitHub Pages:
+
+👉 **https://realchendahuang.github.io/one-person-one-site/**
+
+It is built automatically from `data/sites.json` (GitHub Actions deploys on every push to main) and supports client-side search and tag filtering — no server required.
+
 ## Local validation
 
 ```bash
 python3 scripts/validate.py
 python3 scripts/generate_directory.py
+python3 scripts/generate_site.py   # build the static site into site/ (gitignored)
 ```
 
 ## License

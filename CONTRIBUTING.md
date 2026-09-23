@@ -19,6 +19,8 @@ python3 scripts/generate_directory.py
 
 然后同时提交数据文件与重新生成的 `DIRECTORY.md`。
 
+（`scripts/generate_site.py` 构建的静态网站由 GitHub Actions 自动部署，无需本地操作。）
+
 ## 必填字段
 
 - `name`: 网站名称

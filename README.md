@@ -45,6 +45,14 @@
 4. **可访问性**：网站当前可以正常访问，并有基本可读性。
 5. **尊重互联网**：不过度追踪、不恶意跳转、不用欺骗性方式获取用户信息。
 
+## 在线网站
+
+目录以纯静态网站的形式发布在 GitHub Pages：
+
+👉 **https://realchendahuang.github.io/one-person-one-site/**
+
+网站由 `data/sites.json` 自动构建（GitHub Actions 每次 push 到 main 自动部署），支持搜索和按标签筛选，无需任何服务器。
+
 ## 目录
 
 完整站点列表由 `data/sites.json` 自动生成：
@@ -89,6 +97,7 @@
 ```bash
 python3 scripts/validate.py
 python3 scripts/generate_directory.py
+python3 scripts/generate_site.py   # 构建静态网站到 site/（已 gitignore）
 ```
 
 提交 PR 时，GitHub Actions 会自动检查：
@@ -108,7 +117,8 @@ one-person-one-site/
 │   └── sites.example.json
 ├── scripts/
 │   ├── validate.py
-│   └── generate_directory.py
+│   ├── generate_directory.py
+│   └── generate_site.py
 ├── schema/
 │   └── site.schema.json
 ├── .github/
@@ -131,7 +141,8 @@ one-person-one-site/
 - [ ] 增加站点截图与历史快照（可选）
 - [ ] 建立“本周一人一站”精选机制
 - [ ] 建立网站失效检测
-- [ ] 生成可搜索的静态网站
+- [x] 生成可搜索的静态网站（GitHub Pages 已上线）
+- [ ] 建立“本周一人一站”精选机制
 - [ ] 支持 OPML / JSON / CSV 导出
 - [ ] 建立社区推荐与年度精选
 
