@@ -78,11 +78,22 @@ jobs:
 
       - name: Validate and regenerate
         if: steps.parse.outputs.status == 'accepted'
+        env:
+          # 只给 pip 用；不需要任何密钥
+          PIP_DISABLE_PIP_VERSION_CHECK: "1"
         run: |
           set -euo pipefail
+          python3 -m pip install --quiet pillow
+
+          # 先补齐新站点的图标：失败不阻断收录，缺失时会退化成首字母色块
+          python3 scripts/fetch_favicons.py || echo "favicon 抓取失败，使用首字母兜底"
+
+          python3 scripts/build_assets.py
           python3 scripts/validate.py
+          python3 tests/test_validate.py
           python3 scripts/generate_directory.py
           python3 scripts/generate_site.py
+          python3 tests/test_build.py
 
       - name: Commit
         if: steps.parse.outputs.status == 'accepted'
@@ -90,7 +101,8 @@ jobs:
           set -euo pipefail
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git add data/sites.json DIRECTORY.md README.md README_EN.md
+          # site/ 已被 .gitignore 忽略，这里只提交数据、生成物与新抓取的图标
+          git add data/sites.json data/favicons assets DIRECTORY.md README.md README_EN.md
           git commit -m "${{ steps.parse.outputs.commit_message }}"
           # 兼容期间可能出现的其他人推送：先变基再推送
           git pull --rebase --autostash origin main

@@ -42,14 +42,18 @@
 2. **编辑 `data/sites.json`**，在数组尾部添加你的站点信息对象（见后文格式）。
 3. **运行本地校验与生成脚本**：
    ```bash
-   python3 scripts/validate.py          # 格式与必填字段合规校验
-   python3 scripts/generate_directory.py # 自动同步 DIRECTORY.md 与 README 站点表格
-   python3 scripts/generate_site.py      # 本地构建预览页面
+   python3 scripts/validate.py            # 数据格式与收录规范校验
+   python3 scripts/generate_directory.py  # 同步 DIRECTORY.md 与 README 表格、统计
+   python3 scripts/generate_site.py       # 本地构建静态站点（site/）
+   python3 tests/test_validate.py         # 规则测试
+   python3 tests/test_build.py            # 构建产物测试（需先构建）
    ```
+   如果站点还没有本地图标缓存，可以运行 `python3 scripts/fetch_favicons.py` 抓取
+   （需要 `pillow`）；抓不到不影响收录，页面上会退化成首字母色块。
 4. **提交代码并创建 PR**：
    将 `data/sites.json` 与自动同步更新的 `DIRECTORY.md`、`README.md`、`README_EN.md` 一并提交。
 
-> 💡 **提示**：GitHub Actions 会在每次推送至 `main` 分支时自动将静态网站部署到 GitHub Pages，你无需手动提交 `site/` 目录中的生成文件。
+> 💡 **提示**：GitHub Actions 会在每次推送至 `main` 分支时自动构建并部署到 GitHub Pages，你无需手动提交 `site/` 目录中的生成文件（该目录已被忽略）。
 
 ---
 
@@ -78,10 +82,13 @@
 | `url` | string | **必填** | 网站主页，必须为 `http://` 或 `https://`，指向主页根路径（非某篇文章） |
 | `owner` | string | **必填** | 站长或创作者的常用名 / 昵称 / 签名 |
 | `description` | string | **必填** | 简明扼要的介绍，15~240 字符以内，避免浮夸营销用词 |
-| `languages` | string[] | **必填** | 内容主要使用的语言代码，如 `zh-CN`, `en`, `zh-TW`, `ja` 等（至少 1 项） |
+| `languages` | string[] | **必填** | 语言代码，主语言小写、地区大写：`zh-CN`、`zh-TW`、`en`、`ja`（至少 1 项，不可重复） |
 | `region` | string | **必填** | 所属地区或国家，例如 `China`, `Global`, `US`, `Japan` 等 |
-| `tags` | string[] | **必填** | 1 到 8 个简洁分类标签，全小写，多词以中划线连接（如 `indie-hacker`） |
+| `tags` | string[] | **必填** | 1 到 8 个标签，全小写，多词以中划线连接（如 `indie-hacker`），不可重复 |
 | `feed` | string | 可选 | RSS / Atom / JSON Feed 订阅源 URL（需为有效 http/https 链接） |
+
+> 这些约束由 `scripts/validate.py` 执行，机读版本在 [`schema/site.schema.json`](./schema/site.schema.json)。
+> 两者的一致性由 `tests/test_validate.py` 保证——改了一边而没改另一边，测试会失败。
 
 ---
 
@@ -119,5 +126,44 @@
   - `Add: example.com (网站名称)`
   - `Update: 更新 example.com 的 RSS 订阅地址`
   - `Docs: 完善贡献指南相关说明`
+
+---
+
+## 维护与自动化
+
+仓库里有三条自动化链路，都围绕同一份 `data/sites.json`：
+
+| 工作流 | 触发 | 作用 |
+|---|---|---|
+| `validate.yml` | PR 与 push `main` | 数据校验、规则测试、检查生成物已提交 |
+| `deploy.yml` | push `main` / 手动 | 构建静态站点并发布到 GitHub Pages |
+| `ingest-issue.yml` | 新增或编辑提交 Issue | 解析表单、校验、探测可用性、自动收录并部署 |
+| `health-check.yml` | 每周一 | 巡检站点可用性，汇总到 Issue 供人工复核 |
+
+关于巡检：脚本**只报告，不删数据**。很多正常站点会对脚本请求返回 403/429、拒绝 HEAD 或按地域限流，自动下架极易误伤。只有返回明确失效信号（404/410、域名无法解析）的站点会被列为「疑似失效」，最终仍由维护者手动确认后移除。
+
+### 本地复现构建
+
+```bash
+python3 scripts/build_assets.py     # 生成品牌图标与分享图（需 pillow）
+python3 scripts/fetch_favicons.py   # 抓取站点图标（需 pillow，可跳过）
+python3 scripts/generate_site.py    # 构建 site/
+python3 tests/test_build.py         # 校验构建产物
+```
+
+生成物包括主页面、完整目录页、`feeds.opml` 订阅合集、`robots.txt`、`sitemap.xml`、
+`404.html`，以及开放数据 `site/data/sites.json`。
+
+---
+
+## 收录数据的使用
+
+`data/sites.json` 是这份目录的完整数据，任何人都可以复用（MIT）：
+
+- 仓库内：[`data/sites.json`](./data/sites.json)
+- 线上地址：`https://realchendahuang.github.io/one-person-one-site/data/sites.json`
+- 订阅合集：`https://realchendahuang.github.io/one-person-one-site/feeds.opml`
+
+收录站点的内容与知识产权归各自作者所有，本目录只做索引。
 
 感谢你为开放、独立、长青的个人互联网生态贡献力量！✨

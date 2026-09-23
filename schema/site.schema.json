@@ -1,27 +1,64 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://realchendahuang.github.io/one-person-one-site/schema/site.schema.json",
   "title": "One Person, One Site entry",
+  "description": "一人一站收录数据中单个站点的格式。字段与限制由 scripts/validate.py 执行，本文件是等价的机器可读说明；tests/test_validate.py 会检查两者保持一致。",
   "type": "object",
   "required": ["name", "url", "owner", "description", "languages", "region", "tags"],
+  "additionalProperties": false,
   "properties": {
-    "name": {"type": "string", "minLength": 1},
-    "url": {"type": "string", "pattern": "^https?://"},
-    "owner": {"type": "string", "minLength": 1},
-    "description": {"type": "string", "minLength": 1, "maxLength": 240},
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "站点全称或常用名称"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://",
+      "description": "网站主页地址，指向首页而非某篇文章"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "站长或创作者的常用名"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 15,
+      "maxLength": 240,
+      "description": "客观简洁的一到两句话介绍"
+    },
     "languages": {
       "type": "array",
       "minItems": 1,
-      "items": {"type": "string", "minLength": 2}
+      "uniqueItems": true,
+      "description": "内容主要语言，BCP 47 写法如 zh-CN、zh-TW、en、ja",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2,3}(?:-[A-Z][A-Za-z0-9]{1,7})*$"
+      }
     },
-    "region": {"type": "string", "minLength": 1},
+    "region": {
+      "type": "string",
+      "minLength": 1,
+      "description": "所属地区或国家，如 China、Taiwan、Japan、Global"
+    },
     "tags": {
       "type": "array",
       "minItems": 1,
       "maxItems": 8,
       "uniqueItems": true,
-      "items": {"type": "string", "minLength": 1}
+      "description": "全小写分类标签，多词以中划线连接，如 indie-hacker",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
     },
-    "feed": {"type": "string", "pattern": "^https?://"}
-  },
-  "additionalProperties": false
+    "feed": {
+      "type": "string",
+      "pattern": "^https?://",
+      "description": "RSS / Atom / JSON Feed 订阅源地址（可选）"
+    }
+  }
 }

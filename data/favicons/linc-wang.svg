@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">LINC.WANG</title>
+  <rect width="64" height="64" rx="10" fill="#314237"/>
+  <path d="M22 13V49H47" fill="none" stroke="#F6F7F4" stroke-width="7.5" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M31 13H47" fill="none" stroke="#A9B4AA" stroke-width="3.5" stroke-linecap="square"/>
+</svg>

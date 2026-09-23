@@ -1,9 +1,13 @@
 name: Validate directory
 
+# 数据与生成物的守门人：
+#   - 规则测试（含 schema 与校验器一致性）
+#   - 收录数据校验
+#   - 生成物必须已提交（DIRECTORY.md / README 站点表格）
 on:
   pull_request:
   push:
-    branches: [main, master]
+    branches: [main]
 
 permissions:
   contents: read
@@ -13,12 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Validate site data
         run: python3 scripts/validate.py
+
+      - name: Run rule tests
+        run: python3 tests/test_validate.py
+
       - name: Regenerate directory
         run: python3 scripts/generate_directory.py
+
       - name: Check generated files are committed
         run: git diff --exit-code -- DIRECTORY.md README.md README_EN.md

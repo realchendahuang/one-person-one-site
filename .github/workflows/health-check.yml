@@ -1,0 +1,60 @@
+name: Link health check
+
+# 每周巡检一次收录站点的可用性。
+#
+# 只报告、不删数据：自动下架误判代价太高（403/429/限流/临时故障都很常见）。
+# 巡检结果会汇总成一个 Issue 交给维护者复核，必要时再手动移除。
+#
+# 已有开启中的巡检 Issue 时会追加评论，不会每周新建一个。
+
+on:
+  schedule:
+    # 每周一 01:00 UTC（北京时间 09:00）
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Probe every listed site
+        run: python3 scripts/check_health.py --issue-body /tmp/health.md
+
+      - name: Report to issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          repo="${{ github.repository }}"
+          title="站点可用性巡检"
+
+          existing=$(gh issue list \
+            --repo "$repo" \
+            --state open \
+            --search "in:title \"$title\"" \
+            --json number,title \
+            --jq "[.[] | select(.title == \"$title\")][0].number // empty" || true)
+
+          body="$(cat /tmp/health.md)"
+          if [ -n "$existing" ]; then
+            gh api --method POST "repos/${repo}/issues/${existing}/comments" \
+              -f body="$(printf '### %s\n\n%s' "$(date -u '+%Y-%m-%d %H:%M UTC')" "$body")" > /dev/null
+            echo "已追加到既有巡检 Issue #${existing}"
+          else
+            gh issue create \
+              --repo "$repo" \
+              --title "$title" \
+              --body "$body" \
+              --label "" || gh issue create --repo "$repo" --title "$title" --body "$body"
+            echo "已创建巡检 Issue"
+          fi

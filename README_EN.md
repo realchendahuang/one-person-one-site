@@ -1,57 +1,102 @@
 # One Person, One Site
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Active%20%26%20Growing-ff6a00?style=flat-square" alt="Status">
-  <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-18181b?style=flat-square&logo=githubpages&logoColor=white" alt="Live Demo"></a>
-  <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/Directory-Markdown-52525b?style=flat-square" alt="Directory"></a>
+  <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/Live%20Directory-Browse%20Now-ff6a00?style=flat-square" alt="Live Directory"></a>
+  <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/Full%20Directory-Markdown-52525b?style=flat-square" alt="Full Directory"></a>
+  <a href="./site/feeds.opml"><img src="https://img.shields.io/badge/RSS-OPML%20Bundle-22c55e?style=flat-square" alt="OPML Bundle"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-black?style=flat-square" alt="License"></a>
-  <a href="https://github.com/realchendahuang/one-person-one-site/pulls"><img src="https://img.shields.io/badge/PRs-Welcome-22c55e?style=flat-square" alt="PRs Welcome"></a>
 </p>
 
 <p align="center">
-  <strong>A curated collection of remarkable personal websites, independent blogs, and digital gardens.</strong><br>
-  Discover genuine creators and thinkers who nurture their own homes on the open web beyond platform walls and algorithms.
+  <strong>A long-running list of personal websites and the people behind them.</strong><br>
+  Independent blogs, digital gardens and portfolios — places run by real people, worth reading over years.
 </p>
 
 <p align="center">
-  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 Browse Online (with Live Quick View)</a> · 
-  <a href="#-how-to-submit-a-site">📮 Submit Your Site</a> · 
-  <a href="./DIRECTORY.md">📑 Full Directory</a> · 
-  <a href="./CONTRIBUTING.md">🤝 Contributing Guide</a> · 
-  <a href="./README.md">中文说明</a>
+  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 Browse the directory</a> ·
+  <a href="#-what-we-list">🎯 What we list</a> ·
+  <a href="#-submit-your-site">📮 Submit a site</a> ·
+  <a href="./DIRECTORY.md">📑 Full directory</a> ·
+  <a href="./README.md">中文</a>
 </p>
 
 ---
 
-## 💡 Why "One Person, One Site"?
+## What this is
 
-Algorithms monopolize attention, walled gardens trap content, and platform accounts can disappear at any moment without recourse.
+This is a **content directory** — not a showcase, not a software project. It does one thing: gather personal sites that real people have been running for a long time, so that others can find them, read them, and subscribe to them.
 
-Yet a **personal website remains one of the few places on the internet that is truly yours**:
-- You own the domain, layout, typography, and structure;
-- You curate long-form thoughts, portfolios, work-in-progress notes, and genuine life stories;
-- You create for resonance and depth rather than feeding engagement algorithms.
+<!-- STATS:START -->
+- **21** independent sites from **4** regions, written in 5 languages.
+- **5** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
+- Content types: blog (13), digital-garden (3), notes (4), portfolio (6).
+- Common topics: developer (14), indie-hacker (7), maker (5), designer (3), security (2), writer (2), open-source (1), personal-website (1).
+<!-- STATS:END -->
 
-> **One Person, One Site is not asking everyone to become a full-time sysadmin.**  
-> It is an initiative for digital self-sovereignty: **reclaiming your voice outside corporate silos.**  
-> We do not collect boilerplate web templates; we celebrate **real people and the digital spaces they faithfully cultivate over time**.
-
----
-
-## 🌟 Live Directory (Web Experience)
-
-We provide a lightweight, modern, tracker-free static web interface with dark mode:
-
-👉 **[https://realchendahuang.github.io/one-person-one-site/](https://realchendahuang.github.io/one-person-one-site/)**
-
-- 🖥️ **Live Quick View Modal**: Interactive browser preview popup to browse websites without context switching.
-- 🎨 **Dual-Theme Design**: Warm paper light mode & OLED dark mode with refined signal orange accents.
-- 🔍 **Interactive Discovery**: Instant search, tag filters, segmented sorting, and "Shuffle / Random Discovery".
-- 📡 **RSS Friendly**: Direct feed links with one-click clipboard copying.
+Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out hard-won lessons on RAG and backend systems. They write about different things. What they share is that they **never handed their voice over to an algorithm**.
 
 ---
 
-## 📚 Sites in the Directory
+## What we believe
+
+**A personal website is one of the few places on the internet that is still truly yours.**
+
+Algorithms allocate attention; platforms build walls. A centralized account can be throttled, banned, changed out from under you, or simply vanish one day. A domain and site of your own cannot: you decide how it looks, how it reads, what it holds — and you can let it grow quietly for a decade.
+
+That is why we keep this list. Listing a site gives its author something real in return: **in an age ruled by recommendation feeds, the people who write carefully deserve to be found.**
+
+> **One Person, One Site is not a demand that everyone become a full-time blogger.**
+> It is an invitation to reconsider how we live online: step out of the walled platforms, and care about your own digital sovereignty again.
+> We do not want empty site-template showcases. We want **real people and the spaces they have tended for years.**
+
+---
+
+## What we list
+
+### ✅ Welcome
+
+| Type | Description |
+|---|---|
+| **Independent Blog** | Long-term writing on technology, thinking, books or life — with a real author behind it. |
+| **Digital Garden** | Unfinished but steadily growing notes and ideas, linked together. |
+| **Portfolio** | The personal space of a designer, developer, photographer or artist. |
+| **Indie Maker** | Building in public — records of personal projects and explorations. |
+| **Knowledge Base** | Systematically organized public notes on a particular field. |
+
+### ❌ Not listed
+
+- Corporate websites, marketing pages, SaaS conversion landing pages;
+- Single accounts on social platforms (WeChat, Xiaohongshu, Jike, Zhihu, X, …);
+- Scraped or mirrored content, pure SEO farms;
+- AI-generated content farms with no personal perspective;
+- Sites with fraud, malicious redirects, infringement or illegal content.
+
+### What we actually look at
+
+1. **A real person is behind it.** You can tell who writes it and what they keep writing about — not an anonymous shell.
+2. **The content is their own.** Original articles, notes or work, not aggregation and reposts.
+3. **It is a home, not a booth.** Built for long-term expression, not a one-off product pitch.
+4. **It works.** Reachable, readable, without popup bombardment or malicious redirects.
+
+> Put simply: **if you would treat it as the place where you write for years, it belongs here.**
+
+### On content boundaries
+
+Being listed is not an endorsement. Opinions on those sites belong to their authors; we do not review content, only whether a site fits the forms above. If a listed site later turns into a marketing page, changes hands, or hosts fraudulent content, open an issue and we will re-evaluate.
+
+---
+
+## How to use this directory
+
+**Browse it.** Open the [live directory](https://realchendahuang.github.io/one-person-one-site/) to filter by tag, search across site names, authors and descriptions, or hit "Wander" to land on a site you have never seen. The [full directory page](https://realchendahuang.github.io/one-person-one-site/directory/) lists everything by tag and by name.
+
+**Subscribe in bulk.** Many listed sites publish RSS / Atom. Download [feeds.opml](./site/feeds.opml) and import it into any reader to add all of them to your information flow at once — a far more durable way to follow people than bookmarks.
+
+**Reuse the data.** All entries live in [data/sites.json](./data/sites.json), or fetch it live from [sites.json](https://realchendahuang.github.io/one-person-one-site/data/sites.json). Build visualizations, your own recommender, or feed it into other tools (MIT).
+
+---
+
+## Listed sites
 
 <!-- SITES_TABLE:START -->
 | Site | Owner | Description | Language | Tags |
@@ -65,7 +110,7 @@ We provide a lightweight, modern, tracker-free static web interface with dark mo
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
-| [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personnal-website |
+| [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personal-website |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
@@ -79,99 +124,88 @@ We provide a lightweight, modern, tracker-free static web interface with dark mo
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 <!-- SITES_TABLE:END -->
 
-> For complete metadata (including RSS feeds and regions), view [DIRECTORY.md](./DIRECTORY.md).
+See [DIRECTORY.md](./DIRECTORY.md) for the full list, tag statistics and RSS feeds.
 
 ---
 
-## 🎯 Inclusion Criteria
+## Submit your site
 
-### We warmly welcome:
-- ✅ **Independent Blogs**: Thoughtful writing on technology, philosophy, books, or life.
-- ✅ **Digital Gardens**: Interconnected notes, evolving ideas, and public learning logs.
-- ✅ **Personal Portfolios**: Showcases of work by designers, creators, engineers, and artists.
-- ✅ **Indie Makers**: Builders building in public, experimenting with projects and indie ventures.
-- ✅ **Personal Knowledge Bases**: Carefully curated notes on specific domains.
+We would love to hear about new sites — especially ones that many people have not found yet.
 
-### We do not include:
-- ❌ Corporate websites, agency sites, and SaaS product marketing landing pages.
-- ❌ Single social media profile pages (e.g. Substack/Medium profiles without custom domains, X/Twitter, WeChat, Xiaohongshu).
-- ❌ Scraping mirrors, aggregator sites, and SEO regurgitators.
-- ❌ Mass-generated AI content farms lacking genuine human expression.
-- ❌ Deceptive, spammy, malicious, or unlawful sites.
+**Option 1: Open an issue (recommended)**
+Use the [**site submission form**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml) with your site name, URL, owner name and a one-line description. The form validates the format and probes availability; **your site usually appears in the live directory within a minute or two.**
 
----
-
-## 📮 How to Submit a Site
-
-### Option 1: Submit via Issue (Easiest)
-Use our [**Submit a site template**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml). Fill in your site name, URL, owner handle, and a short summary.
-
-### Option 2: Pull Request (For Developers)
-1. Fork and clone this repository.
-2. Add your site to `data/sites.json`:
+**Option 2: Pull request**
+1. Fork and clone the repository;
+2. Append your entry to `data/sites.json`:
    ```json
    {
      "name": "Your Site Name",
      "url": "https://your-domain.com",
-     "owner": "Your Name / Handle",
-     "description": "A sincere one or two sentence description of your space.",
+     "owner": "Your Name",
+     "description": "One or two sincere sentences about your site and what you write about.",
      "languages": ["en"],
      "region": "Global",
      "tags": ["blog", "developer", "notes"],
      "feed": "https://your-domain.com/rss.xml"
    }
    ```
-3. Run local validation:
-   ```bash
-   python3 scripts/validate.py && python3 scripts/generate_directory.py
-   ```
-4. Commit your changes and open a Pull Request.
+3. Run `python3 scripts/validate.py && python3 scripts/generate_directory.py`;
+4. Open a pull request.
 
----
+> `feed` is optional. If your site publishes RSS / Atom, include it — that puts you in the subscription bundle.
 
-## 🏷️ Recommended Tags
+### Fields
 
-| Category | Examples |
+| Field | Required | Notes |
+|---|---|---|
+| `name` | ✅ | Site name, up to 40 characters |
+| `url` | ✅ | Home page, not a single article |
+| `owner` | ✅ | The author's usual name or handle |
+| `description` | ✅ | 15–240 characters, factual, no marketing tone |
+| `languages` | ✅ | Main languages, e.g. `en`, `zh-CN`, `zh-TW`, `ja` |
+| `region` | ✅ | e.g. `Global`, `China`, `Taiwan`, `Japan` |
+| `tags` | ✅ | 1–8 lowercase tags, hyphenated when multi-word (`indie-hacker`) |
+| `feed` | ⬜ | RSS / Atom / JSON Feed URL |
+
+### Common tags
+
+| Category | Tags |
 |---|---|
-| **Tech & Maker** | `developer`, `indie-hacker`, `maker`, `open-source`, `ai`, `security` |
-| **Writing & Thoughts** | `blog`, `writer`, `notes`, `digital-garden`, `reading`, `philosophy` |
-| **Design & Visual** | `designer`, `portfolio`, `photography`, `architecture`, `art` |
-| **Life & Culture** | `lifestyle`, `food`, `travel`, `music`, `minimalism`, `newsletter` |
+| **Content type** | `blog` · `digital-garden` · `notes` · `portfolio` · `newsletter` |
+| **Author role** | `developer` · `designer` · `writer` · `maker` · `indie-hacker` · `photographer` · `researcher` |
+| **Topic** | `ai` · `open-source` · `security` · `tech` · `life` |
+
+Please reuse existing tags where you can — it keeps the directory browsable by topic.
 
 ---
 
-## 🗺️ Roadmap
+## Maintaining the list
 
-- [x] Establish the initial seed of high-quality independent sites
-- [x] Build and launch a modern, responsive static web directory on GitHub Pages
-- [x] Support live quick-view modal, instant search, tag filters, and random exploration
-- [x] Direct RSS feed detection and one-click copy
-- [ ] Export consolidated OPML file for major feed readers
-- [ ] Automated health checking to detect broken links
-- [ ] Community showcase and annual indie web highlights
+- **Found a dead site?** A health check runs weekly and opens a summary issue; you are also welcome to report one directly.
+- **Need a correction?** Descriptions, tags and feed URLs can all be updated via issue or pull request.
+- **Want to discuss what belongs here?** Open an issue and explain your reasoning — we are happy to talk it through.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the detailed workflow.
 
 ---
 
-## 📈 Star History
+## Status and plans
 
-<a href="https://star-history.com/#realchendahuang/one-person-one-site&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
- </picture>
-</a>
-
----
-
-## 📄 License
-
-Code and build scripts are released under the [MIT License](./LICENSE).  
-Listed site metadata is curated for open web discovery and index purposes; individual content rights belong to their respective authors.
+- [x] A first seed set of independent blogs and personal sites
+- [x] Live directory with tag filters, full-text search and random wandering
+- [x] Aggregated RSS feeds with one-click import (OPML)
+- [x] Automatic ingestion on submission and a weekly health check
+- [ ] Curated thematic collections, so good writing is easier to find
+- [ ] An annual roundup of independent personal sites
 
 ---
+
+## License
+
+Scripts and documentation in this repository are released under the [MIT License](./LICENSE). Content and intellectual property in listed sites belong to their respective authors; this directory only indexes and links to them, and listing is not an endorsement of any kind.
 
 <p align="center">
-  <strong>May every thoughtful individual keep a light glowing on the open internet.</strong><br>
-  Star ⭐️ this repository and bring your digital home here.
+  <strong>May every thoughtful person keep a light of their own on the open internet.</strong><br>
+  If this directory helped you find someone worth reading, a star ⭐️ is appreciated — and you are welcome to bring your own site along.
 </p>

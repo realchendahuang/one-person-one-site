@@ -30,9 +30,23 @@ import hashlib
 import json
 import os
 import re
+import sys
 import urllib.error
 import urllib.request
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# 收录上限与格式规则直接取自校验器：自动流水线必须和 CI 用同一套标准，
+# 否则会写出通过自身检查、却被 validate.py 拒绝的数据。
+from validate import (  # noqa: E402
+    LANGUAGE_RE,
+    MAX_DESCRIPTION,
+    MAX_NAME,
+    MAX_TAGS,
+    MIN_DESCRIPTION,
+    TAG_RE,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = Path(os.environ.get("OPOS_SITES_FILE", ROOT / "data" / "sites.json"))
@@ -47,10 +61,7 @@ SOCIAL_HOSTS = {
     "bilibili.com", "youtube.com", "reddit.com", "linkedin.com",
 }
 
-MAX_DESCRIPTION = 240
-MAX_NAME = 60
 MAX_OWNER = 60
-MAX_TAGS = 8
 REQUEST_TIMEOUT = 20
 SITE_URL = "https://realchendahuang.github.io/one-person-one-site/"
 NOTICE = "https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml"
@@ -409,6 +420,37 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
             "invalid",
             "暂时没能收录 ⏳\n\n表单缺少必填内容：" + "、".join(missing) +
             "\n\n请直接编辑本 Issue 正文补齐，编辑后会自动重新处理。",
+            name=name,
+            url=url,
+            revision=revision,
+        )
+
+    # 与 validate.py 同一套规则：这里先拦下来，才能给出可操作的提示，
+    # 而不是让数据写进去之后在 CI 里变成一次构建失败。
+    problems = []
+    if len(description) < MIN_DESCRIPTION:
+        problems.append(
+            f"「一句话介绍」太短（现在 {len(description)} 字，至少需要 {MIN_DESCRIPTION} 字）"
+        )
+    problems += [
+        f"语言代码 `{lang}` 不规范（示例: zh-CN、zh-TW、en、ja）"
+        for lang in languages
+        if not LANGUAGE_RE.match(lang)
+    ]
+    problems += [
+        f"标签 `{tag}` 不规范（要求全小写，多词用中划线，如 indie-hacker）"
+        for tag in tags
+        if not TAG_RE.match(tag)
+    ]
+    if len(name) > MAX_NAME:
+        problems.append(f"网站名称超过 {MAX_NAME} 字")
+
+    if problems:
+        return make_result(
+            "invalid",
+            "暂时没能收录 ⏳\n\n表单内容有需要调整的地方：\n\n"
+            + "\n".join(f"- {item}" for item in problems)
+            + "\n\n请直接编辑本 Issue 正文修改，编辑后会自动重新处理。",
             name=name,
             url=url,
             revision=revision,

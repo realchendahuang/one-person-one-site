@@ -1,5 +1,12 @@
 name: Deploy site to GitHub Pages
 
+# 构建并发布静态站点。
+#
+# 部署前先跑一遍数据校验与规则测试：发布链路自己也要守住数据质量，
+# 不能假定上游（PR 校验 / 自动收录）一定已经把问题拦住了。
+#
+# 注意：GITHUB_TOKEN 触发的 push 不会连带触发其它工作流，
+# 因此 .github/workflows/ingest-issue.yml 会用 workflow_dispatch 显式调用本工作流。
 on:
   push:
     branches: [main]
@@ -19,15 +26,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install image dependency
+        run: python3 -m pip install --quiet --disable-pip-version-check pillow
+
       - name: Validate site data
         run: python3 scripts/validate.py
+
+      - name: Run rule tests
+        run: python3 tests/test_validate.py
+
+      - name: Build brand assets
+        run: python3 scripts/build_assets.py
+
+      # 站点图标已缓存进仓库；这里只补齐新增站点缺失的图标，
+      # 网络不可用时不会失败（缺失的会退化成首字母色块）。
+      - name: Refresh missing favicons
+        run: python3 scripts/fetch_favicons.py || echo "favicon 抓取不稳定，使用已缓存的结果"
+
       - name: Build static site
         run: python3 scripts/generate_site.py
+
+      - name: Verify build output
+        run: python3 tests/test_build.py
+
       - name: Disable Jekyll processing
         run: touch site/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

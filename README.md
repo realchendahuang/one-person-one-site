@@ -1,58 +1,102 @@
 # 一人一站 · One Person, One Site
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Active%20%26%20Growing-ff6a00?style=flat-square" alt="Status">
-  <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-18181b?style=flat-square&logo=githubpages&logoColor=white" alt="Live Demo"></a>
-  <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/Directory-Markdown-52525b?style=flat-square" alt="Directory"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-black?style=flat-square" alt="License"></a>
-  <a href="https://github.com/realchendahuang/one-person-one-site/pulls"><img src="https://img.shields.io/badge/PRs-Welcome-22c55e?style=flat-square" alt="PRs Welcome"></a>
+  <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/在线目录-立即浏览-ff6a00?style=flat-square" alt="在线目录"></a>
+  <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/完整目录-Markdown-52525b?style=flat-square" alt="完整目录"></a>
+  <a href="./site/feeds.opml"><img src="https://img.shields.io/badge/RSS-订阅合集-22c55e?style=flat-square" alt="订阅合集"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/许可-MIT-black?style=flat-square" alt="许可"></a>
 </p>
 
 <p align="center">
-  <strong>收集值得关注的个人网站、独立博客与数字花园。</strong><br>
-  发现那些在平台围墙与算法推荐之外，认真经营自己互联网家园的真实创作者。
+  <strong>一份长期维护的个人网站与人际网络清单。</strong><br>
+  收录独立博客、数字花园与个人作品集——那些由真人经营、值得你长期阅读的地方。
 </p>
 
 <p align="center">
-  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 在线浏览 (支持小窗预览与漫游)</a> · 
-  <a href="#-提交你的网站">📮 提交网站</a> · 
-  <a href="./DIRECTORY.md">📑 完整目录</a> · 
-  <a href="./CONTRIBUTING.md">🤝 贡献指南</a> · 
-  <a href="./README_EN.md">English Version</a>
+  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 浏览目录</a> ·
+  <a href="#-收录标准">🎯 收录标准</a> ·
+  <a href="#-提交你的网站">📮 提交网站</a> ·
+  <a href="./DIRECTORY.md">📑 完整目录</a> ·
+  <a href="./README_EN.md">English</a>
 </p>
 
 ---
 
-## 💡 为什么发起「一人一站」？
+## 这个目录是什么
 
-算法在投喂注意力，平台在收拢围墙，中心化账号随时可能被封禁、限流或随风消逝。
+这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
-然而，**个人网站是互联网上极少数仍然真正属于你自己的数字领地**：
-- 你可以自由决定它的视觉、排版、结构与字体；
-- 你可以沉淀多年积累的思考、作品集、碎片笔记与真实生活；
-- 你不必为了算法推荐迎合爆款套路，只需真诚地表达与记录。
+<!-- STATS:START -->
+- 目前收录 **21** 个站点，来自 **4** 个地区，使用 5 种语言写作。
+- 其中 **5** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
+- 内容形态：`blog` (13)、`digital-garden` (3)、`notes` (4)、`portfolio` (6)。
+- 常见主题：`developer` (14)、`indie-hacker` (7)、`maker` (5)、`designer` (3)、`security` (2)、`writer` (2)、`open-source` (1)、`personal-website` (1)。
+<!-- STATS:END -->
 
-> **一人一站，并非要求每个人都成为全职站长。**  
-> 这是一场数字生活方式的重聚倡议：**走出中心化平台，重塑个人数字主权。**  
-> 我们不收录空洞的“建站模板展示”，只收录**真实的人，以及他们长期深耕的数字空间**。
-
----
-
-## 🌟 在线体验 (Live Directory)
-
-我们为所有收录站点打造了现代极简、无广告、纯静态且支持暗黑模式的浏览网站：
-
-👉 **[https://realchendahuang.github.io/one-person-one-site/](https://realchendahuang.github.io/one-person-one-site/)**
-
-- 🖥️ **小窗实时预览**：内置 macOS 风格拟态浏览器弹窗，无需跳转即可快速沉浸式预览站点内容。
-- 🎨 **双主题系统**：自适应纸感浅色与深邃暗黑模式，高对比度信号橙交互。
-- 🔍 **即时检索与筛选**：支持全文即时搜索、分类标签筛选与分段排序。
-- 🎲 **随机漫游探索**：一键开启漫游，随机发现意想不到的优质独立站点。
-- 📡 **RSS 便捷订阅**：卡片直达订阅源并支持一键复制。
+每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
 
 ---
 
-## 📚 目录预览
+## 我们相信什么
+
+**个人网站是互联网上少数仍然真正属于你的地方。**
+
+算法在分配注意力，平台在收拢围墙。中心化账号可以被限流、被封禁、被改规则，或者在某一天随风消逝。但一个属于你的域名和站点不会：你可以决定它的样子、它的排版、它承载什么，也可以让它安安静静地长上十年。
+
+我们因此愿意花力气做这份清单。收录它，是给这些站点的作者一点真实的回响——**在这个被推荐流统治的年代，让认真写字的人被找到。**
+
+> **一人一站，不是要求每个人都成为全职站长。**
+> 它只是一场数字生活方式的重聚：走出中心化平台，重新在意自己的数字主权。
+> 我们不要空洞的建站模板展示，只要**真实的人，和他们长期深耕的空间**。
+
+---
+
+## 收录标准
+
+### ✅ 我们欢迎
+
+| 类型 | 说明 |
+|---|---|
+| **独立博客 / Independent Blog** | 长期记录技术、思考、读书或生活的站点，有真实的作者在写。 |
+| **数字花园 / Digital Garden** | 未完成但持续生长、以双链交织的笔记与灵感库。 |
+| **个人作品集 / Portfolio** | 设计师、开发者、摄影师、艺术家展示代表作品的独立空间。 |
+| **独立创作者主页 / Indie Maker** | 公开构建（Build in Public）的个人项目与探索记录。 |
+| **个人知识库 / Knowledge Base** | 针对特定领域系统化沉淀的公共笔记。 |
+
+### ❌ 我们谢绝
+
+- 纯公司官网、企业营销页、SaaS 产品转化落地页；
+- 单一的第三方社交平台账号主页（微信公众号、小红书、即刻、知乎等）；
+- 采集站、镜像站、纯 SEO 伪原创站；
+- 由 AI 批量流水线生成、没有个人见解的内容农场；
+- 含欺诈、恶意跳转、侵权或违法内容的站点。
+
+### 判断时我们看这几件事
+
+1. **背后有真人。** 能看出作者是谁、在持续写什么，而不是一个没有署名的空壳。
+2. **内容是自己写的。** 有原创文章、笔记或作品，不是聚合与转载。
+3. **它是个「家」，不是「展台」。** 用于长期表达与积累，而不是一次性的产品宣传页。
+4. **它在正常运转。** 可以访问，阅读体验正常，不弹窗轰炸、不恶意跳转。
+
+> 简单说：**如果你愿意把这个站点当作自己长期写作的地方，它就属于这里。**
+
+### 关于内容边界
+
+收录不代表背书。站内观点属于各自的作者，我们对内容不做审查，只确认它符合上面的形态标准。若某个站点后来变成营销页、被转手，或出现欺诈内容，欢迎提 Issue 指出，我们会重新评估。
+
+---
+
+## 怎么用这份目录
+
+**在网页上找。** 打开 [在线目录](https://realchendahuang.github.io/one-person-one-site/)，可以按标签筛选、全文搜索（站名、作者、简介都能搜），或者点「漫游」随机遇到一个陌生的站点。[完整目录页](https://realchendahuang.github.io/one-person-one-site/directory/) 按标签和名称列出了全部条目。
+
+**批量订阅。** 收录站点中有相当一部分提供 RSS / Atom。下载 [feeds.opml](./site/feeds.opml) 导入任意阅读器，就能把这些人一次性加进你的信息流——这是比收藏夹更可靠的关注方式。
+
+**复用数据。** 全部收录数据在 [data/sites.json](./data/sites.json)，也可以直接从线上取 [sites.json](https://realchendahuang.github.io/one-person-one-site/data/sites.json)。想拿去做可视化、做自己的推荐、写进别的工具，都请自便（MIT）。
+
+---
+
+## 已收录站点
 
 <!-- SITES_TABLE:START -->
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
@@ -66,7 +110,7 @@
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
-| [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personnal-website |
+| [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personal-website |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
@@ -80,99 +124,88 @@
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 <!-- SITES_TABLE:END -->
 
-> 完整收录数据与 RSS 订阅源请查阅 [DIRECTORY.md](./DIRECTORY.md)。
+完整列表、标签统计与 RSS 订阅源见 [DIRECTORY.md](./DIRECTORY.md)。
 
 ---
 
-## 🎯 收录标准与原则
+## 提交你的网站
 
-### 我们热烈欢迎：
-- ✅ **独立博客 / Independent Blog**：长期记录技术、思考、读书或生活感悟的站点。
-- ✅ **数字花园 / Digital Garden**：未完成但持续生长、交织网状链接的双链笔记或灵感库。
-- ✅ **个人作品集 / Portfolio**：设计师、开发者、摄影师、艺术家展示代表作品的独立空间。
-- ✅ **独立黑客与创作者主页 / Indie Maker**：公开构建（Build in Public）、探索新产品与独立商业的项目站。
-- ✅ **个人知识库 / Knowledge Base**：针对特定专业领域系统化沉淀的公共笔记。
+我们很希望收到新的站点，尤其是那些还没被很多人发现的。
 
-### 我们谢绝收录：
-- ❌ 纯公司官网、企业营销页、SaaS 落地转化页。
-- ❌ 社交平台单一账号主页（如微信公众号、小红书主页、即刻主页、知乎主页等）。
-- ❌ 采集站、镜像站、纯 SEO 伪原创站。
-- ❌ 缺乏真实个人表达、由 AI 批量流水线生成的无意义内容农场。
-- ❌ 含有欺诈、恶意广告跳转、侵权或违规违法内容的站点。
+**方式一：Issue 提交（推荐）**
+打开 [**提交网站表单**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)，填网站名称、网址、站长名和一句话简介。表单会校验格式并探测站点可用性，**通常一两分钟内就会出现在线上目录里**。
 
----
-
-## 📮 提交你的网站
-
-### 方式一：Issue 提交（最简便捷）
-直接点击 [**Submit a site 模板**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)，按提示填写网站名称、网址、站长名与一句话简介即可，维护者会定期合并。
-
-### 方式二：Pull Request 提交
-1. Fork 本仓库并 Clone 到本地。
-2. 在 `data/sites.json` 中追加你的站点信息：
+**方式二：Pull Request**
+1. Fork 并 Clone 仓库；
+2. 在 `data/sites.json` 末尾追加你的站点：
    ```json
    {
      "name": "你的站点名称",
      "url": "https://your-domain.com",
-     "owner": "你的昵称或名字",
-     "description": "用真诚简洁的一两句话介绍你的站点或你关注的领域。",
+     "owner": "你的昵称",
+     "description": "用真诚简洁的一两句话介绍你的站点，或你长期关注什么。",
      "languages": ["zh-CN"],
      "region": "China",
      "tags": ["blog", "developer", "notes"],
      "feed": "https://your-domain.com/rss.xml"
    }
    ```
-3. 运行本地校验并重新生成目录：
-   ```bash
-   python3 scripts/validate.py && python3 scripts/generate_directory.py
-   ```
-4. 提交修改并发起 Pull Request。
+3. 运行 `python3 scripts/validate.py && python3 scripts/generate_directory.py`；
+4. 提交 PR。
 
----
+> `feed` 可留空。如果站点有 RSS / Atom，请填上——它会让你的站点出现在订阅合集里。
 
-## 🏷️ 推荐标签一览
+### 字段说明
 
-| 领域分类 | 常见推荐标签 |
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| `name` | ✅ | 站点全称或常用名，不超过 40 字 |
+| `url` | ✅ | 首页地址，指向主页而非某篇文章 |
+| `owner` | ✅ | 站长或创作者的常用名 |
+| `description` | ✅ | 15~240 字，客观介绍站点内容，避免营销腔 |
+| `languages` | ✅ | 内容主要语言，如 `zh-CN`、`zh-TW`、`en`、`ja` |
+| `region` | ✅ | 所属地区，如 `China`、`Taiwan`、`Japan`、`Global` |
+| `tags` | ✅ | 1~8 个全小写标签，多词用中划线（如 `indie-hacker`） |
+| `feed` | ⬜ | RSS / Atom / JSON Feed 地址 |
+
+### 常用标签
+
+| 分类 | 标签 |
 |---|---|
-| **技术与黑客** | `developer`, `indie-hacker`, `maker`, `open-source`, `ai`, `security` |
-| **写作与思考** | `blog`, `writer`, `notes`, `digital-garden`, `reading`, `philosophy` |
-| **设计与视觉** | `designer`, `portfolio`, `photography`, `architecture`, `art` |
-| **生活与多样** | `lifestyle`, `food`, `travel`, `music`, `minimalism`, `newsletter` |
+| **内容形态** | `blog` · `digital-garden` · `notes` · `portfolio` · `newsletter` |
+| **作者身份** | `developer` · `designer` · `writer` · `maker` · `indie-hacker` · `photographer` · `researcher` |
+| **主题领域** | `ai` · `open-source` · `security` · `tech` · `life` |
+
+尽量复用已有标签，方便大家按主题浏览。
 
 ---
 
-## 🗺️ 发展路线 (Roadmap)
+## 参与维护
 
-- [x] 建立第一批高质量中文独立博客与个人站点种子库
-- [x] 搭建极简高质感静态展示站（GitHub Pages 纯静态上线）
-- [x] 支持小窗实时交互预览、全文检索、分类筛选与随机漫游
-- [x] 支持 RSS 订阅源提取与一键复制
-- [ ] 导出统一 OPML 订阅文件，支持一键导入主流 RSS 阅读器
-- [ ] 自动化站点可用性健康检查机制（死链巡检）
-- [ ] 社区精选推荐与年度独立个人站点巡礼
+- **发现站点失效？** 每周会自动巡检一次并开 Issue 汇总，也欢迎你直接指出。
+- **信息需要修正？** 简介、标签、RSS 地址都可以改，提 Issue 或 PR 均可。
+- **想讨论收录边界？** 在 Issue 里说明你的判断依据，我们愿意听。
+
+详细的贡献流程见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
 ---
 
-## 📈 Star History
+## 目录的现状与计划
 
-<a href="https://star-history.com/#realchendahuang/one-person-one-site&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=realchendahuang/one-person-one-site&type=Date" />
- </picture>
-</a>
-
----
-
-## 📄 开源许可
-
-本项目遵循 [MIT License](./LICENSE)。  
-收录之站点数据仅供独立互联网社区索引与交流展示使用，各站点内容知识产权归其各自作者所有。
+- [x] 第一批独立博客与个人站点种子库
+- [x] 在线目录：标签筛选、全文搜索与随机漫游
+- [x] RSS 订阅源聚合与一键导入（OPML）
+- [x] 提交后的自动收录与每周可用性巡检
+- [ ] 按主题整理的精选专题，让好内容更容易被读到
+- [ ] 年度独立个人站点巡礼
 
 ---
+
+## 许可
+
+本项目的脚本与文档以 [MIT License](./LICENSE) 开源。收录站点的内容与知识产权归各自作者所有；本目录只做索引与展示，收录不代表任何形式的背书。
 
 <p align="center">
   <strong>愿每一个认真思考的人，都在互联网上拥有属于自己的灯火。</strong><br>
-  欢迎 Star ⭐️ 本仓库，并将你的数字花园带到这里。
+  如果这份目录让你找到了值得读的人，欢迎 Star ⭐️，也欢迎把你的站点带进来。
 </p>

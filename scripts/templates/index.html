@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme-mode="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>一人一站 · 收集认真经营的独立博客与个人网站</title>
+<meta name="description" content="一人一站收录真实创作者独立经营的博客、数字花园与个人作品集，支持按标签浏览、全文检索与随机漫游，帮助你在平台围墙之外发现值得长期阅读的个人网站。">
+<link rel="canonical" href="https://realchendahuang.github.io/one-person-one-site/">
+<meta property="og:title" content="一人一站 · 收集认真经营的独立博客与个人网站">
+<meta property="og:description" content="一人一站收录真实创作者独立经营的博客、数字花园与个人作品集，帮助你在平台围墙之外发现值得长期阅读的个人网站。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://realchendahuang.github.io/one-person-one-site/">
+<meta property="og:image" content="https://realchendahuang.github.io/one-person-one-site/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="一人一站">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="一人一站 · 收集认真经营的独立博客与个人网站">
+<meta name="twitter:description" content="一人一站收录真实创作者独立经营的博客、数字花园与个人作品集，帮助你在平台围墙之外发现值得长期阅读的个人网站。">
+<meta name="twitter:image" content="https://realchendahuang.github.io/one-person-one-site/og-image.png">
+<meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+<link rel="alternate" type="application/xml" title="一人一站 · 订阅合集 (OPML)" href="./feeds.opml">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<script type="application/ld+json">__JSONLD__</script>
+<script>
+  (function() {
+    var stored = localStorage.getItem("opos-theme") || "system";
+    document.documentElement.setAttribute("data-theme-mode", stored);
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (stored === "dark" || (stored === "system" && prefersDark)) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  })();
+</script>
+<style>
+/*__STYLES__*/
+</style>
+</head>
+<body>
+
+<!-- 顶栏：单行绝对防折行 -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="./" class="brand" aria-label="一人一站 首页">
+      <span class="brand-pulse"></span>
+      <span>一人一站</span>
+      <span class="brand-sub">One Person, One Site</span>
+    </a>
+
+    <div class="header-actions">
+      <!-- 搜索按钮 -->
+      <button id="btn-search" class="h-btn" type="button" title="搜索 (/)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>搜索</span>
+      </button>
+
+      <!-- 漫游按钮 -->
+      <button id="btn-shuffle" class="h-btn" type="button" title="随机漫游">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M16 8h.01"/><path d="M8 8h.01"/><path d="M8 16h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/></svg>
+        <span>漫游</span>
+      </button>
+
+      <!-- 提交网站 -->
+      <a href="https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml" target="_blank" rel="noopener" class="h-btn h-btn-primary">
+        <span>提交</span>
+      </a>
+
+      <!-- 主题切换 -->
+      <button id="btn-theme" class="h-icon-btn" type="button" title="切换主题" aria-label="切换主题">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="theme-icon-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+      </button>
+
+      <!-- GitHub -->
+      <a href="https://github.com/realchendahuang/one-person-one-site" target="_blank" rel="noopener" class="h-icon-btn" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="main-wrapper">
+  <h1 class="sr-only">一人一站 · 值得长期阅读的独立博客与个人网站目录</h1>
+  <p class="sr-only">共收录 __SITE_COUNT__ 个由真实创作者独立经营的博客、数字花园与个人作品集。</p>
+
+  <!-- 控制条：单行横滑标签 + 排序分段 -->
+  <div class="bar-controls">
+    <div class="tags-scroll">
+      <div id="tags-bar" class="tags-bar"></div>
+      <button id="search-chip" class="active-search-chip" type="button" title="清除搜索" hidden>
+        <span id="search-chip-text"></span>
+        <span aria-hidden="true" style="font-size:0.7rem;margin-left:2px;">✕</span>
+      </button>
+    </div>
+
+    <div class="sort-group" role="group" aria-label="排序方式">
+      <button type="button" class="sort-btn active" data-sort="default" aria-pressed="true">推荐</button>
+      <button type="button" class="sort-btn" data-sort="name" aria-pressed="false">字母序</button>
+      <button type="button" class="sort-btn" data-sort="random" aria-pressed="false">随机</button>
+    </div>
+  </div>
+
+  <!-- 站点卡片：构建期已完成静态渲染，禁用 JS 时同样可见可点 -->
+  <div id="sites-grid" class="sites-grid">
+__CARDS__
+  </div>
+
+  <!-- 空状态 -->
+  <div id="empty-state" class="empty-state" hidden>
+    <p>没有符合当前条件的站点</p>
+    <button id="btn-reset" class="h-btn" type="button">清除筛选</button>
+  </div>
+</main>
+
+<!-- 全局响应式搜索弹窗 (带左右滑动手势标签栏) -->
+<div id="search-modal" class="search-backdrop" role="dialog" aria-modal="true" aria-label="搜索站点" hidden>
+  <div class="search-box">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <label for="search-input" class="sr-only">搜索站点名称、作者、简介或标签</label>
+      <input id="search-input" class="search-input-field" placeholder="搜索站点名称、作者、简介或标签…" autocomplete="off">
+      <button id="search-close-btn" class="search-close-btn" type="button" aria-label="关闭搜索">✕</button>
+    </div>
+    <!-- 弹窗内支持左右滑动的分类标签 -->
+    <div id="search-modal-tags" class="search-tags-row"></div>
+    <div id="search-results" class="search-results-list"></div>
+  </div>
+</div>
+
+<!-- 浮动 Toast 提示 -->
+<div id="toast" class="toast-notice" role="status" aria-live="polite">
+  <span id="toast-text">已复制</span>
+</div>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="./directory/">总目录</a>
+    <span aria-hidden="true">·</span>
+    <a href="./feeds.opml">订阅合集</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/realchendahuang/one-person-one-site" target="_blank" rel="noopener">GitHub</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml" target="_blank" rel="noopener">提交新站</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/realchendahuang/one-person-one-site/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>
+  </div>
+  <div>一人一站 · 属于每一个人的独立互联网家园</div>
+</footer>
+
+<!-- 站点数据（供筛选、排序等交互使用；卡片本身已在构建期渲染） -->
+<script id="sites-data" type="application/json">__SITES_DATA__</script>
+
+<script>
+//__APP__
+</script>
+</body>
+</html>
