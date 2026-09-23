@@ -1,15 +1,5 @@
 [
   {
-    "name": "陈大黄 - 作品与内容",
-    "url": "https://chendahuang.com",
-    "owner": "陈大黄",
-    "description": "陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。",
-    "languages": ["zh-CN"],
-    "region": "China",
-    "tags": ["blog", "developer", "portfolio"],
-    "feed": "https://chendahuang.com/rss.xml"
-  },
-  {
     "name": "CouCouYa 可可鸭",
     "url": "https://coucouya.com",
     "owner": "CouCouYa",
@@ -116,5 +106,44 @@
     "languages": ["zh-CN"],
     "region": "Global",
     "tags": ["developer", "research", "blog"]
+  },
+  {
+    "name": "只是一根毛",
+    "url": "https://justmao.com/",
+    "owner": "JustMao",
+    "description": "资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。",
+    "languages": ["zh-TW"],
+    "region": "Taiwan",
+    "tags": ["developer", "blog", "security"],
+    "feed": "https://justmao.com/feed.xml"
+  },
+  {
+    "name": "皮普的数字花园",
+    "url": "https://pipuwong.com",
+    "owner": "Pipu",
+    "description": "设计师与摄影师，记录摄影、设计、代码，以及 NAS 自托管与建站实践。",
+    "languages": ["zh-CN", "en"],
+    "region": "China",
+    "tags": ["blog", "designer", "photographer", "digital-garden"],
+    "feed": "https://pipuwong.com/rss.xml"
+  },
+  {
+    "name": "权小白",
+    "url": "https://quanxb.art/",
+    "owner": "权小白",
+    "description": "05 后的个人站，只写亲自试过的 AI 工具与实践，记录持续更新的思考与判断。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["developer", "writer", "ai"]
+  },
+  {
+    "name": "陈大黄 - 作品与内容",
+    "url": "https://chendahuang.com",
+    "owner": "陈大黄",
+    "description": "陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "developer", "portfolio"],
+    "feed": "https://chendahuang.com/rss.xml"
   }
 ]
