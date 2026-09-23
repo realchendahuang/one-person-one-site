@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **12** 个站点。
+当前共收录 **13** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -17,8 +17,9 @@
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
+| [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, research, blog |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 
 ## 标签统计
 
-`blog` (7) · `designer` (2) · `developer` (6) · `digital-garden` (2) · `indie-hacker` (5) · `maker` (4) · `notes` (3) · `portfolio` (5) · `writer` (1)
+`blog` (8) · `designer` (2) · `developer` (7) · `digital-garden` (2) · `indie-hacker` (5) · `maker` (4) · `notes` (3) · `portfolio` (5) · `research` (1) · `writer` (1)

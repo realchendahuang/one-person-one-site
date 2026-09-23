@@ -107,5 +107,14 @@
     "languages": ["zh-CN", "en"],
     "region": "China",
     "tags": ["digital-garden", "developer", "blog"]
+  },
+  {
+    "name": "逐风Lab",
+    "url": "https://zhufeng-lab.pages.dev/",
+    "owner": "逐风",
+    "description": "一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。",
+    "languages": ["zh-CN"],
+    "region": "Global",
+    "tags": ["developer", "research", "blog"]
   }
 ]
