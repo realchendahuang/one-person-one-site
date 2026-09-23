@@ -21,4 +21,4 @@ jobs:
       - name: Regenerate directory
         run: python3 scripts/generate_directory.py
       - name: Check generated files are committed
-        run: git diff --exit-code -- DIRECTORY.md
+        run: git diff --exit-code -- DIRECTORY.md README.md README_EN.md

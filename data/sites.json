@@ -1,1 +1,120 @@
-[]
+[
+  {
+    "name": "陈大黄 - 作品与内容",
+    "url": "https://chendahuang.com",
+    "owner": "陈大黄",
+    "description": "陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "developer", "portfolio"],
+    "feed": "https://chendahuang.com/rss.xml"
+  },
+  {
+    "name": "CouCouYa 可可鸭",
+    "url": "https://coucouya.com",
+    "owner": "CouCouYa",
+    "description": "KOSX.ai 社群增长操盘手，分享 AI、Web3、金融与公开学习。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "maker", "notes"]
+  },
+  {
+    "name": "Mike Lam",
+    "url": "https://mc9world.com",
+    "owner": "Mike Lam",
+    "description": "正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "maker"]
+  },
+  {
+    "name": "Edison AI Workshop",
+    "url": "https://edison-zwteam.pages.dev",
+    "owner": "Edison",
+    "description": "AI 产品开发者，专注信息流自动化、研究效率工具、内容分发系统和 Discord 自动化。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["developer", "portfolio", "indie-hacker"]
+  },
+  {
+    "name": "Su · AI Structure & Workflow Studio",
+    "url": "https://su-uni.cc",
+    "owner": "Su",
+    "description": "AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。",
+    "languages": ["zh-CN", "en"],
+    "region": "China",
+    "tags": ["designer", "portfolio", "indie-hacker"]
+  },
+  {
+    "name": "Kim AI Workshop",
+    "url": "https://kim-ai-workshop.com",
+    "owner": "Kim",
+    "description": "Practical AI systems, market intelligence, reusable Skills and automated workflows.",
+    "languages": ["en"],
+    "region": "Global",
+    "tags": ["developer", "indie-hacker", "maker"]
+  },
+  {
+    "name": "Jack Flux",
+    "url": "https://jack0813y.github.io",
+    "owner": "Jack",
+    "description": "一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "developer", "digital-garden"]
+  },
+  {
+    "name": "LINC.WANG",
+    "url": "https://linc.wang",
+    "owner": "Linc Wang",
+    "description": "室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["designer", "portfolio", "indie-hacker"]
+  },
+  {
+    "name": "MoonInAI",
+    "url": "https://mooninai.top",
+    "owner": "MoonInAI",
+    "description": "传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["developer", "notes", "indie-hacker"]
+  },
+  {
+    "name": "Station Cat",
+    "url": "https://wwwstationcat.org",
+    "owner": "Station Cat",
+    "description": "一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。",
+    "languages": ["zh-TW", "en", "ja"],
+    "region": "Global",
+    "tags": ["blog", "writer", "notes"]
+  },
+  {
+    "name": "Jasper Wei",
+    "url": "https://jasper-wei.vast-beech-4429.chatgpt.site",
+    "owner": "Jasper Wei",
+    "description": "前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["portfolio", "blog", "maker"]
+  },
+  {
+    "name": "Gdemoni's World",
+    "url": "https://zshgdemoni.me",
+    "owner": "Gdemoni",
+    "description": "一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。",
+    "languages": ["zh-CN", "en"],
+    "region": "China",
+    "tags": ["digital-garden", "developer", "blog"]
+  },
+  {
+    "name": "Personal Website AI",
+    "url": "https://personal-website-ai.chendahuang.com",
+    "owner": "陈大黄",
+    "description": "AI 时代，每个人都该有一个自己的网站。12 个真实上线的模板任选，三天上线并绑定自己的域名。",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["maker", "portfolio", "indie-hacker"]
+  }
+]

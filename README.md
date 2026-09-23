@@ -10,9 +10,31 @@
 
 这个项目不收集“建站模板”，而是收集**真实的人，以及他们长期经营的网站**。
 
-[English](./README_EN.md) · [浏览全部站点](./DIRECTORY.md) · [提交网站](#提交你的网站)
+[English](./README_EN.md) · [在线浏览](https://realchendahuang.github.io/one-person-one-site/) · [完整目录](./DIRECTORY.md) · [提交网站](#提交你的网站)
 
 ---
+
+## 收录的站点
+
+<!-- SITES_TABLE:START -->
+| 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
+|---|---|---|---|---|
+| [CouCouYa 可可鸭](https://coucouya.com) | CouCouYa | KOSX.ai 社群增长操盘手，分享 AI、Web3、金融与公开学习。 | zh-CN | blog, maker, notes |
+| [Edison AI Workshop](https://edison-zwteam.pages.dev) | Edison | AI 产品开发者，专注信息流自动化、研究效率工具、内容分发系统和 Discord 自动化。 | zh-CN | developer, portfolio, indie-hacker |
+| [Gdemoni's World](https://zshgdemoni.me) | Gdemoni | 一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。 | zh-CN, en | digital-garden, developer, blog |
+| [Jack Flux](https://jack0813y.github.io) | Jack | 一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。 | zh-CN | blog, developer, digital-garden |
+| [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
+| [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
+| [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
+| [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
+| [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
+| [Personal Website AI](https://personal-website-ai.chendahuang.com) | 陈大黄 | AI 时代，每个人都该有一个自己的网站。12 个真实上线的模板任选，三天上线并绑定自己的域名。 | zh-CN | maker, portfolio, indie-hacker |
+| [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
+| [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
+| [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
+<!-- SITES_TABLE:END -->
+
+完整信息（含 RSS 订阅地址）见 [DIRECTORY.md](./DIRECTORY.md)，也可以在[在线网站](https://realchendahuang.github.io/one-person-one-site/)中搜索和按标签筛选。
 
 ## 我们收录什么？
 
@@ -44,20 +66,6 @@
 3. **独立表达**：有自己的内容、观点、作品、笔记或生活记录。
 4. **可访问性**：网站当前可以正常访问，并有基本可读性。
 5. **尊重互联网**：不过度追踪、不恶意跳转、不用欺骗性方式获取用户信息。
-
-## 在线网站
-
-目录以纯静态网站的形式发布在 GitHub Pages：
-
-👉 **https://realchendahuang.github.io/one-person-one-site/**
-
-网站由 `data/sites.json` 自动构建（GitHub Actions 每次 push 到 main 自动部署），支持搜索和按标签筛选，无需任何服务器。
-
-## 目录
-
-完整站点列表由 `data/sites.json` 自动生成：
-
-👉 **[DIRECTORY.md](./DIRECTORY.md)**
 
 ## 提交你的网站
 
@@ -100,13 +108,15 @@ python3 scripts/generate_directory.py
 python3 scripts/generate_site.py   # 构建静态网站到 site/（已 gitignore）
 ```
 
+`generate_directory.py` 会同时更新 `DIRECTORY.md` 和本文件顶部的站点表格（`SITES_TABLE` 标记区间），提交 PR 时请一并提交所有生成文件的改动。
+
 提交 PR 时，GitHub Actions 会自动检查：
 
 - JSON 格式是否正确
 - URL 是否为 http/https
 - 是否存在重复网址
 - 必填字段是否齐全
-- `DIRECTORY.md` 是否与数据一致
+- `DIRECTORY.md` 与 README 表格是否与数据一致
 
 ## 项目结构
 
@@ -133,16 +143,23 @@ one-person-one-site/
 └── LICENSE
 ```
 
+## 在线网站
+
+目录以纯静态网站的形式发布在 GitHub Pages：
+
+👉 **https://realchendahuang.github.io/one-person-one-site/**
+
+网站由 `data/sites.json` 自动构建（GitHub Actions 每次 push 到 main 自动部署），支持搜索和按标签筛选，无需任何服务器。
+
 ## 路线图
 
-- [ ] 建立第一批高质量个人网站种子库
+- [x] 建立第一批高质量个人网站种子库
 - [ ] 按语言、地区、职业与主题分类
 - [ ] 增加 RSS / Atom Feed 信息
 - [ ] 增加站点截图与历史快照（可选）
 - [ ] 建立“本周一人一站”精选机制
 - [ ] 建立网站失效检测
 - [x] 生成可搜索的静态网站（GitHub Pages 已上线）
-- [ ] 建立“本周一人一站”精选机制
 - [ ] 支持 OPML / JSON / CSV 导出
 - [ ] 建立社区推荐与年度精选
 
