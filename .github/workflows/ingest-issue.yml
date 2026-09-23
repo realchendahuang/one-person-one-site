@@ -1,0 +1,147 @@
+name: Auto-ingest site submission
+
+# 提交者填完「提交一个网站」Issue 表单后自动收录：
+# 解析表单 → 校验 → 可用性探测 → 写入 data/sites.json → 提交 → 触发 Pages 部署
+# → 回复并关闭 Issue。全程无人参与。
+#
+# 维护者手动放行：在 Issue 上添加 accepted 标签，工作流会跳过可用性探测与排除清单重新收录。
+#
+# 幂等保证：
+#   - 同一状态（按 Issue 正文指纹）不重复评论；
+#   - 已处理的 Issue 不会重复写入数据（duplicate 判定兜底）。
+#
+# 注意：GITHUB_TOKEN 推送的提交不会触发其它工作流，因此部署通过
+# workflow_dispatch 显式触发 deploy.yml —— 这是 GITHUB_TOKEN 唯一被豁免的事件。
+
+on:
+  issues:
+    types: [opened, edited, reopened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  # 全局串行：多个 Issue 同时提交时避免并发推送冲突
+  group: ingest-submissions
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Decide whether to ingest
+        id: gate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          number="${{ github.event.issue.number }}"
+          repo="${{ github.repository }}"
+
+          # 维护者打上 accepted 标签 → 人工放行，跳过探测与排除清单
+          labels=$(gh api "repos/${repo}/issues/${number}/labels" --jq '.[].name' 2>/dev/null || true)
+          if echo "$labels" | grep -qx "accepted"; then
+            echo "force=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "force=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "number=${number}" >> "$GITHUB_OUTPUT"
+
+          # 保存正文与历史评论，供解析步骤与幂等判断使用
+          gh api "repos/${repo}/issues/${number}" --jq '.body // ""' > /tmp/issue-body.md
+          gh api "repos/${repo}/issues/${number}/comments" --paginate --jq '.[].body' \
+            > /tmp/issue-comments.txt 2>/dev/null || true
+          wc -c /tmp/issue-body.md
+
+      - name: Parse submission
+        id: parse
+        run: |
+          set -euo pipefail
+          python3 scripts/ingest_issue.py /tmp/issue-body.md \
+            --result /tmp/ingest-result.json \
+            --comment-file /tmp/comment.md \
+            --marker-file /tmp/marker.txt \
+            --github-output "$GITHUB_OUTPUT" \
+            --issue-number "${{ steps.gate.outputs.number }}" \
+            ${{ steps.gate.outputs.force == 'true' && '--force' || '' }}
+          echo "--- 解析结果 ---"
+          sed -n '1,20p' /tmp/ingest-result.json
+
+      - name: Validate and regenerate
+        if: steps.parse.outputs.status == 'accepted'
+        run: |
+          set -euo pipefail
+          python3 scripts/validate.py
+          python3 scripts/generate_directory.py
+          python3 scripts/generate_site.py
+
+      - name: Commit
+        if: steps.parse.outputs.status == 'accepted'
+        run: |
+          set -euo pipefail
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add data/sites.json DIRECTORY.md README.md README_EN.md
+          git commit -m "${{ steps.parse.outputs.commit_message }}"
+          # 兼容期间可能出现的其他人推送：先变基再推送
+          git pull --rebase --autostash origin main
+          git push origin main
+
+      - name: Trigger Pages deployment
+        if: steps.parse.outputs.status == 'accepted'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh workflow run deploy.yml --ref main
+          echo "已触发 Pages 部署"
+
+      - name: Should comment
+        id: comment_gate
+        env:
+          STATUS: ${{ steps.parse.outputs.status }}
+        run: |
+          set -euo pipefail
+          if [ "$STATUS" = "skipped" ] || [ ! -s /tmp/comment.md ]; then
+            echo "comment=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # 同一正文指纹下，同一结论已评论过就不再重复打扰提交者
+          if [ -s /tmp/marker.txt ] && [ -s /tmp/issue-comments.txt ] && \
+             grep -qF -- "$(cat /tmp/marker.txt)" /tmp/issue-comments.txt; then
+            echo "comment=false" >> "$GITHUB_OUTPUT"
+            echo "已存在相同结论的评论，跳过回复"
+          else
+            echo "comment=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Comment on issue
+        if: steps.comment_gate.outputs.comment == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api --method POST \
+            "repos/${{ github.repository }}/issues/${{ steps.gate.outputs.number }}/comments" \
+            -f body="$(cat /tmp/comment.md)" > /dev/null
+          echo "已发布评论"
+
+      - name: Close issue
+        if: steps.parse.outputs.is_accepted == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api --method PATCH \
+            "repos/${{ github.repository }}/issues/${{ steps.gate.outputs.number }}" \
+            -f state=closed > /dev/null
+          echo "已关闭 Issue"
