@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """从 data/sites.json 生成 GitHub Pages 静态网站（单文件 index.html）。
 
-零第三方依赖：数据以内嵌 JSON 注入页面，搜索/过滤全部在浏览器端完成。
-站点卡片由 JS 用 textContent 渲染，贡献数据中的特殊字符不会被当作 HTML 执行。
+零第三方依赖：
+- 采用现代设计系统（暖灰纸感与纯深双主题、信号橙高光、Squircle 圆角、平滑卡片动效）
+- 数据以内嵌 JSON 注入页面，搜索、筛选与随机漫游全部在浏览器端极速运行
+- 纯排版中立设计（无商业 Logo，突出社区开放性）
+- 站点卡片由 JS 安全渲染，防止 XSS
 """
 import json
 from pathlib import Path
@@ -11,171 +14,1430 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "sites.json"
 OUT = ROOT / "site"
 
-HTML = """<!DOCTYPE html>
-<html lang="zh-CN">
+HTML = r"""<!DOCTYPE html>
+<html lang="zh-CN" data-theme-mode="system">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>一人一站 · One Person, One Site</title>
-<meta name="description" content="收集值得关注的个人网站、独立博客与数字花园。发现那些在平台之外，认真经营自己互联网家园的人。">
+<meta name="description" content="收集值得关注的个人网站、独立博客与数字花园。发现那些在平台与算法之外，认真经营自己互联网家园的人。">
+<meta property="og:title" content="一人一站 · One Person, One Site">
+<meta property="og:description" content="收集值得关注的个人网站、独立博客与数字花园。发现那些在平台与算法之外，认真经营自己互联网家园的人。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://realchendahuang.github.io/one-person-one-site/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="一人一站 · One Person, One Site">
+<meta name="twitter:description" content="收集值得关注的个人网站、独立博客与数字花园。发现那些在平台与算法之外，认真经营自己互联网家园的人。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2242%22 fill=%22%23ff6a00%22/><circle cx=%2250%22 cy=%2250%22 r=%2220%22 fill=%22%23ffffff%22/></svg>">
+<script>
+  (function() {
+    var stored = localStorage.getItem("opos-theme") || "system";
+    document.documentElement.setAttribute("data-theme-mode", stored);
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (stored === "dark" || (stored === "system" && prefersDark)) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  })();
+</script>
 <style>
+/* ============================================================
+   一人一站 · 设计系统（对齐 KOSX-Impact / 现代精致独立 Web 规范）
+   纸感浅色 + 深邃深色 · 信号橙 #ff6a00 · 质感分层与圆角体系
+   ============================================================ */
 :root {
-  --bg: #faf9f6; --fg: #2b2822; --muted: #8a8577; --line: #e5e1d8;
-  --card: #ffffff; --accent: #2f6f4f; --accent-soft: #e8f0ea;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  color-scheme: light;
+
+  /* 浅色基底 */
+  --paper: #f5f6f7;
+  --soft-surface: #f8f8f9;
+  --surface: #ffffff;
+  --surface-hover: #fafafc;
+  --line: #e4e4e7;
+  --line-subtle: #f0f0f3;
+  --ink: #18181b;
+  --mist: #52525b;
+  --fog: #94949e;
+
+  /* 信号色系 */
+  --signal: #ff6a00;
+  --signal-hover: #ff7d1a;
+  --signal-deep: #ff3d00;
+  --signal-soft: rgba(255, 106, 0, 0.08);
+  --signal-border: rgba(255, 106, 0, 0.22);
+  --signal-glow: rgba(255, 106, 0, 0.16);
+
+  /* 质感槽 */
+  --wash: rgba(0, 0, 0, 0.04);
+  --wash-strong: rgba(0, 0, 0, 0.08);
+  --panel-elev: 0 1px 3px rgba(0, 0, 0, 0.04), 0 10px 28px -12px rgba(0, 0, 0, 0.08);
+  --panel-elev-sm: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  --hover-lift: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 18px 32px -8px rgba(0, 0, 0, 0.12);
+  --dock-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1e1c18; --fg: #e8e4da; --muted: #9a9484; --line: #38352e;
-    --card: #28251f; --accent: #7db894; --accent-soft: #2c3a31;
-  }
+
+html.dark {
+  color-scheme: dark;
+
+  /* 深色基底 */
+  --paper: #0a0a0a;
+  --soft-surface: #121214;
+  --surface: #18181b;
+  --surface-hover: #202024;
+  --line: #27272a;
+  --line-subtle: #1f1f23;
+  --ink: #f4f4f5;
+  --mist: #a1a1aa;
+  --fog: #71717a;
+
+  /* 信号色系 */
+  --signal: #ff6a00;
+  --signal-hover: #ff7d1a;
+  --signal-deep: #ff3d00;
+  --signal-soft: rgba(255, 106, 0, 0.14);
+  --signal-border: rgba(255, 106, 0, 0.35);
+  --signal-glow: rgba(255, 106, 0, 0.28);
+
+  /* 质感槽 */
+  --wash: rgba(255, 255, 255, 0.05);
+  --wash-strong: rgba(255, 255, 255, 0.1);
+  --panel-elev: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px -8px rgba(0, 0, 0, 0.55);
+  --panel-elev-sm: inset 0 1px 0 0 rgba(255, 255, 255, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --hover-lift: inset 0 1px 0 0 rgba(255, 255, 255, 0.09), inset 0 0 0 1px rgba(255, 106, 0, 0.45), 0 20px 40px -10px rgba(0, 0, 0, 0.8);
+  --dock-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
-* { box-sizing: border-box; }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0; background: var(--bg); color: var(--fg);
-  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Segoe UI", sans-serif;
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-main { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-header h1 { margin: 0 0 .25rem; font-size: 1.9rem; }
-header p.tagline { margin: 0 0 .25rem; color: var(--muted); }
-header p.links { margin: 0 0 1.5rem; font-size: .9rem; }
-header p.links a { color: var(--accent); text-decoration: none; margin-right: 1rem; }
-#search {
-  width: 100%; padding: .65rem .9rem; font-size: 1rem;
-  border: 1px solid var(--line); border-radius: 8px;
-  background: var(--card); color: var(--fg);
+
+/* ================= 顶栏 Navigation ================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  background: rgba(245, 246, 247, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-#search:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-#stats { color: var(--muted); font-size: .85rem; margin: .6rem 0 1.25rem; }
-#tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem; }
-.tag-btn {
-  border: 1px solid var(--line); background: var(--card); color: var(--muted);
-  border-radius: 999px; padding: .15rem .7rem; font-size: .8rem; cursor: pointer;
+html.dark .site-header {
+  background: rgba(10, 10, 10, 0.85);
 }
-.tag-btn.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
-#grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; }
-.card {
-  display: flex; flex-direction: column; gap: .45rem;
-  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-  padding: 1rem 1.1rem; text-decoration: none; color: inherit;
+
+.header-inner {
+  max-width: 1120px;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
-.card:hover { border-color: var(--accent); }
-.card h3 { margin: 0; font-size: 1.05rem; color: var(--accent); }
-.card .owner { color: var(--muted); font-size: .85rem; }
-.card .desc { margin: 0; font-size: .9rem; }
-.card .meta { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: auto; padding-top: .3rem; }
-.card .meta span {
-  background: var(--accent-soft); color: var(--accent);
-  border-radius: 999px; padding: .05rem .55rem; font-size: .72rem;
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+  user-select: none;
 }
-.empty { color: var(--muted); text-align: center; padding: 3rem 0; }
-footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 2rem 0 3rem; }
-footer a { color: var(--accent); }
+.brand-pulse {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+  animation: pulse-glow 2.4s infinite ease-in-out;
+}
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+.brand-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--wash-strong);
+  color: var(--mist);
+  letter-spacing: 0.02em;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mist);
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  transition: all 0.15s ease;
+}
+.nav-link:hover {
+  color: var(--ink);
+  background: var(--wash);
+}
+.nav-link.active {
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: var(--panel-elev-sm);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--mist);
+  cursor: pointer;
+  box-shadow: var(--panel-elev-sm);
+  transition: all 0.18s ease;
+  padding: 0;
+}
+.icon-btn:hover {
+  color: var(--ink);
+  background: var(--surface-hover);
+  border-color: var(--mist);
+  transform: translateY(-1px);
+}
+.icon-btn:active {
+  transform: scale(0.95);
+}
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.theme-icon-sun, .theme-icon-moon, .theme-icon-system {
+  display: none;
+}
+html[data-theme-mode="light"] .theme-icon-sun { display: block; }
+html[data-theme-mode="dark"] .theme-icon-moon { display: block; }
+html[data-theme-mode="system"] .theme-icon-system { display: block; }
+
+/* ================= 页面主体 Container ================= */
+.main-wrapper {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+  flex: 1;
+  width: 100%;
+}
+
+/* ================= Hero 区域 ================= */
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mist);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--panel-elev-sm);
+  user-select: none;
+}
+.hero-pill .sparkle {
+  color: var(--signal);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+  color: var(--ink);
+}
+.hero h1 .accent-text {
+  background: linear-gradient(135deg, var(--signal) 0%, #ff8c37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  max-width: 620px;
+  margin: 0 auto 1.75rem;
+  font-size: 1.05rem;
+  color: var(--mist);
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.25rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--signal);
+  color: #ffffff;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px var(--signal-glow);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--signal-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--signal-glow);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: var(--panel-elev-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: var(--surface-hover);
+  border-color: var(--mist);
+  transform: translateY(-1px);
+}
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* 统计卡片指标条 */
+.stat-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 0.85rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+  margin: 0 auto;
+  box-shadow: var(--panel-elev-sm);
+}
+.stat-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--mist);
+}
+.stat-chip strong {
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+.stat-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+}
+
+/* ================= 搜索与筛选区 ================= */
+.controls-container {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.search-bar-wrap {
+  position: relative;
+  width: 100%;
+}
+.search-icon-left {
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fog);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 5.5rem 0 3.1rem;
+  font-size: 0.98rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--panel-elev);
+  outline: none;
+  transition: all 0.2s ease;
+}
+.search-input:focus {
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px var(--signal-soft), var(--panel-elev);
+}
+.search-input::placeholder {
+  color: var(--fog);
+}
+
+.search-extra {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.clear-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--wash);
+  border: none;
+  color: var(--mist);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+.clear-btn:hover {
+  background: var(--wash-strong);
+  color: var(--ink);
+}
+.clear-btn.visible {
+  display: flex;
+}
+.kbd-hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  background: var(--soft-surface);
+  color: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 标签筛选栏 */
+.tags-scroll-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  color: var(--mist);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+.tag-pill:hover {
+  color: var(--ink);
+  background: var(--surface-hover);
+  border-color: var(--fog);
+  transform: translateY(-1px);
+}
+.tag-pill.active {
+  background: var(--signal-soft);
+  color: var(--signal);
+  border-color: var(--signal-border);
+  font-weight: 600;
+}
+.tag-pill-count {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  font-family: var(--font-mono);
+}
+
+/* 状态与排序栏 */
+.filter-info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--mist);
+  padding: 0.2rem 0.25rem;
+}
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.sort-select {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ================= 站点卡片网格 ================= */
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.site-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  box-shadow: var(--panel-elev);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+.site-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-lift);
+  border-color: var(--signal-border);
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+.card-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+.site-favicon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--soft-surface);
+  border: 1px solid var(--line);
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mist);
+  box-shadow: var(--dock-inset);
+}
+.site-favicon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  object-fit: cover;
+}
+
+.card-title-group {
+  min-width: 0;
+}
+.site-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.site-owner-badge {
+  font-size: 0.8rem;
+  color: var(--mist);
+  margin-top: 0.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-link-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--soft-surface);
+  border: 1px solid var(--line);
+  color: var(--mist);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+.site-card:hover .card-link-icon {
+  background: var(--signal);
+  color: #ffffff;
+  border-color: var(--signal);
+  transform: translate(1px, -1px);
+}
+
+.site-desc {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  color: var(--mist);
+  line-height: 1.58;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line-subtle);
+  margin-top: auto;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.card-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--soft-surface);
+  color: var(--mist);
+  border: 1px solid var(--line);
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.card-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--mist);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+.card-mini-btn:hover {
+  background: var(--wash);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.card-mini-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ================= 空状态 ================= */
+.empty-state {
+  text-align: center;
+  padding: 4.5rem 1.5rem;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-lg);
+  margin-top: 1rem;
+}
+.empty-state-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--soft-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fog);
+}
+.empty-state h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.empty-state p {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--mist);
+}
+
+/* ================= 浮动 Toast ================= */
+.toast-notice {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.toast-notice.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= 页脚 Footer ================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  padding: 3.5rem 1.25rem 4rem;
+  margin-top: auto;
+}
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+.footer-quote {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  max-width: 600px;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--mist);
+}
+.footer-links a {
+  color: var(--mist);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.footer-links a:hover {
+  color: var(--signal);
+}
+.footer-meta {
+  font-size: 0.8rem;
+  color: var(--fog);
+}
+
+/* ================= 响应式调整 ================= */
+@media (max-width: 768px) {
+  .header-nav { display: none; }
+  .hero h1 { font-size: 1.85rem; }
+  .hero-desc { font-size: 0.95rem; }
+  .sites-grid { grid-template-columns: 1fr; }
+  .stat-chips { gap: 1rem; padding: 0.75rem 1rem; }
+  .toast-notice { bottom: 1.5rem; right: 1.5rem; left: 1.5rem; justify-content: center; }
+}
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>一人一站 <span style="color:var(--muted);font-weight:400">· One Person, One Site</span></h1>
-    <p class="tagline">收集值得关注的个人网站、独立博客与数字花园。</p>
-    <p class="links">
-      <a href="https://github.com/realchendahuang/one-person-one-site">GitHub 仓库</a>
-      <a href="https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml">提交网站</a>
-      <a href="./DIRECTORY.md">Markdown 目录</a>
+
+<!-- 顶部导航 -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="./" class="brand" aria-label="一人一站 首页">
+      <span class="brand-pulse"></span>
+      <span>一人一站</span>
+      <span class="brand-badge">OPEN DIRECTORY</span>
+    </a>
+
+    <nav class="header-nav">
+      <a href="#explore" class="nav-link active">发现站点</a>
+      <a href="./DIRECTORY.md" class="nav-link" target="_blank" rel="noopener">Markdown 目录</a>
+      <a href="https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml" target="_blank" rel="noopener" class="nav-link">提交网站</a>
+      <a href="https://github.com/realchendahuang/one-person-one-site" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- 随机漫游按钮 -->
+      <button id="btn-shuffle" class="icon-btn" title="随机漫游 (发现一个精彩站点)" aria-label="随机漫游">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M16 8h.01"/><path d="M8 8h.01"/><path d="M8 16h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/>
+        </svg>
+      </button>
+
+      <!-- 三态主题切换按钮 -->
+      <button id="btn-theme" class="icon-btn" title="切换主题模式 (系统 / 浅色 / 深色)" aria-label="切换主题">
+        <!-- 浅色模式显示太阳 -->
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+        </svg>
+        <!-- 深色模式显示月亮 -->
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+        <!-- 跟随系统显示显示器 -->
+        <svg class="theme-icon-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main-wrapper">
+  <!-- Hero 英雄区 -->
+  <section class="hero">
+    <div class="hero-pill">
+      <span class="sparkle">✦</span>
+      <span>对抗平台围墙 · 重拾个人数字花园</span>
+    </div>
+    <h1>一人一站 <span class="accent-text">· 数字家园</span></h1>
+    <p class="hero-desc">
+      收集值得关注的个人网站、独立博客与数字花园。<br>
+      发现那些在算法与平台之外，认真沉淀自我思考与真实作品的人。
     </p>
-  </header>
-  <input id="search" type="search" placeholder="搜索名称、站长、简介、标签…" autocomplete="off" aria-label="搜索站点">
-  <p id="stats"></p>
-  <div id="tags"></div>
-  <div id="grid"></div>
-  <div id="empty" class="empty" hidden>没有匹配的站点，换个关键词试试。</div>
-  <footer>
-    <p>每个人，都应该在互联网上拥有一个真正属于自己的地方。</p>
-    <p><a href="https://github.com/realchendahuang/one-person-one-site/pulls">欢迎提交你的网站</a> · MIT License</p>
-  </footer>
+
+    <div class="hero-actions">
+      <a href="https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        提交我的网站
+      </a>
+      <button id="hero-btn-random" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8" cy="8" r="1.5"/><circle cx="16" cy="16" r="1.5"/><circle cx="12" cy="12" r="1.5"/></svg>
+        随机漫游
+      </button>
+      <a href="https://github.com/realchendahuang/one-person-one-site" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        GitHub 仓库
+      </a>
+    </div>
+
+    <!-- 统计指标条 -->
+    <div class="stat-chips">
+      <div class="stat-chip">
+        <span>收录站点</span>
+        <strong id="stat-total-sites">0</strong>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-chip">
+        <span>涵盖标签</span>
+        <strong id="stat-total-tags">0</strong>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-chip">
+        <span>开源维护</span>
+        <strong>100%</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- 搜索与筛选区 -->
+  <section id="explore" class="controls-container">
+    <div class="search-bar-wrap">
+      <div class="search-icon-left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+      </div>
+      <input
+        id="search"
+        type="search"
+        class="search-input"
+        placeholder="搜索名称、站长、简介、标签、地区或语言…"
+        autocomplete="off"
+        aria-label="搜索站点"
+      >
+      <div class="search-extra">
+        <button id="search-clear" class="clear-btn" title="清空搜索" aria-label="清空搜索">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <span class="kbd-hint">/</span>
+      </div>
+    </div>
+
+    <!-- 标签胶囊栏 -->
+    <div id="tags-bar" class="tags-scroll-wrap"></div>
+
+    <!-- 过滤状态与排序栏 -->
+    <div class="filter-info-bar">
+      <span id="stats-text">正在加载站点…</span>
+      <div class="sort-controls">
+        <label for="sort-select" style="font-size:0.8rem;color:var(--fog);">排序：</label>
+        <select id="sort-select" class="sort-select">
+          <option value="default">默认推荐</option>
+          <option value="name">名称字母序</option>
+          <option value="random">随机探索</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- 卡片网格 -->
+  <div id="sites-grid" class="sites-grid"></div>
+
+  <!-- 空状态提示 -->
+  <div id="empty-state" class="empty-state" hidden>
+    <div class="empty-state-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/>
+      </svg>
+    </div>
+    <h3>未找到匹配的站点</h3>
+    <p>换个搜索关键词，或者清除当前的标签筛选试试。</p>
+    <button id="btn-reset-filters" class="btn-secondary" style="padding:0.45rem 1.1rem;font-size:0.85rem;">
+      重置全部筛选
+    </button>
+  </div>
 </main>
+
+<!-- 轻量 Toast 提示 -->
+<div id="toast" class="toast-notice" role="status" aria-live="polite">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-text">已复制到剪贴板</span>
+</div>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-quote">
+      “每个人，都应该在互联网上拥有一个真正属于自己的地方。”
+    </p>
+    <div class="footer-links">
+      <a href="https://github.com/realchendahuang/one-person-one-site" target="_blank" rel="noopener">GitHub 仓库</a>
+      <span>·</span>
+      <a href="https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml" target="_blank" rel="noopener">提交新站</a>
+      <span>·</span>
+      <a href="./DIRECTORY.md" target="_blank" rel="noopener">完整目录 (Markdown)</a>
+      <span>·</span>
+      <a href="https://github.com/realchendahuang/one-person-one-site/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+    </div>
+    <div class="footer-meta">
+      由社区共同构建维护 · 基于纯静态页面技术驱动 · 无第三方追踪
+    </div>
+  </div>
+</footer>
+
+<!-- 注入站点数据 -->
 <script id="sites-data" type="application/json">__SITES_DATA__</script>
+
 <script>
-(function () {
-  var DATA = JSON.parse(document.getElementById("sites-data").textContent);
-  var sites = DATA.sites;
+(function() {
+  "use strict";
+
+  /* 1. 主题切换状态机 (system -> light -> dark) */
+  var THEMES = ["system", "light", "dark"];
+  var themeBtn = document.getElementById("btn-theme");
+
+  function applyTheme(mode) {
+    document.documentElement.setAttribute("data-theme-mode", mode);
+    localStorage.setItem("opos-theme", mode);
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (mode === "dark" || (mode === "system" && prefersDark)) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function() {
+      var current = document.documentElement.getAttribute("data-theme-mode") || "system";
+      var nextIdx = (THEMES.indexOf(current) + 1) % THEMES.length;
+      applyTheme(THEMES[nextIdx]);
+    });
+  }
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(e) {
+    var current = document.documentElement.getAttribute("data-theme-mode");
+    if (current === "system") {
+      if (e.matches) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  });
+
+  /* 2. 数据与 DOM 元素解析 */
+  var rawData = JSON.parse(document.getElementById("sites-data").textContent || '{"sites":[]}');
+  var sites = rawData.sites || [];
 
   var searchInput = document.getElementById("search");
-  var tagsBox = document.getElementById("tags");
-  var grid = document.getElementById("grid");
-  var stats = document.getElementById("stats");
-  var emptyTip = document.getElementById("empty");
+  var searchClear = document.getElementById("search-clear");
+  var tagsBar = document.getElementById("tags-bar");
+  var grid = document.getElementById("sites-grid");
+  var statsText = document.getElementById("stats-text");
+  var emptyState = document.getElementById("empty-state");
+  var btnReset = document.getElementById("btn-reset-filters");
+  var sortSelect = document.getElementById("sort-select");
+  var btnShuffle = document.getElementById("btn-shuffle");
+  var heroBtnRandom = document.getElementById("hero-btn-random");
+  var statTotalSites = document.getElementById("stat-total-sites");
+  var statTotalTags = document.getElementById("stat-total-tags");
+  var toast = document.getElementById("toast");
+  var toastText = document.getElementById("toast-text");
 
   var activeTag = null;
+  var sortMode = "default";
+  var toastTimer = null;
 
+  function showToast(msg) {
+    if (!toast) return;
+    toastText.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove("show");
+    }, 2400);
+  }
+
+  /* 3. 统计指标计算 */
   var tagCounts = {};
-  sites.forEach(function (s) {
-    (s.tags || []).forEach(function (t) {
+  sites.forEach(function(s) {
+    (s.tags || []).forEach(function(t) {
       tagCounts[t] = (tagCounts[t] || 0) + 1;
     });
   });
-  var tags = Object.keys(tagCounts).sort();
-
-  tags.forEach(function (t) {
-    var btn = document.createElement("button");
-    btn.className = "tag-btn";
-    btn.textContent = t + " (" + tagCounts[t] + ")";
-    btn.addEventListener("click", function () {
-      activeTag = activeTag === t ? null : t;
-      renderTagBar();
-      render();
-    });
-    tagsBox.appendChild(btn);
+  var allTags = Object.keys(tagCounts).sort(function(a, b) {
+    return tagCounts[b] - tagCounts[a]; // 按频次倒序
   });
 
-  function renderTagBar() {
-    Array.prototype.forEach.call(tagsBox.children, function (btn) {
-      var tag = btn.textContent.replace(/ \\(\\d+\\)$/, "");
-      btn.classList.toggle("active", tag === activeTag);
+  if (statTotalSites) statTotalSites.textContent = sites.length;
+  if (statTotalTags) statTotalTags.textContent = allTags.length;
+
+  /* 4. 渲染标签药丸栏 */
+  function renderTagsBar() {
+    tagsBar.textContent = "";
+
+    // "全部" 药丸
+    var allBtn = document.createElement("button");
+    allBtn.type = "button";
+    allBtn.className = "tag-pill" + (activeTag === null ? " active" : "");
+    allBtn.innerHTML = '<span>全部</span> <span class="tag-pill-count">' + sites.length + '</span>';
+    allBtn.addEventListener("click", function() {
+      activeTag = null;
+      renderTagsBar();
+      render();
+    });
+    tagsBar.appendChild(allBtn);
+
+    allTags.forEach(function(tag) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "tag-pill" + (activeTag === tag ? " active" : "");
+      btn.innerHTML = '<span>' + escapeHtml(tag) + '</span> <span class="tag-pill-count">' + tagCounts[tag] + '</span>';
+      btn.addEventListener("click", function() {
+        activeTag = activeTag === tag ? null : tag;
+        renderTagsBar();
+        render();
+      });
+      tagsBar.appendChild(btn);
     });
   }
 
-  function card(site) {
-    var a = document.createElement("a");
-    a.className = "card";
-    a.href = site.url;
-    a.rel = "noopener";
-    var h3 = document.createElement("h3");
-    h3.textContent = site.name;
-    var owner = document.createElement("div");
-    owner.className = "owner";
-    owner.textContent = site.owner;
-    var desc = document.createElement("p");
-    desc.className = "desc";
-    desc.textContent = site.description;
-    var meta = document.createElement("div");
-    meta.className = "meta";
-    (site.tags || []).slice(0, 8).forEach(function (t) {
-      var sp = document.createElement("span");
-      sp.textContent = t;
-      meta.appendChild(sp);
-    });
-    a.appendChild(h3); a.appendChild(owner); a.appendChild(desc); a.appendChild(meta);
-    return a;
+  /* 5. 辅助函数：域名提取与 HTML 转义 */
+  function extractDomain(urlStr) {
+    try {
+      var u = new URL(urlStr);
+      return u.hostname;
+    } catch(e) {
+      return "";
+    }
   }
 
+  function escapeHtml(str) {
+    return String(str || "").replace(/[&<>"']/g, function(m) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+    });
+  }
+
+  function getFirstChar(str) {
+    var clean = (str || "").trim().replace(/^https?:\/\//, "");
+    return clean ? clean.charAt(0).toUpperCase() : "?";
+  }
+
+  /* 6. 生成单个站点卡片 */
+  function createCard(site) {
+    var domain = extractDomain(site.url);
+    var faviconUrl = domain ? "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=64" : "";
+    var firstChar = getFirstChar(site.name || domain);
+
+    var PALETTE = [
+      "linear-gradient(135deg, #ff6a00, #ff8c37)",
+      "linear-gradient(135deg, #0284c7, #38bdf8)",
+      "linear-gradient(135deg, #059669, #34d399)",
+      "linear-gradient(135deg, #7c3aed, #a78bfa)",
+      "linear-gradient(135deg, #d97706, #fbbf24)",
+      "linear-gradient(135deg, #db2777, #f472b6)"
+    ];
+    var charCode = firstChar.charCodeAt(0) || 0;
+    var grad = PALETTE[charCode % PALETTE.length];
+
+    var card = document.createElement("div");
+    card.className = "site-card";
+
+    // 头部区域：Favicon + 标题 + 外部直达箭头
+    var topRow = document.createElement("div");
+    topRow.className = "card-top";
+
+    var brandGroup = document.createElement("div");
+    brandGroup.className = "card-brand-group";
+
+    var favBox = document.createElement("div");
+    favBox.className = "site-favicon";
+    
+    function applyFallback() {
+      favBox.textContent = firstChar;
+      favBox.style.background = grad;
+      favBox.style.color = "#ffffff";
+      favBox.style.fontWeight = "700";
+      favBox.style.fontSize = "0.95rem";
+      favBox.style.border = "none";
+    }
+
+    if (faviconUrl) {
+      var img = document.createElement("img");
+      img.src = faviconUrl;
+      img.alt = "";
+      img.loading = "lazy";
+      img.onerror = applyFallback;
+      favBox.appendChild(img);
+    } else {
+      applyFallback();
+    }
+
+    var titleGroup = document.createElement("div");
+    titleGroup.className = "card-title-group";
+
+    var nameEl = document.createElement("h3");
+    nameEl.className = "site-name";
+    nameEl.textContent = site.name;
+
+    var ownerEl = document.createElement("div");
+    ownerEl.className = "site-owner-badge";
+    var metaOwner = (site.owner ? site.owner : "独立站长") + (domain ? " · " + domain : "");
+    if (site.region) {
+      metaOwner += " · " + site.region;
+    }
+    ownerEl.textContent = metaOwner;
+
+    titleGroup.appendChild(nameEl);
+    titleGroup.appendChild(ownerEl);
+
+    brandGroup.appendChild(favBox);
+    brandGroup.appendChild(titleGroup);
+
+    var linkIcon = document.createElement("a");
+    linkIcon.className = "card-link-icon";
+    linkIcon.href = site.url;
+    linkIcon.target = "_blank";
+    linkIcon.rel = "noopener noreferrer";
+    linkIcon.title = "访问 " + site.name;
+    linkIcon.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+
+    topRow.appendChild(brandGroup);
+    topRow.appendChild(linkIcon);
+
+    // 描述
+    var descEl = document.createElement("p");
+    descEl.className = "site-desc";
+    descEl.textContent = site.description || "暂无描述";
+
+    // 底部元信息行 (标签 + 操作)
+    var metaRow = document.createElement("div");
+    metaRow.className = "card-meta-row";
+
+    var tagsWrap = document.createElement("div");
+    tagsWrap.className = "card-tags";
+    (site.tags || []).slice(0, 5).forEach(function(t) {
+      var tagSpan = document.createElement("span");
+      tagSpan.className = "card-tag";
+      tagSpan.textContent = t;
+      tagsWrap.appendChild(tagSpan);
+    });
+
+    var actionsWrap = document.createElement("div");
+    actionsWrap.className = "card-actions";
+
+    // RSS Feed 按钮 (如果支持)
+    if (site.feed) {
+      var rssBtn = document.createElement("button");
+      rssBtn.type = "button";
+      rssBtn.className = "card-mini-btn";
+      rssBtn.title = "复制 RSS 订阅源地址";
+      rssBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>';
+      rssBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        navigator.clipboard.writeText(site.feed).then(function() {
+          showToast("已复制 RSS 地址：" + site.feed);
+        }).catch(function() {
+          showToast("复制失败，请手动长按复制");
+        });
+      });
+      actionsWrap.appendChild(rssBtn);
+    }
+
+    // 分享/复制网址按钮
+    var copyBtn = document.createElement("button");
+    copyBtn.type = "button";
+    copyBtn.className = "card-mini-btn";
+    copyBtn.title = "复制站点网址";
+    copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
+    copyBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      navigator.clipboard.writeText(site.url).then(function() {
+        showToast("已复制站点网址：" + site.url);
+      }).catch(function() {
+        showToast("复制失败");
+      });
+    });
+    actionsWrap.appendChild(copyBtn);
+
+    metaRow.appendChild(tagsWrap);
+    metaRow.appendChild(actionsWrap);
+
+    card.appendChild(topRow);
+    card.appendChild(descEl);
+    card.appendChild(metaRow);
+
+    // 点击整张卡片跳转
+    card.addEventListener("click", function(e) {
+      if (e.target.closest("button") || e.target.closest("a")) return;
+      window.open(site.url, "_blank", "noopener,noreferrer");
+    });
+    card.style.cursor = "pointer";
+
+    return card;
+  }
+
+  /* 7. 主渲染流程 */
   function render() {
-    var q = searchInput.value.trim().toLowerCase();
-    var shown = sites.filter(function (s) {
-      if (activeTag && (s.tags || []).indexOf(activeTag) === -1) return false;
+    var q = (searchInput.value || "").trim().toLowerCase();
+
+    // 控制搜索框清除按钮
+    if (searchClear) {
+      searchClear.classList.toggle("visible", q.length > 0);
+    }
+
+    var filtered = sites.filter(function(s) {
+      if (activeTag && (s.tags || []).indexOf(activeTag) === -1) {
+        return false;
+      }
       if (!q) return true;
-      var hay = [s.name, s.owner, s.description, (s.tags || []).join(" "),
-                 s.languages.join(" "), s.region].join(" ").toLowerCase();
-      return hay.indexOf(q) !== -1;
+      var textPool = [
+        s.name,
+        s.owner,
+        s.description,
+        (s.tags || []).join(" "),
+        (s.languages || []).join(" "),
+        s.region,
+        s.url
+      ].join(" ").toLowerCase();
+      return textPool.indexOf(q) !== -1;
     });
+
+    // 排序逻辑
+    if (sortMode === "name") {
+      filtered.sort(function(a, b) {
+        return (a.name || "").localeCompare(b.name || "", "zh-CN");
+      });
+    } else if (sortMode === "random") {
+      filtered.sort(function() { return 0.5 - Math.random(); });
+    }
+
+    // 填充卡片
     grid.textContent = "";
-    shown.forEach(function (s) { grid.appendChild(card(s)); });
-    emptyTip.hidden = shown.length > 0;
-    stats.textContent = "共收录 " + sites.length + " 个站点，当前显示 " + shown.length + " 个。";
+    filtered.forEach(function(s) {
+      grid.appendChild(createCard(s));
+    });
+
+    // 空状态处理
+    var hasResults = filtered.length > 0;
+    emptyState.hidden = hasResults;
+
+    // 统计更新
+    if (statsText) {
+      if (q || activeTag) {
+        statsText.textContent = "当前筛选出 " + filtered.length + " 个站点（共收录 " + sites.length + " 个）";
+      } else {
+        statsText.textContent = "共收录 " + sites.length + " 个站点，展示全部站点";
+      }
+    }
   }
 
+  /* 8. 随机漫游 */
+  function handleShuffle() {
+    if (!sites || sites.length === 0) return;
+    var randomSite = sites[Math.floor(Math.random() * sites.length)];
+    showToast("正在前往漫游站点：" + randomSite.name);
+    setTimeout(function() {
+      window.open(randomSite.url, "_blank", "noopener,noreferrer");
+    }, 450);
+  }
+
+  if (btnShuffle) btnShuffle.addEventListener("click", handleShuffle);
+  if (heroBtnRandom) heroBtnRandom.addEventListener("click", handleShuffle);
+
+  /* 9. 搜索事件与快捷键 */
   searchInput.addEventListener("input", render);
+  if (searchClear) {
+    searchClear.addEventListener("click", function() {
+      searchInput.value = "";
+      searchInput.focus();
+      render();
+    });
+  }
+
+  if (btnReset) {
+    btnReset.addEventListener("click", function() {
+      searchInput.value = "";
+      activeTag = null;
+      sortMode = "default";
+      if (sortSelect) sortSelect.value = "default";
+      renderTagsBar();
+      render();
+    });
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener("change", function(e) {
+      sortMode = e.target.value;
+      render();
+    });
+  }
+
+  // 键盘快捷键 '/' 聚焦搜索
+  window.addEventListener("keydown", function(e) {
+    if ((e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+
+  // 初始化
+  renderTagsBar();
   render();
+
 })();
 </script>
 </body>

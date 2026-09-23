@@ -1,18 +1,57 @@
 # One Person, One Site
 
-> A curated collection of remarkable personal websites, independent blogs, digital gardens, portfolios, and other spaces people truly own on the web.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active%20%26%20Growing-ff6a00?style=flat-square" alt="Status">
+  <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-18181b?style=flat-square&logo=githubpages&logoColor=white" alt="Live Demo"></a>
+  <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/Directory-Markdown-52525b?style=flat-square" alt="Directory"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-black?style=flat-square" alt="License"></a>
+  <a href="https://github.com/realchendahuang/one-person-one-site/pulls"><img src="https://img.shields.io/badge/PRs-Welcome-22c55e?style=flat-square" alt="PRs Welcome"></a>
+</p>
 
-We believe:
+<p align="center">
+  <strong>A curated collection of remarkable personal websites, independent blogs, and digital gardens.</strong><br>
+  Discover genuine creators and thinkers who nurture their own homes on the open web beyond platform walls and algorithms.
+</p>
 
-> Everyone deserves a place on the Internet that is truly their own.
-
-This repository is not a collection of website templates. It is a directory of **real people and the websites they maintain over time**.
-
-[中文](./README.md) · [Browse online](https://realchendahuang.github.io/one-person-one-site/) · [Contribute](./CONTRIBUTING.md)
+<p align="center">
+  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 Browse Online</a> · 
+  <a href="#how-to-submit-a-site">📮 Submit Your Site</a> · 
+  <a href="./DIRECTORY.md">📑 Full Directory</a> · 
+  <a href="./CONTRIBUTING.md">🤝 Contributing Guide</a> · 
+  <a href="./README.md">中文说明</a>
+</p>
 
 ---
 
-## Sites in the directory
+## 💡 Why "One Person, One Site"?
+
+Algorithms monopolize attention, walled gardens trap content, and platform accounts can disappear at any moment without recourse.
+
+Yet a **personal website remains one of the few places on the internet that is truly yours**:
+- You own the domain, layout, typography, and structure;
+- You curate long-form thoughts, portfolios, work-in-progress notes, and genuine life stories;
+- You create for resonance and depth rather than feeding engagement algorithms.
+
+> **One Person, One Site is not asking everyone to become a full-time sysadmin.**  
+> It is an initiative for digital self-sovereignty: **reclaiming your voice outside corporate silos.**  
+> We do not collect boilerplate web templates; we celebrate **real people and the digital spaces they faithfully cultivate over time**.
+
+---
+
+## 🌟 Live Directory (Web Experience)
+
+We provide a lightweight, modern, tracker-free static web interface with dark mode:
+
+👉 **[https://realchendahuang.github.io/one-person-one-site/](https://realchendahuang.github.io/one-person-one-site/)**
+
+- ⚡️ **Blazing Fast**: Zero client-side framework bloat, hosted on GitHub Pages.
+- 🎨 **Dual-Theme Design**: Warm paper light mode & OLED dark mode with subtle signal orange accents.
+- 🔍 **Interactive Discovery**: Instant full-text search (shortcut `/` or `⌘K`), tag filters, and "Shuffle / Random Discovery".
+- 📡 **RSS Friendly**: Direct feed links with one-click clipboard copying.
+
+---
+
+## 📚 Sites in the Directory
 
 <!-- SITES_TABLE:START -->
 | Site | Owner | Description | Language | Tags |
@@ -31,54 +70,100 @@ This repository is not a collection of website templates. It is a directory of *
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 <!-- SITES_TABLE:END -->
 
-Full details (including RSS feeds) live in [DIRECTORY.md](./DIRECTORY.md), or [search and filter online](https://realchendahuang.github.io/one-person-one-site/).
+> For complete metadata (including RSS feeds and regions), view [DIRECTORY.md](./DIRECTORY.md).
 
-## What belongs here?
+---
 
-We welcome:
+## 🎯 Inclusion Criteria
 
-- Personal websites
-- Independent blogs
-- Digital gardens
-- Portfolios
-- Personal knowledge bases
-- Creator websites
-- Indie hacker websites
-- Long-running sites with a strong personal voice
+### We warmly welcome:
+- ✅ **Independent Blogs**: Thoughtful writing on technology, philosophy, books, or life.
+- ✅ **Digital Gardens**: Interconnected notes, evolving ideas, and public learning logs.
+- ✅ **Personal Portfolios**: Showcases of work by designers, creators, engineers, and artists.
+- ✅ **Indie Makers**: Builders building in public, experimenting with projects and indie ventures.
+- ✅ **Personal Knowledge Bases**: Carefully curated notes on specific domains.
 
-We generally avoid company sites, social profile pages, scraper sites, SEO spam, deceptive websites, and mass-generated content farms with little genuine personal expression.
+### We do not include:
+- ❌ Corporate websites, agency sites, and SaaS product marketing landing pages.
+- ❌ Single social media profile pages (e.g. Substack/Medium profiles without custom domains, X/Twitter, WeChat, Xiaohongshu).
+- ❌ Scraping mirrors, aggregator sites, and SEO regurgitators.
+- ❌ Mass-generated AI content farms lacking genuine human expression.
+- ❌ Deceptive, spammy, malicious, or unlawful sites.
 
-## How to submit a site
+---
 
-Use the **Submit a site** issue template, or edit `data/sites.json` and open a pull request.
+## 📮 How to Submit a Site
 
-Example entry:
+### Option 1: Submit via Issue (Easiest)
+Use our [**Submit a site template**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml). Fill in your site name, URL, owner handle, and a short summary.
 
-```json
-{
-  "name": "Site Name",
-  "url": "https://example.com",
-  "owner": "Creator Name",
-  "description": "A short description.",
-  "languages": ["en"],
-  "region": "Global",
-  "tags": ["blog", "developer"],
-  "feed": "https://example.com/rss.xml"
-}
-```
+### Option 2: Pull Request (For Developers)
+1. Fork and clone this repository.
+2. Add your site to `data/sites.json`:
+   ```json
+   {
+     "name": "Your Site Name",
+     "url": "https://your-domain.com",
+     "owner": "Your Name / Handle",
+     "description": "A sincere one or two sentence description of your space.",
+     "languages": ["en"],
+     "region": "Global",
+     "tags": ["blog", "developer", "notes"],
+     "feed": "https://your-domain.com/rss.xml"
+   }
+   ```
+3. Run local validation:
+   ```bash
+   python3 scripts/validate.py
+   python3 scripts/generate_directory.py
+   ```
+4. Commit your changes and open a Pull Request.
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full rules.
+---
 
-## Local validation
+## 🏷️ Recommended Tags
+
+| Category | Examples |
+|---|---|
+| **Tech & Maker** | `developer`, `indie-hacker`, `maker`, `open-source`, `ai`, `security` |
+| **Writing & Thoughts** | `blog`, `writer`, `notes`, `digital-garden`, `reading`, `philosophy` |
+| **Design & Visual** | `designer`, `portfolio`, `photography`, `architecture`, `art` |
+| **Life & Culture** | `lifestyle`, `food`, `travel`, `music`, `minimalism`, `newsletter` |
+
+---
+
+## 🛠️ Local Development & Scripts
+
+This repository uses Python standard library scripts with zero extra dependencies:
 
 ```bash
-python3 scripts/validate.py
-python3 scripts/generate_directory.py
-python3 scripts/generate_site.py   # build the static site into site/ (gitignored)
+python3 scripts/validate.py           # Validates sites.json against schema & rules
+python3 scripts/generate_directory.py  # Synchronizes DIRECTORY.md & README tables
+python3 scripts/generate_site.py       # Compiles static site/index.html
 ```
 
-`generate_directory.py` regenerates `DIRECTORY.md` and the sites table at the top of this file (the `SITES_TABLE` block). Commit the regenerated files together with your data change — CI verifies they are in sync.
+---
 
-## License
+## 🗺️ Roadmap
 
-Code is released under the [MIT License](./LICENSE).
+- [x] Establish the initial seed of high-quality independent sites
+- [x] Build and launch a modern, responsive static web directory on GitHub Pages
+- [x] Support search, tag filters, dark/light themes, and random site exploration
+- [x] Direct RSS feed detection and one-click copy
+- [ ] Export consolidated OPML file for major feed readers
+- [ ] Automated health checking to detect broken links
+- [ ] Community showcase and annual indie web highlights
+
+---
+
+## 📄 License
+
+Code and build scripts are released under the [MIT License](./LICENSE).  
+Listed site metadata is curated for open web discovery and index purposes; individual content rights belong to their respective authors.
+
+---
+
+<p align="center">
+  <strong>May every thoughtful individual keep a light glowing on the open internet.</strong><br>
+  Star ⭐️ this repository and bring your digital home here.
+</p>

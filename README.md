@@ -1,20 +1,57 @@
 # 一人一站 · One Person, One Site
 
-> 🌐 收集值得关注的个人网站、独立博客与数字花园。发现那些在平台之外，认真经营自己互联网家园的人。
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active%20%26%20Growing-ff6a00?style=flat-square" alt="Status">
+  <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-18181b?style=flat-square&logo=githubpages&logoColor=white" alt="Live Demo"></a>
+  <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/Directory-Markdown-52525b?style=flat-square" alt="Directory"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-black?style=flat-square" alt="License"></a>
+  <a href="https://github.com/realchendahuang/one-person-one-site/pulls"><img src="https://img.shields.io/badge/PRs-Welcome-22c55e?style=flat-square" alt="PRs Welcome"></a>
+</p>
 
-**One Person, One Site** 是一个开放、长期维护的个人网站与独立博客目录。
+<p align="center">
+  <strong>收集值得关注的个人网站、独立博客与数字花园。</strong><br>
+  发现那些在平台围墙与算法推荐之外，认真经营自己互联网家园的真实创作者。
+</p>
 
-我们相信：
-
-> 每个人，都应该在互联网上拥有一个真正属于自己的地方。
-
-这个项目不收集“建站模板”，而是收集**真实的人，以及他们长期经营的网站**。
-
-[English](./README_EN.md) · [在线浏览](https://realchendahuang.github.io/one-person-one-site/) · [完整目录](./DIRECTORY.md) · [提交网站](#提交你的网站)
+<p align="center">
+  <a href="https://realchendahuang.github.io/one-person-one-site/">🌐 在线浏览 (推荐体验)</a> · 
+  <a href="#提交你的网站">📮 提交网站</a> · 
+  <a href="./DIRECTORY.md">📑 完整目录</a> · 
+  <a href="./CONTRIBUTING.md">🤝 贡献指南</a> · 
+  <a href="./README_EN.md">English Version</a>
+</p>
 
 ---
 
-## 收录的站点
+## 💡 为什么发起「一人一站」？
+
+算法在投喂注意力，平台在收拢围墙，中心化账号随时可能被封禁、限流或随风消逝。
+
+然而，**个人网站是互联网上极少数仍然真正属于你自己的数字领地**：
+- 你可以自由决定它的视觉、排版、结构与字体；
+- 你可以沉淀多年积累的思考、作品集、碎片笔记与真实生活；
+- 你不必为了算法推荐迎合爆款套路，只需真诚地表达与记录。
+
+> **一人一站，并非要求每个人都成为全职站长。**  
+> 这是一场数字生活方式的重聚倡议：**走出中心化平台，重塑个人数字主权。**  
+> 我们不收录空洞的“建站模板展示”，只收录**真实的人，以及他们长期深耕的数字空间**。
+
+---
+
+## 🌟 在线精选网站 (Live Directory)
+
+我们为所有收录站点打造了现代极简、无广告、纯静态且支持暗黑模式的浏览网站：
+
+👉 **[https://realchendahuang.github.io/one-person-one-site/](https://realchendahuang.github.io/one-person-one-site/)**
+
+- ⚡️ **极速加载**：零外部框架依赖，纯静态托管于 GitHub Pages。
+- 🎨 **双主题系统**：自适应纸感浅色与深邃暗黑模式，信号橙微动效。
+- 🔍 **多维过滤**：支持全文即时搜索（快捷键 `/` 或 `⌘K`）、标签过滤与随机漫游探索。
+- 📡 **RSS 便捷订阅**：卡片直达订阅源并支持一键复制。
+
+---
+
+## 📚 目录预览
 
 <!-- SITES_TABLE:START -->
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
@@ -33,149 +70,121 @@
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 <!-- SITES_TABLE:END -->
 
-完整信息（含 RSS 订阅地址）见 [DIRECTORY.md](./DIRECTORY.md)，也可以在[在线网站](https://realchendahuang.github.io/one-person-one-site/)中搜索和按标签筛选。
+> 完整收录数据与 RSS 订阅源请查阅 [DIRECTORY.md](./DIRECTORY.md)。
 
-## 我们收录什么？
+---
 
-优先收录：
+## 🎯 收录标准与原则
 
-- 个人主页 / Personal Website
-- 独立博客 / Independent Blog
-- 数字花园 / Digital Garden
-- 个人作品集 / Portfolio
-- 个人知识库 / Knowledge Base
-- 独立创作者主页 / Creator Website
-- 独立开发者主页 / Indie Hacker Website
-- 长期维护、有明显个人表达的网站
+### 我们热烈欢迎：
+- ✅ **独立博客 / Independent Blog**：长期记录技术、思考、读书或生活感悟的站点。
+- ✅ **数字花园 / Digital Garden**：未完成但持续生长、交织网状链接的双链笔记或灵感库。
+- ✅ **个人作品集 / Portfolio**：设计师、开发者、摄影师、艺术家展示代表作品的独立空间。
+- ✅ **独立黑客与创作者主页 / Indie Maker**：公开构建（Build in Public）、探索新产品与独立商业的项目站。
+- ✅ **个人知识库 / Knowledge Base**：针对特定专业领域系统化沉淀的公共笔记。
 
-不鼓励收录：
+### 我们谢绝收录：
+- ❌ 纯公司官网、企业营销页、SaaS 落地转化页。
+- ❌ 社交平台单一账号主页（如微信公众号、小红书主页、即刻主页、知乎主页等）。
+- ❌ 采集站、镜像站、纯 SEO 伪原创站。
+- ❌ 缺乏真实个人表达、由 AI 批量流水线生成的无意义内容农场。
+- ❌ 含有欺诈、恶意广告跳转、侵权或违规违法内容的站点。
 
-- 纯公司官网、营销落地页
-- 纯社交平台主页
-- 镜像站、采集站、SEO 垃圾站
-- 大量 AI 批量生成、缺乏真实个人表达的内容农场
-- 明显违法、欺诈或恶意内容
+---
 
-## 收录原则
+## 📮 提交你的网站
 
-我们更看重：
+### 方式一：Issue 提交（零门槛，小白推荐）
+直接点击 [**Submit a site 模板**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)，按提示填写网站名称、网址、站长名与一句话简介即可，维护者会定期合并。
 
-1. **真实的人**：网站背后有清晰、持续的个人身份或创作主体。
-2. **长期主义**：不是一次性项目页，而是持续维护的数字空间。
-3. **独立表达**：有自己的内容、观点、作品、笔记或生活记录。
-4. **可访问性**：网站当前可以正常访问，并有基本可读性。
-5. **尊重互联网**：不过度追踪、不恶意跳转、不用欺骗性方式获取用户信息。
+### 方式二：Pull Request 提交（极客与开发者推荐）
+1. Fork 本仓库并 Clone 到本地。
+2. 在 `data/sites.json` 中追加你的站点信息：
+   ```json
+   {
+     "name": "你的站点名称",
+     "url": "https://your-domain.com",
+     "owner": "你的昵称或名字",
+     "description": "用真诚简洁的一两句话介绍你的站点或你关注的领域。",
+     "languages": ["zh-CN"],
+     "region": "China",
+     "tags": ["blog", "developer", "notes"],
+     "feed": "https://your-domain.com/rss.xml"
+   }
+   ```
+3. 运行本地自动化校验与构建脚本：
+   ```bash
+   python3 scripts/validate.py          # 校验数据格式
+   python3 scripts/generate_directory.py # 同步 Markdown 目录与表格
+   ```
+4. 提交修改并发起 Pull Request。
 
-## 提交你的网站
+---
 
-最简单的方式：
+## 🏷️ 推荐标签一览
 
-1. 打开 **Issues → Submit a site**
-2. 填写网站信息
-3. 或直接修改 `data/sites.json` 后提交 Pull Request
+提交时建议从以下常用标签中选择 1~5 个，也可以提出贴合你站点特色的简洁新标签：
 
-字段说明：
+| 领域分类 | 常见推荐标签 |
+|---|---|
+| **技术与黑客** | `developer`, `indie-hacker`, `maker`, `open-source`, `ai`, `security` |
+| **写作与思考** | `blog`, `writer`, `notes`, `digital-garden`, `reading`, `philosophy` |
+| **设计与视觉** | `designer`, `portfolio`, `photography`, `architecture`, `art` |
+| **生活与多样** | `lifestyle`, `food`, `travel`, `music`, `minimalism`, `newsletter` |
 
-```json
-{
-  "name": "网站名称",
-  "url": "https://example.com",
-  "owner": "站长 / 创作者名称",
-  "description": "一句话介绍",
-  "languages": ["zh-CN"],
-  "region": "Global",
-  "tags": ["blog", "developer"],
-  "feed": "https://example.com/rss.xml"
-}
-```
+---
 
-详细规则见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
+## 🛠️ 项目工程与本地构建
 
-## 标签建议
-
-常用标签包括：
-
-`blog` · `developer` · `designer` · `writer` · `researcher` · `maker` · `photography` · `digital-garden` · `portfolio` · `newsletter` · `notes` · `indie-hacker`
-
-你也可以提出新的标签，但建议保持简洁、可复用。
-
-## 本地校验
-
-```bash
-python3 scripts/validate.py
-python3 scripts/generate_directory.py
-python3 scripts/generate_site.py   # 构建静态网站到 site/（已 gitignore）
-```
-
-`generate_directory.py` 会同时更新 `DIRECTORY.md` 和本文件顶部的站点表格（`SITES_TABLE` 标记区间），提交 PR 时请一并提交所有生成文件的改动。
-
-提交 PR 时，GitHub Actions 会自动检查：
-
-- JSON 格式是否正确
-- URL 是否为 http/https
-- 是否存在重复网址
-- 必填字段是否齐全
-- `DIRECTORY.md` 与 README 表格是否与数据一致
-
-## 项目结构
+本项目采用极简、高效、无冗余依赖的纯 Python 标准库驱动架构：
 
 ```text
 one-person-one-site/
 ├── data/
-│   ├── sites.json
-│   └── sites.example.json
+│   ├── sites.json            # 站点核心数据源（唯一事实来源）
+│   └── sites.example.json    # 格式范例
 ├── scripts/
-│   ├── validate.py
-│   ├── generate_directory.py
-│   └── generate_site.py
+│   ├── validate.py           # 数据模式与合法性严格校验
+│   ├── generate_directory.py # 自动生成 DIRECTORY.md 与同步 README 表格
+│   └── generate_site.py      # 构建零依赖的高颜值静态网站到 site/
 ├── schema/
-│   └── site.schema.json
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── workflows/
-├── README.md
-├── README_EN.md
-├── DIRECTORY.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-└── LICENSE
+│   └── site.schema.json      # JSON Schema 定义
+├── site/                     # 静态页面产物（由 CI 自动发布至 Pages）
+└── .github/
+    └── workflows/
+        ├── validate.yml      # PR 自动化数据合规检查
+        └── deploy.yml        # main 分支变更时自动构建部署
 ```
 
-## 在线网站
-
-目录以纯静态网站的形式发布在 GitHub Pages：
-
-👉 **https://realchendahuang.github.io/one-person-one-site/**
-
-网站由 `data/sites.json` 自动构建（GitHub Actions 每次 push 到 main 自动部署），支持搜索和按标签筛选，无需任何服务器。
-
-## 路线图
-
-- [x] 建立第一批高质量个人网站种子库
-- [ ] 按语言、地区、职业与主题分类
-- [ ] 增加 RSS / Atom Feed 信息
-- [ ] 增加站点截图与历史快照（可选）
-- [ ] 建立“本周一人一站”精选机制
-- [ ] 建立网站失效检测
-- [x] 生成可搜索的静态网站（GitHub Pages 已上线）
-- [ ] 支持 OPML / JSON / CSV 导出
-- [ ] 建立社区推荐与年度精选
-
-## 为什么叫「一人一站」？
-
-平台会变化，算法会变化，账号也可能消失。
-
-但个人网站是互联网上少数仍然可以由个人真正拥有、设计、组织和长期沉淀的空间。
-
-**一人一站，不是要求每个人都成为站长。**
-
-它更像一个倡议：重新拥有自己的互联网身份、内容和关系。
-
-## License
-
-项目代码采用 [MIT License](./LICENSE)。目录数据可在遵循仓库许可与来源说明的前提下使用。
+本地执行一键构建：
+```bash
+python3 scripts/validate.py           # 校验 sites.json
+python3 scripts/generate_directory.py  # 刷新 DIRECTORY.md 和 README 站点表格
+python3 scripts/generate_site.py       # 本地生成 site/index.html 网页
+```
 
 ---
 
-如果你也有一个认真维护的个人网站，欢迎把它带到这里。
+## 🗺️ 发展路线 (Roadmap)
+
+- [x] 建立第一批高质量中文独立博客与个人站点种子库
+- [x] 搭建现代化高质感静态展示站（GitHub Pages 纯静态上线）
+- [x] 支持全文检索、多标签筛选、暗黑模式与随机漫游
+- [x] 支持 RSS 订阅源提取与一键复制
+- [ ] 导出统一 OPML 订阅文件，支持一键导入主流 RSS 阅读器
+- [ ] 自动化站点可用性健康检查机制（死链巡检）
+- [ ] 社区精选推荐与年度独立个人站点巡礼
+
+---
+
+## 📄 开源许可
+
+本项目代码与自动化脚本遵循 [MIT License](./LICENSE)。  
+收录之站点数据仅供独立互联网社区索引与交流展示使用，各站点内容知识产权归其各自作者所有。
+
+---
+
+<p align="center">
+  <strong>愿每一个认真思考的人，都在互联网上拥有属于自己的灯火。</strong><br>
+  欢迎 Star ⭐️ 本仓库，并将你的数字花园带到这里。
+</p>
