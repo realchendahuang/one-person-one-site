@@ -1,0 +1,18 @@
+name: 数据纠错 / Report an issue
+description: 报告失效链接、错误信息、重复站点等问题
+title: "[Fix] "
+labels: ["data-fix"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: 相关网站 / Related URL
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 问题说明 / What is wrong?
+    validations:
+      required: true

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "One Person, One Site entry",
+  "type": "object",
+  "required": ["name", "url", "owner", "description", "languages", "region", "tags"],
+  "properties": {
+    "name": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "pattern": "^https?://"},
+    "owner": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1, "maxLength": 240},
+    "languages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 2}
+    },
+    "region": {"type": "string", "minLength": 1},
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "feed": {"type": "string", "pattern": "^https?://"}
+  },
+  "additionalProperties": false
+}

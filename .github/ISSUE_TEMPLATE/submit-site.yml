@@ -1,0 +1,76 @@
+name: 提交一个网站 / Submit a site
+description: 推荐一个值得收录的个人网站、独立博客或数字花园
+title: "[Submit] "
+labels: ["submission"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 网站名称 / Site name
+      placeholder: Example Blog
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 网站地址 / URL
+      placeholder: https://example.com
+    validations:
+      required: true
+
+  - type: input
+    id: owner
+    attributes:
+      label: 站长 / 创作者 / Owner
+      placeholder: Name or handle
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 一句话介绍 / Description
+      placeholder: 这个网站主要分享什么？为什么值得收录？
+    validations:
+      required: true
+
+  - type: input
+    id: languages
+    attributes:
+      label: 主要语言 / Languages
+      placeholder: zh-CN, en
+    validations:
+      required: true
+
+  - type: input
+    id: region
+    attributes:
+      label: 地区 / Region
+      placeholder: China / Global / Japan / ...
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: 标签 / Tags
+      placeholder: blog, developer, digital-garden
+    validations:
+      required: true
+
+  - type: input
+    id: feed
+    attributes:
+      label: RSS / Atom（可选）
+      placeholder: https://example.com/feed.xml
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交确认
+      options:
+        - label: 这是一个真实个人长期维护的网站，而不是纯公司官网或营销落地页。
+          required: true
+        - label: 我确认当前网站可以正常访问。
+          required: true

@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Example Personal Site",
+    "url": "https://example.com",
+    "owner": "Example Creator",
+    "description": "A demonstration entry showing the expected data format.",
+    "languages": ["en"],
+    "region": "Global",
+    "tags": ["blog", "developer"],
+    "feed": "https://example.com/feed.xml"
+  }
+]
