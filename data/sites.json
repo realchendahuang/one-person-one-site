@@ -165,6 +165,15 @@
     "tags": ["blog", "developer", "notes"]
   },
   {
+    "name": "Learnmore_smart website",
+    "url": "https://www.rateministere.com",
+    "owner": "learnmore_smart",
+    "description": "我的个人主页，值得被收录。后续持续更新我的项目",
+    "languages": ["en", "zh-CN", "fr"],
+    "region": "Global",
+    "tags": ["blog", "developer", "personnal-website"]
+  },
+  {
     "name": "陈大黄 - 作品与内容",
     "url": "https://chendahuang.com",
     "owner": "陈大黄",

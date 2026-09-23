@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **19** 个站点。
+当前共收录 **20** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -14,6 +14,7 @@
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
+| [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personnal-website |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
@@ -28,4 +29,4 @@
 
 ## 标签统计
 
-`ai` (1) · `blog` (11) · `designer` (3) · `developer` (12) · `digital-garden` (3) · `indie-hacker` (6) · `maker` (4) · `notes` (4) · `open-source` (1) · `photographer` (1) · `portfolio` (6) · `research` (1) · `security` (2) · `writer` (2)
+`ai` (1) · `blog` (12) · `designer` (3) · `developer` (13) · `digital-garden` (3) · `indie-hacker` (6) · `maker` (4) · `notes` (4) · `open-source` (1) · `personnal-website` (1) · `photographer` (1) · `portfolio` (6) · `research` (1) · `security` (2) · `writer` (2)
