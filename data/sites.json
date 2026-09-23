@@ -107,14 +107,5 @@
     "languages": ["zh-CN", "en"],
     "region": "China",
     "tags": ["digital-garden", "developer", "blog"]
-  },
-  {
-    "name": "Personal Website AI",
-    "url": "https://personal-website-ai.chendahuang.com",
-    "owner": "陈大黄",
-    "description": "AI 时代，每个人都该有一个自己的网站。12 个真实上线的模板任选，三天上线并绑定自己的域名。",
-    "languages": ["zh-CN"],
-    "region": "China",
-    "tags": ["maker", "portfolio", "indie-hacker"]
   }
 ]
