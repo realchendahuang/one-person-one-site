@@ -433,5 +433,72 @@
       "maker",
       "portfolio"
     ]
+  },
+  {
+    "name": "老杨的知识荒原",
+    "url": "https://awesomeyang.com",
+    "owner": "老杨 AwesomeYang",
+    "description": "全干工程师、aiwith.me 创始人老杨的个人站：记录十年编程到出海独立开发的历程，附博客与真实运转的作品矩阵。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "blog",
+      "indie-hacker",
+      "maker"
+    ],
+    "feed": "https://awesomeyang.com/atom.xml"
+  },
+  {
+    "name": "Canmi Wu",
+    "url": "https://canmi.net",
+    "owner": "Canmi Wu",
+    "description": "Systems engineer building software, hardware and the occasional weird thing in between — writing bilingual posts on frontend craft, backend systems and embedded circuits.",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "region": "United States",
+    "tags": [
+      "developer",
+      "blog",
+      "maker"
+    ],
+    "feed": "https://canmi.net/atom.xml"
+  },
+  {
+    "name": "Alliot's blog",
+    "url": "https://blog.alliot.tech",
+    "owner": "Alliot",
+    "description": "Alliot个人博客, 记录工作、学习与生活，内容以 DevOps、云原生和架构设计为主, 也会分享一些硬件折腾。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "Global",
+    "tags": [
+      "blog",
+      "developer",
+      "devops",
+      "sre"
+    ],
+    "feed": "https://blog.alliot.tech/atom.xml"
+  },
+  {
+    "name": "XuYi",
+    "url": "https://xuyi.dev",
+    "owner": "xuyi",
+    "description": "关于游戏开发、AI领域都兼顾的个人博客。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "blog",
+      "game",
+      "ai"
+    ]
   }
 ]
