@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **21** 个站点。
+当前共收录 **22** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -25,9 +25,10 @@
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
 | [权小白](https://quanxb.art/) | 权小白 | 05 后的个人站，只写亲自试过的 AI 工具与实践，记录持续更新的思考与判断。 | zh-CN | developer, writer, ai |
 | [皮普的数字花园](https://pipuwong.com) | Pipu | 设计师与摄影师，记录摄影、设计、代码，以及 NAS 自托管与建站实践。 | zh-CN, en | blog, designer, photographer, digital-garden |
+| [虫子樱桃](https://czyt.tech) | czyt | 一个关注编程、ai和linux的博客 | zh-CN | blog, developer, agent, ai |
 | [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, research, blog |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 
 ## 标签统计
 
-`developer` (14) · `blog` (13) · `indie-hacker` (7) · `portfolio` (6) · `maker` (5) · `notes` (4) · `designer` (3) · `digital-garden` (3) · `security` (2) · `writer` (2) · `ai` (1) · `open-source` (1) · `personal-website` (1) · `photographer` (1) · `research` (1)
+`developer` (15) · `blog` (14) · `indie-hacker` (7) · `portfolio` (6) · `maker` (5) · `notes` (4) · `designer` (3) · `digital-garden` (3) · `ai` (2) · `security` (2) · `writer` (2) · `agent` (1) · `open-source` (1) · `personal-website` (1) · `photographer` (1) · `research` (1)

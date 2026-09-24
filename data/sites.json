@@ -184,6 +184,16 @@
     "feed": "https://blog.clothpath.com/rss.xml"
   },
   {
+    "name": "虫子樱桃",
+    "url": "https://czyt.tech",
+    "owner": "czyt",
+    "description": "一个关注编程、ai和linux的博客",
+    "languages": ["zh-CN"],
+    "region": "China",
+    "tags": ["blog", "developer", "agent", "ai"],
+    "feed": "https://czyt.tech/index.xml#feed"
+  },
+  {
     "name": "陈大黄 - 作品与内容",
     "url": "https://chendahuang.com",
     "owner": "陈大黄",

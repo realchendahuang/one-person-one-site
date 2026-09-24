@@ -27,10 +27,10 @@
 这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
 <!-- STATS:START -->
-- 目前收录 **21** 个站点，来自 **4** 个地区，使用 5 种语言写作。
-- 其中 **5** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (13)、`digital-garden` (3)、`notes` (4)、`portfolio` (6)。
-- 常见主题：`developer` (14)、`indie-hacker` (7)、`maker` (5)、`designer` (3)、`security` (2)、`writer` (2)、`open-source` (1)、`personal-website` (1)。
+- 目前收录 **22** 个站点，来自 **4** 个地区，使用 5 种语言写作。
+- 其中 **6** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
+- 内容形态：`blog` (14)、`digital-garden` (3)、`notes` (4)、`portfolio` (6)。
+- 常见主题：`developer` (15)、`indie-hacker` (7)、`maker` (5)、`designer` (3)、`security` (2)、`writer` (2)、`ai` (2)、`open-source` (1)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
@@ -120,6 +120,7 @@
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
 | [权小白](https://quanxb.art/) | 权小白 | 05 后的个人站，只写亲自试过的 AI 工具与实践，记录持续更新的思考与判断。 | zh-CN | developer, writer, ai |
 | [皮普的数字花园](https://pipuwong.com) | Pipu | 设计师与摄影师，记录摄影、设计、代码，以及 NAS 自托管与建站实践。 | zh-CN, en | blog, designer, photographer, digital-garden |
+| [虫子樱桃](https://czyt.tech) | czyt | 一个关注编程、ai和linux的博客 | zh-CN | blog, developer, agent, ai |
 | [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, research, blog |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 <!-- SITES_TABLE:END -->

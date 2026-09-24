@@ -27,10 +27,10 @@
 This is a **content directory** — not a showcase, not a software project. It does one thing: gather personal sites that real people have been running for a long time, so that others can find them, read them, and subscribe to them.
 
 <!-- STATS:START -->
-- **21** independent sites from **4** regions, written in 5 languages.
-- **5** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
-- Content types: blog (13), digital-garden (3), notes (4), portfolio (6).
-- Common topics: developer (14), indie-hacker (7), maker (5), designer (3), security (2), writer (2), open-source (1), personal-website (1).
+- **22** independent sites from **4** regions, written in 5 languages.
+- **6** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
+- Content types: blog (14), digital-garden (3), notes (4), portfolio (6).
+- Common topics: developer (15), indie-hacker (7), maker (5), designer (3), security (2), writer (2), ai (2), open-source (1).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out hard-won lessons on RAG and backend systems. They write about different things. What they share is that they **never handed their voice over to an algorithm**.
@@ -120,6 +120,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
 | [权小白](https://quanxb.art/) | 权小白 | 05 后的个人站，只写亲自试过的 AI 工具与实践，记录持续更新的思考与判断。 | zh-CN | developer, writer, ai |
 | [皮普的数字花园](https://pipuwong.com) | Pipu | 设计师与摄影师，记录摄影、设计、代码，以及 NAS 自托管与建站实践。 | zh-CN, en | blog, designer, photographer, digital-garden |
+| [虫子樱桃](https://czyt.tech) | czyt | 一个关注编程、ai和linux的博客 | zh-CN | blog, developer, agent, ai |
 | [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, research, blog |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
 <!-- SITES_TABLE:END -->
