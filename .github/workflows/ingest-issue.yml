@@ -90,8 +90,8 @@ jobs:
 
           python3 scripts/build_assets.py
           python3 scripts/validate.py
-          python3 tests/test_validate.py
           python3 scripts/generate_directory.py
+          python3 tests/test_validate.py
           python3 scripts/generate_site.py
           python3 tests/test_build.py
 

@@ -500,5 +500,178 @@
       "game",
       "ai"
     ]
+  },
+  {
+    "name": "郑壮",
+    "url": "https://zhengz.cc/",
+    "owner": "郑壮",
+    "description": "软件开发者，一边工作一边做自己的产品。在这里记录 AI、产品、技术实践与成长过程。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "blog",
+      "portfolio"
+    ]
+  },
+  {
+    "name": "韩冬",
+    "url": "https://han-dong.link/",
+    "owner": "韩冬",
+    "description": "做产品、做研究、做教育。打造 AI 产品与智能体协作工具，研究语音情感与粤语，记录影视研究与作品。",
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "portfolio",
+      "ai",
+      "notes"
+    ]
+  },
+  {
+    "name": "Wutong Yu",
+    "url": "https://www.wutongyu.site",
+    "owner": "梧桐雨（WutongRain）",
+    "description": "梧桐雨的独立博客：记录技术、工具、生活与思考。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "blog",
+      "developer",
+      "ai",
+      "notes"
+    ],
+    "feed": "https://www.wutongyu.site/rss.xml"
+  },
+  {
+    "name": "Rainey's Blog",
+    "url": "https://rainey.space",
+    "owner": "Rainey",
+    "description": "Rainey 的个人博客，记录技术、产品与 AI，也分享生活、摄影和旅行。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "blog",
+      "developer",
+      "ai",
+      "notes"
+    ],
+    "feed": "https://rainey.space/rss.xml"
+  },
+  {
+    "name": "AKai blog",
+    "url": "https://blog.akaii.top",
+    "owner": "AKai",
+    "description": "关于 AI、开发与服务部署的中文技术博客。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "blog",
+      "developer",
+      "ai"
+    ],
+    "feed": "https://blog.akaii.top/blog/rss.xml"
+  },
+  {
+    "name": "Bugyalu — 「源心锁」",
+    "url": "https://bugyaluwang.vercel.app",
+    "owner": "Bugyalu",
+    "description": "全栈工程师的个人手记与作品展。记录项目、实验、系统设计与关于 Agent 的深度思考。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "blog",
+      "notes",
+      "portfolio"
+    ]
+  },
+  {
+    "name": "froQ's Space",
+    "url": "https://froq.me",
+    "owner": "froQ",
+    "description": "预备役设计工程师的数字花园，记录日常日志、日记、技术博文、思考与摘抄。",
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "region": "China",
+    "tags": [
+      "blog",
+      "digital-garden"
+    ]
+  },
+  {
+    "name": "GPT88 博客",
+    "url": "https://doc.gpt88.cc/docs/blog/",
+    "owner": "草莽码农",
+    "description": "围绕模型接入、图片生成、API 集成与工程实践的实用文章。",
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "region": "Global",
+    "tags": [
+      "blog",
+      "doc"
+    ]
+  },
+  {
+    "name": "三花猫啾啾和咩咩",
+    "url": "https://cafe3310.github.io/chocho-miemie-album/",
+    "owner": "cafe3310",
+    "description": "我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "Global",
+    "tags": [
+      "cat",
+      "original-character",
+      "album"
+    ]
+  },
+  {
+    "name": "X排名",
+    "url": "https://xpaiming.com/",
+    "owner": "Harries",
+    "description": "一个专注于 X（Twitter）账号排名与数据发现的网站，帮助用户发现值得关注的创作者、独立开发者和优质账号。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "Global",
+    "tags": [
+      "twitter",
+      "ranking",
+      "social-media",
+      "indie-hacker",
+      "creator"
+    ]
+  },
+  {
+    "name": "嘿小喵",
+    "url": "https://heixiaomiao.topnod.art/",
+    "owner": "嗨皮的小玉米",
+    "description": "不被定义，自在做猫。嘿小喵，用他专属的喵式哲学与生活和解。生活有点黑，但只要我眼里有光，处处皆光明。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "digital-garden"
+    ]
   }
 ]
