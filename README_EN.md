@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/Live%20Directory-Browse%20Now-ff6a00?style=flat-square" alt="Live Directory"></a>
   <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/Full%20Directory-Markdown-52525b?style=flat-square" alt="Full Directory"></a>
-  <a href="./site/feeds.opml"><img src="https://img.shields.io/badge/RSS-OPML%20Bundle-22c55e?style=flat-square" alt="OPML Bundle"></a>
+  <a href="https://realchendahuang.github.io/one-person-one-site/feeds.opml"><img src="https://img.shields.io/badge/RSS-OPML%20Bundle-22c55e?style=flat-square" alt="OPML Bundle"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-black?style=flat-square" alt="License"></a>
 </p>
 
@@ -27,10 +27,10 @@
 This is a **content directory** — not a showcase, not a software project. It does one thing: gather personal sites that real people have been running for a long time, so that others can find them, read them, and subscribe to them.
 
 <!-- STATS:START -->
-- **27** independent sites from **5** regions, written in 5 languages.
+- **28** independent sites from **5** regions, written in 5 languages.
 - **7** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
-- Content types: blog (17), digital-garden (3), notes (5), portfolio (10).
-- Common topics: developer (19), indie-hacker (8), maker (7), designer (4), open-source (2), security (2), writer (2), ai (2).
+- Content types: blog (17), digital-garden (3), notes (5), portfolio (11).
+- Common topics: developer (20), indie-hacker (8), maker (7), designer (4), open-source (3), ai (3), security (2), writer (2).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out hard-won lessons on RAG and backend systems. They write about different things. What they share is that they **never handed their voice over to an algorithm**.
@@ -90,7 +90,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 
 **Browse it.** Open the [live directory](https://realchendahuang.github.io/one-person-one-site/) to filter by tag, search across site names, authors and descriptions, or hit "Wander" to land on a site you have never seen. The [full directory page](https://realchendahuang.github.io/one-person-one-site/directory/) lists everything by tag and by name.
 
-**Subscribe in bulk.** Many listed sites publish RSS / Atom. Download [feeds.opml](./site/feeds.opml) and import it into any reader to add all of them to your information flow at once — a far more durable way to follow people than bookmarks.
+**Subscribe in bulk.** Many listed sites publish RSS / Atom. Download [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml) and import it into any reader to add all of them to your information flow at once — a far more durable way to follow people than bookmarks.
 
 **Reuse the data.** All entries live in [data/sites.json](./data/sites.json), or fetch it live from [sites.json](https://realchendahuang.github.io/one-person-one-site/data/sites.json). Build visualizations, your own recommender, or feed it into other tools (MIT).
 
@@ -115,6 +115,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
+| [MuRong](https://mrong.me) | MuRong | AI 全栈工程师 MuRong 的个人主页，展示 Markra、Openframe、AI Accounts Hub 等自研产品与开源项目。 | en | developer, portfolio, open-source, ai |
 | [Niapya](https://portfolio.niapya.deno.net/) | Niapya | 独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。 | en | designer, developer, portfolio, indie-hacker |
 | [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
@@ -210,6 +211,18 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the detailed workflow.
 ## License
 
 Scripts and documentation in this repository are released under the [MIT License](./LICENSE). Content and intellectual property in listed sites belong to their respective authors; this directory only indexes and links to them, and listing is not an endorsement of any kind.
+
+---
+
+## Project history
+
+<!-- HISTORY:START -->
+- **22** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- New site listings: **9** commits, latest: “feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）”.
+- Features: **15** commits, latest: “feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）”.
+- Fixes: **3** commits, latest: “fix: 彻底移除预览小窗改为新窗口直达，搜索弹窗全端响应式并支持左右滑动手势”.
+- Refactors: **2** commits, latest: “refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐”.
+<!-- HISTORY:END -->
 
 <p align="center">
   <strong>May every thoughtful person keep a light of their own on the open internet.</strong><br>

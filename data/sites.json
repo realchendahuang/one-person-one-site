@@ -404,6 +404,22 @@
     ]
   },
   {
+    "name": "MuRong",
+    "url": "https://mrong.me",
+    "owner": "MuRong",
+    "description": "AI 全栈工程师 MuRong 的个人主页，展示 Markra、Openframe、AI Accounts Hub 等自研产品与开源项目。",
+    "languages": [
+      "en"
+    ],
+    "region": "Global",
+    "tags": [
+      "developer",
+      "portfolio",
+      "open-source",
+      "ai"
+    ]
+  },
+  {
     "name": "船长的角落",
     "url": "https://www.mmdbb.org/",
     "owner": "船长",

@@ -7,18 +7,29 @@
 用法：
     python3 scripts/validate.py
     python3 scripts/validate.py --data other.json
+    python3 scripts/validate.py --check   # 重跑生成器，检查生成物已提交
+
+--check 的豁免规则：README 的 HISTORY 区间由 git log 生成，天生落后一个
+提交（生成时 HEAD 尚未包含当前提交），因此只要求区块存在，不比对内容。
 """
 from __future__ import annotations
 
 import argparse
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA = ROOT / "data" / "sites.json"
+
+# README 里由 git log 生成的历史区块：内容允许落后一个提交，检查时整块豁免
+HISTORY_BLOCK_RE = re.compile(
+    r"<!-- HISTORY:START -->.*?<!-- HISTORY:END -->", re.DOTALL
+)
+GENERATED_FILES = ("DIRECTORY.md", "README.md", "README_EN.md")
 
 REQUIRED = ["name", "url", "owner", "description", "languages", "region", "tags"]
 OPTIONAL = ["feed"]
@@ -130,10 +141,57 @@ def validate(sites: object) -> int:
     return len(sites)
 
 
+def strip_history_blocks(text: str) -> str:
+    """去掉历史区块内容，仅保留空区块占位，供生成物比对豁免使用。"""
+    return HISTORY_BLOCK_RE.sub("<!-- HISTORY:START --><!-- HISTORY:END -->", text)
+
+
+def check_generated_files() -> int:
+    """重跑生成器并检查生成物已提交；返回非零表示有未提交的漂移。"""
+    try:
+        subprocess.run(
+            ["python3", str(ROOT / "scripts" / "generate_directory.py")],
+            capture_output=True, text=True, check=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError) as exc:
+        print(f"ERROR: 重跑生成器失败: {exc}")
+        return 1
+
+    drift = False
+    for name in GENERATED_FILES:
+        path = ROOT / name
+        before = strip_history_blocks(path.read_text(encoding="utf-8"))
+        try:
+            after = subprocess.run(
+                ["git", "show", f"HEAD:{name}"],
+                capture_output=True, text=True, check=True,
+            ).stdout
+        except subprocess.CalledProcessError:
+            print(f"FAIL: {name} 未纳入版本控制")
+            drift = True
+            continue
+        if before != strip_history_blocks(after):
+            print(f"FAIL: {name} 与 data/sites.json 不同步，请运行 "
+                  "python3 scripts/generate_directory.py 并提交")
+            drift = True
+
+    if drift:
+        return 1
+    print(f"OK: 生成物已提交（HISTORY 区间豁免逐字比对）")
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="校验收录数据")
     parser.add_argument("--data", default=str(DEFAULT_DATA), help="数据文件路径")
+    parser.add_argument(
+        "--check", action="store_true",
+        help="重跑生成器，检查 DIRECTORY.md / README 生成物已提交",
+    )
     args = parser.parse_args()
+
+    if args.check:
+        sys.exit(check_generated_files())
 
     path = Path(args.data)
     try:

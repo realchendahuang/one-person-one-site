@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://realchendahuang.github.io/one-person-one-site/"><img src="https://img.shields.io/badge/在线目录-立即浏览-ff6a00?style=flat-square" alt="在线目录"></a>
   <a href="./DIRECTORY.md"><img src="https://img.shields.io/badge/完整目录-Markdown-52525b?style=flat-square" alt="完整目录"></a>
-  <a href="./site/feeds.opml"><img src="https://img.shields.io/badge/RSS-订阅合集-22c55e?style=flat-square" alt="订阅合集"></a>
+  <a href="https://realchendahuang.github.io/one-person-one-site/feeds.opml"><img src="https://img.shields.io/badge/RSS-订阅合集-22c55e?style=flat-square" alt="订阅合集"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/许可-MIT-black?style=flat-square" alt="许可"></a>
 </p>
 
@@ -27,10 +27,10 @@
 这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
 <!-- STATS:START -->
-- 目前收录 **27** 个站点，来自 **5** 个地区，使用 5 种语言写作。
+- 目前收录 **28** 个站点，来自 **5** 个地区，使用 5 种语言写作。
 - 其中 **7** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (17)、`digital-garden` (3)、`notes` (5)、`portfolio` (10)。
-- 常见主题：`developer` (19)、`indie-hacker` (8)、`maker` (7)、`designer` (4)、`open-source` (2)、`security` (2)、`writer` (2)、`ai` (2)。
+- 内容形态：`blog` (17)、`digital-garden` (3)、`notes` (5)、`portfolio` (11)。
+- 常见主题：`developer` (20)、`indie-hacker` (8)、`maker` (7)、`designer` (4)、`open-source` (3)、`ai` (3)、`security` (2)、`writer` (2)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
@@ -90,7 +90,7 @@
 
 **在网页上找。** 打开 [在线目录](https://realchendahuang.github.io/one-person-one-site/)，可以按标签筛选、全文搜索（站名、作者、简介都能搜），或者点「漫游」随机遇到一个陌生的站点。[完整目录页](https://realchendahuang.github.io/one-person-one-site/directory/) 按标签和名称列出了全部条目。
 
-**批量订阅。** 收录站点中有相当一部分提供 RSS / Atom。下载 [feeds.opml](./site/feeds.opml) 导入任意阅读器，就能把这些人一次性加进你的信息流——这是比收藏夹更可靠的关注方式。
+**批量订阅。** 收录站点中有相当一部分提供 RSS / Atom。下载 [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml) 导入任意阅读器，就能把这些人一次性加进你的信息流——这是比收藏夹更可靠的关注方式。
 
 **复用数据。** 全部收录数据在 [data/sites.json](./data/sites.json)，也可以直接从线上取 [sites.json](https://realchendahuang.github.io/one-person-one-site/data/sites.json)。想拿去做可视化、做自己的推荐、写进别的工具，都请自便（MIT）。
 
@@ -115,6 +115,7 @@
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
+| [MuRong](https://mrong.me) | MuRong | AI 全栈工程师 MuRong 的个人主页，展示 Markra、Openframe、AI Accounts Hub 等自研产品与开源项目。 | en | developer, portfolio, open-source, ai |
 | [Niapya](https://portfolio.niapya.deno.net/) | Niapya | 独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。 | en | designer, developer, portfolio, indie-hacker |
 | [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
@@ -210,6 +211,18 @@
 ## 许可
 
 本项目的脚本与文档以 [MIT License](./LICENSE) 开源。收录站点的内容与知识产权归各自作者所有；本目录只做索引与展示，收录不代表任何形式的背书。
+
+---
+
+## 项目历史
+
+<!-- HISTORY:START -->
+- 自 **2026-09-23** 以来共 **22** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 收录新站点：**9** 次，最近一次「feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）」。
+- 功能：**15** 次，最近一次「feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）」。
+- 修复：**3** 次，最近一次「fix: 彻底移除预览小窗改为新窗口直达，搜索弹窗全端响应式并支持左右滑动手势」。
+- 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
+<!-- HISTORY:END -->
 
 <p align="center">
   <strong>愿每一个认真思考的人，都在互联网上拥有属于自己的灯火。</strong><br>

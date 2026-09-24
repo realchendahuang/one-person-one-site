@@ -193,6 +193,36 @@ def test_cli_exit_codes():
     assert bad.returncode == 1
 
 
+def test_check_mode_passes_on_committed_tree():
+    """--check 在生成物已提交时应通过（HISTORY 区间落后一个提交不算漂移）。"""
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate.py"), "--check"],
+        capture_output=True, text=True, cwd=ROOT,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_history_block_exemption():
+    """HISTORY 区间内容被豁免：两边区块里塞不同内容也应视为一致。"""
+    from validate import strip_history_blocks
+
+    base = "# t\n\n<!-- HISTORY:START -->\n- 旧内容\n<!-- HISTORY:END -->\n"
+    other = "# t\n\n<!-- HISTORY:START -->\n- 新内容\n<!-- HISTORY:END -->\n"
+    assert strip_history_blocks(base) == strip_history_blocks(other)
+
+    # 区块必须存在且完整，删掉内容后占位仍在
+    stripped = strip_history_blocks(base)
+    assert "<!-- HISTORY:START --><!-- HISTORY:END -->" in stripped
+
+
+def test_readme_has_history_block():
+    """两个 README 都要有 HISTORY 区间标记，生成器才会同步历史。"""
+    for name in ("README.md", "README_EN.md"):
+        text = (ROOT / name).read_text(encoding="utf-8")
+        assert "<!-- HISTORY:START -->" in text and "<!-- HISTORY:END -->" in text, \
+            f"{name} 缺少 HISTORY 区间标记"
+
+
 def main() -> None:
     tests = [
         (name, fn)

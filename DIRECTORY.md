@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **27** 个站点。
+当前共收录 **28** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -20,6 +20,7 @@
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
+| [MuRong](https://mrong.me) | MuRong | AI 全栈工程师 MuRong 的个人主页，展示 Markra、Openframe、AI Accounts Hub 等自研产品与开源项目。 | en | developer, portfolio, open-source, ai |
 | [Niapya](https://portfolio.niapya.deno.net/) | Niapya | 独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。 | en | designer, developer, portfolio, indie-hacker |
 | [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
@@ -36,4 +37,4 @@
 
 ## 标签统计
 
-`developer` (19) · `blog` (17) · `portfolio` (10) · `indie-hacker` (8) · `maker` (7) · `notes` (5) · `designer` (4) · `digital-garden` (3) · `ai` (2) · `open-source` (2) · `security` (2) · `writer` (2) · `agent` (1) · `personal-website` (1) · `photographer` (1) · `research` (1)
+`developer` (20) · `blog` (17) · `portfolio` (11) · `indie-hacker` (8) · `maker` (7) · `notes` (5) · `designer` (4) · `ai` (3) · `digital-garden` (3) · `open-source` (3) · `security` (2) · `writer` (2) · `agent` (1) · `personal-website` (1) · `photographer` (1) · `research` (1)
