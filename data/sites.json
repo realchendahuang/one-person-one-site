@@ -4,117 +4,198 @@
     "url": "https://coucouya.com",
     "owner": "CouCouYa",
     "description": "KOSX.ai 社群增长操盘手，分享 AI、Web3、金融与公开学习。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["blog", "maker", "notes"]
+    "tags": [
+      "blog",
+      "maker",
+      "notes"
+    ]
   },
   {
     "name": "Mike Lam",
     "url": "https://mc9world.com",
     "owner": "Mike Lam",
     "description": "正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["blog", "maker"]
+    "tags": [
+      "blog",
+      "maker"
+    ]
   },
   {
     "name": "Edison AI Workshop",
     "url": "https://edison-zwteam.pages.dev",
     "owner": "Edison",
     "description": "AI 产品开发者，专注信息流自动化、研究效率工具、内容分发系统和 Discord 自动化。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["developer", "portfolio", "indie-hacker"]
+    "tags": [
+      "developer",
+      "portfolio",
+      "indie-hacker"
+    ]
   },
   {
     "name": "Su · AI Structure & Workflow Studio",
     "url": "https://su-uni.cc",
     "owner": "Su",
     "description": "AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。",
-    "languages": ["zh-CN", "en"],
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
     "region": "China",
-    "tags": ["designer", "portfolio", "indie-hacker"]
+    "tags": [
+      "designer",
+      "portfolio",
+      "indie-hacker"
+    ]
   },
   {
     "name": "Kim AI Workshop",
     "url": "https://kim-ai-workshop.com",
     "owner": "Kim",
     "description": "Practical AI systems, market intelligence, reusable Skills and automated workflows.",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "region": "Global",
-    "tags": ["developer", "indie-hacker", "maker"]
+    "tags": [
+      "developer",
+      "indie-hacker",
+      "maker"
+    ]
   },
   {
     "name": "Jack Flux",
     "url": "https://jack0813y.github.io",
     "owner": "Jack",
     "description": "一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["blog", "developer", "digital-garden"]
+    "tags": [
+      "blog",
+      "developer",
+      "digital-garden"
+    ]
   },
   {
     "name": "LINC.WANG",
     "url": "https://linc.wang",
     "owner": "Linc Wang",
     "description": "室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["designer", "portfolio", "indie-hacker"]
+    "tags": [
+      "designer",
+      "portfolio",
+      "indie-hacker"
+    ]
   },
   {
     "name": "MoonInAI",
     "url": "https://mooninai.top",
     "owner": "MoonInAI",
     "description": "传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["developer", "notes", "indie-hacker"]
+    "tags": [
+      "developer",
+      "notes",
+      "indie-hacker"
+    ]
   },
   {
     "name": "Station Cat",
     "url": "https://wwwstationcat.org",
     "owner": "Station Cat",
     "description": "一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。",
-    "languages": ["zh-TW", "en", "ja"],
+    "languages": [
+      "zh-TW",
+      "en",
+      "ja"
+    ],
     "region": "Global",
-    "tags": ["blog", "writer", "notes"]
+    "tags": [
+      "blog",
+      "writer",
+      "notes"
+    ]
   },
   {
     "name": "Jasper Wei",
     "url": "https://jasper-wei.vast-beech-4429.chatgpt.site",
     "owner": "Jasper Wei",
     "description": "前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["portfolio", "blog", "maker"]
+    "tags": [
+      "portfolio",
+      "blog",
+      "maker"
+    ]
   },
   {
     "name": "Gdemoni's World",
     "url": "https://zshgdemoni.me",
     "owner": "Gdemoni",
     "description": "一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。",
-    "languages": ["zh-CN", "en"],
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
     "region": "China",
-    "tags": ["digital-garden", "developer", "blog"]
+    "tags": [
+      "digital-garden",
+      "developer",
+      "blog"
+    ]
   },
   {
     "name": "逐风Lab",
     "url": "https://zhufeng-lab.pages.dev/",
     "owner": "逐风",
     "description": "一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "Global",
-    "tags": ["developer", "research", "blog"]
+    "tags": [
+      "developer",
+      "research",
+      "blog"
+    ]
   },
   {
     "name": "只是一根毛",
     "url": "https://justmao.com/",
     "owner": "JustMao",
     "description": "资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。",
-    "languages": ["zh-TW"],
+    "languages": [
+      "zh-TW"
+    ],
     "region": "Taiwan",
-    "tags": ["developer", "blog", "security"],
+    "tags": [
+      "developer",
+      "blog",
+      "security"
+    ],
     "feed": "https://justmao.com/feed.xml"
   },
   {
@@ -122,9 +203,17 @@
     "url": "https://pipuwong.com",
     "owner": "Pipu",
     "description": "设计师与摄影师，记录摄影、设计、代码，以及 NAS 自托管与建站实践。",
-    "languages": ["zh-CN", "en"],
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
     "region": "China",
-    "tags": ["blog", "designer", "photographer", "digital-garden"],
+    "tags": [
+      "blog",
+      "designer",
+      "photographer",
+      "digital-garden"
+    ],
     "feed": "https://pipuwong.com/rss.xml"
   },
   {
@@ -132,18 +221,31 @@
     "url": "https://quanxb.art/",
     "owner": "权小白",
     "description": "05 后的个人站，只写亲自试过的 AI 工具与实践，记录持续更新的思考与判断。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["developer", "writer", "ai"]
+    "tags": [
+      "developer",
+      "writer",
+      "ai"
+    ]
   },
   {
     "name": "Jask",
     "url": "https://jask.dev/",
     "owner": "Jask",
     "description": "独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。",
-    "languages": ["en", "zh-CN"],
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
     "region": "Asia",
-    "tags": ["developer", "indie-hacker", "security"],
+    "tags": [
+      "developer",
+      "indie-hacker",
+      "security"
+    ],
     "feed": "https://blog.jask.dev/index.xml"
   },
   {
@@ -151,36 +253,64 @@
     "url": "https://blackman99.github.io/me/",
     "owner": "Dongsheng Zhao",
     "description": "AI 全栈工程师，Sveltepress 作者，把 LLM 落地到生产合规系统，记录生产 Agent 与开源工具。",
-    "languages": ["en", "zh-CN"],
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["developer", "portfolio", "open-source"]
+    "tags": [
+      "developer",
+      "portfolio",
+      "open-source"
+    ]
   },
   {
     "name": "QianFan 千帆",
     "url": "https://blog.mapin.net/",
     "owner": "QianFan",
     "description": "00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["blog", "developer", "notes"]
+    "tags": [
+      "blog",
+      "developer",
+      "notes"
+    ]
   },
   {
     "name": "Learnmore_smart website",
     "url": "https://www.rateministere.com",
     "owner": "learnmore_smart",
     "description": "我的个人主页，值得被收录。后续持续更新我的项目",
-    "languages": ["en", "zh-CN", "fr"],
+    "languages": [
+      "en",
+      "zh-CN",
+      "fr"
+    ],
     "region": "Global",
-    "tags": ["blog", "developer", "personal-website"]
+    "tags": [
+      "blog",
+      "developer",
+      "personal-website"
+    ]
   },
   {
     "name": "Huang's Blog",
     "url": "https://blog.clothpath.com/",
     "owner": "huanglizhuo",
     "description": "独立开发者的个人博客与项目集(build in public):记录并展示 OctoCounts、EchoPod、QwenASR、Ketsuin 等自己从零构建的项目,以及学习笔记。",
-    "languages": ["en"],
+    "languages": [
+      "en"
+    ],
     "region": "China",
-    "tags": ["developer", "indie-hacker", "maker", "blog"],
+    "tags": [
+      "developer",
+      "indie-hacker",
+      "maker",
+      "blog"
+    ],
     "feed": "https://blog.clothpath.com/rss.xml"
   },
   {
@@ -198,9 +328,94 @@
     "url": "https://chendahuang.com",
     "owner": "陈大黄",
     "description": "陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。",
-    "languages": ["zh-CN"],
+    "languages": [
+      "zh-CN"
+    ],
     "region": "China",
-    "tags": ["blog", "developer", "portfolio"],
+    "tags": [
+      "blog",
+      "developer",
+      "portfolio"
+    ],
     "feed": "https://chendahuang.com/rss.xml"
+  },
+  {
+    "name": "eastspire (LTPP)",
+    "url": "https://ltpp.vip/",
+    "owner": "eastspire",
+    "description": "LTPP 在线开发平台的个人文档站：在线编辑器、代码运行、批量转 PDF 等自研工具的使用说明，以及 hyperlane Rust Web 框架的完整文档。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "open-source",
+      "notes"
+    ]
+  },
+  {
+    "name": "Niapya",
+    "url": "https://portfolio.niapya.deno.net/",
+    "owner": "Niapya",
+    "description": "独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。",
+    "languages": [
+      "en"
+    ],
+    "region": "China",
+    "tags": [
+      "designer",
+      "developer",
+      "portfolio",
+      "indie-hacker"
+    ],
+    "feed": "https://portfolio.niapya.deno.net/rss.xml"
+  },
+  {
+    "name": "tcdw 个人主页",
+    "url": "https://im.tcdw.net/",
+    "owner": "tcdw",
+    "description": "前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "developer",
+      "blog",
+      "portfolio"
+    ]
+  },
+  {
+    "name": "Zachary Zhang",
+    "url": "https://zacharyzhang.com/",
+    "owner": "Zachary Zhang",
+    "description": "AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "region": "United States",
+    "tags": [
+      "developer",
+      "portfolio",
+      "maker",
+      "blog"
+    ]
+  },
+  {
+    "name": "船长的角落",
+    "url": "https://www.mmdbb.org/",
+    "owner": "船长",
+    "description": "AI 博主「船长」的个人站点，分享 Agent 驱动的 Obsidian 项目搭建全流程视频与文章，附自研软件与小游戏。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "blog",
+      "maker",
+      "portfolio"
+    ]
   }
 ]
