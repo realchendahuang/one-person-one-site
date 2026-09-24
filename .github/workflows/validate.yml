@@ -16,7 +16,10 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+      # 完整历史：HISTORY 区间由 git log 统计提交，浅克隆会退化成「1 次提交」
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -31,5 +34,7 @@ jobs:
       - name: Regenerate directory
         run: python3 scripts/generate_directory.py
 
+      # --check 会重跑生成器并与已提交内容比对；README 的 HISTORY 区间
+      # 由 git log 生成，内容允许落后一个提交，会被自动豁免。
       - name: Check generated files are committed
-        run: git diff --exit-code -- DIRECTORY.md README.md README_EN.md
+        run: python3 scripts/validate.py --check
