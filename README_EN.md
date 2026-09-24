@@ -221,9 +221,9 @@ Scripts and documentation in this repository are released under the [MIT License
 ## Project history
 
 <!-- HISTORY:START -->
-- **24** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
-- New site listings: **9** commits, latest: “feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）”.
-- Features: **16** commits, latest: “feat: README 底部新增 git history 自动区块；收录 MuRong（mrong.me）；修复 feeds.opml 死链”.
+- **25** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- New site listings: **10** commits, latest: “feat: 收录 4 个新站点（老杨的知识荒原、Canmi Wu、Alliot's blog、XuYi，issue #11 #12）”.
+- Features: **17** commits, latest: “feat: 收录 4 个新站点（老杨的知识荒原、Canmi Wu、Alliot's blog、XuYi，issue #11 #12）”.
 - Fixes: **4** commits, latest: “fix: validate.yml 改用 --check 检查生成物并拉取完整历史”.
 - Refactors: **2** commits, latest: “refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐”.
 <!-- HISTORY:END -->

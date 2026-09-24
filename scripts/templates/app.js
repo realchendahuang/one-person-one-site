@@ -2,29 +2,33 @@
   "use strict";
 
   /* ============================================================
-     渐进增强：卡片与标签由构建期静态渲染，本脚本只负责筛选、排序与
-     弹窗交互。禁用 JS 时页面依然能完整浏览，这里只做能力叠加。
+     一人一站 · KOSX Bento 客户端交互引擎
+     渐进增强：卡片在构建期由 HTML 静态渲染，禁用 JS 依然全量可读；
+     JS 增强：瞬时检索、标签聚合、Bento 里程碑联动、随机漫游。
      ============================================================ */
 
-  /* 1. 主题切换 */
-  var THEMES = ["system", "light", "dark"];
+  /* 1. 主题切换与系统跟随 */
+  var THEMES = ["dark", "light", "system"];
   var themeBtn = document.getElementById("btn-theme");
   var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
   function applyTheme(mode) {
     document.documentElement.setAttribute("data-theme-mode", mode);
     try { localStorage.setItem("opos-theme", mode); } catch (e) {}
-    if (mode === "dark" || (mode === "system" && darkQuery.matches)) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    var prefersDark = darkQuery.matches;
+    var isDark = mode === "dark" || (mode !== "light" && prefersDark);
+    document.documentElement.classList.toggle("dark", isDark);
+
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", isDark ? "#0a0a0a" : "#f5f6f7");
   }
 
   if (themeBtn) {
     themeBtn.addEventListener("click", function() {
       var current = document.documentElement.getAttribute("data-theme-mode") || "system";
-      applyTheme(THEMES[(THEMES.indexOf(current) + 1) % THEMES.length]);
+      var next = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
+      applyTheme(next);
+      showToast("主题切换为: " + (next === "system" ? "跟随系统" : next === "dark" ? "深色模式" : "浅色模式"));
     });
   }
 
@@ -32,11 +36,40 @@
     darkQuery.addEventListener("change", function(e) {
       if (document.documentElement.getAttribute("data-theme-mode") === "system") {
         document.documentElement.classList.toggle("dark", e.matches);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", e.matches ? "#0a0a0a" : "#f5f6f7");
       }
     });
   }
 
-  /* 2. 数据与元素 */
+  /* 2. 标签中文名称映射 */
+  var TAG_NAMES = {
+    "developer": "开发者",
+    "blog": "独立博客",
+    "portfolio": "作品集",
+    "maker": "创作者",
+    "indie-hacker": "独立开发",
+    "notes": "数字笔记",
+    "designer": "设计师",
+    "ai": "人工智能",
+    "digital-garden": "数字花园",
+    "open-source": "开源作品",
+    "writer": "文字创作者",
+    "security": "网络安全",
+    "photographer": "摄影日常",
+    "game": "独立游戏",
+    "research": "学术研究",
+    "devops": "DevOps",
+    "sre": "SRE 运维",
+    "agent": "AI Agent",
+    "personal-website": "个人主页"
+  };
+
+  function displayTag(tag) {
+    return TAG_NAMES[tag] || tag;
+  }
+
+  /* 3. 数据与元素引用 */
   var rawData = JSON.parse(document.getElementById("sites-data").textContent || '{"sites":[]}');
   var sites = rawData.sites || [];
 
@@ -46,6 +79,9 @@
   var btnReset = document.getElementById("btn-reset");
   var sortBtns = document.querySelectorAll(".sort-btn");
   var btnShuffle = document.getElementById("btn-shuffle");
+  var heroBtnShuffle = document.getElementById("hero-btn-shuffle");
+  var filteredCount = document.getElementById("filtered-count");
+
   var toast = document.getElementById("toast");
   var toastText = document.getElementById("toast-text");
   var searchChip = document.getElementById("search-chip");
@@ -63,9 +99,7 @@
   var modalFilterTag = null;
   var sortMode = "default";
   var toastTimer = null;
-
-  // 搜索弹窗里先展示这么多条，其余通过「显示全部」展开
-  var SEARCH_PREVIEW = 10;
+  var SEARCH_PREVIEW = 12;
 
   function showToast(msg) {
     if (!toast) return;
@@ -75,7 +109,7 @@
     toastTimer = setTimeout(function() { toast.classList.remove("show"); }, 2000);
   }
 
-  /* 3. 统计标签 */
+  /* 4. 统计与排序标签 */
   var tagCounts = {};
   sites.forEach(function(s) {
     (s.tags || []).forEach(function(t) {
@@ -87,9 +121,10 @@
     return a.localeCompare(b);
   });
 
-  /* 4. 搜索辅助：一次构建检索文本，避免每次输入重复拼接 */
+  /* 5. 搜索池缓存 */
   var searchPools = sites.map(function(s) {
-    return [s.name, s.owner, s.description, (s.tags || []).join(" "), s.region, s.url]
+    var displayTags = (s.tags || []).map(function(t) { return displayTag(t); }).join(" ");
+    return [s.name, s.owner, s.description, (s.tags || []).join(" "), displayTags, s.region, s.url]
       .join(" ").toLowerCase();
   });
 
@@ -104,7 +139,7 @@
     return out;
   }
 
-  /* 5. 列表筛选与排序：直接复用构建期渲染好的 DOM */
+  /* 6. 卡片筛选与重排 */
   function render() {
     var matched = matchIndices(searchQuery, activeTag);
     var visible = {};
@@ -122,6 +157,20 @@
     }
 
     if (emptyState) emptyState.hidden = matched.length !== 0;
+
+    // 更新展示总数与已筛选状态
+    if (filteredCount) {
+      if (activeTag || searchQuery) {
+        var label = activeTag ? displayTag(activeTag) : "";
+        if (activeTag && searchQuery) label += " + " + searchQuery;
+        else if (searchQuery) label = searchQuery;
+        filteredCount.textContent = "已筛选「" + label + "」: " + matched.length + " 个站点";
+      } else {
+        filteredCount.textContent = "全部 " + sites.length + " 个站点";
+      }
+    }
+
+    syncMilestoneState();
   }
 
   function reorder(matched) {
@@ -132,7 +181,6 @@
         return (sites[a].name || "").localeCompare(sites[b].name || "", "zh-CN");
       });
     } else if (sortMode === "random") {
-      // Fisher-Yates：sort() 配合随机比较器并不均匀
       for (var i = order.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var tmp = order[i];
@@ -151,8 +199,41 @@
     });
   }
 
-  /* 6. 搜索弹窗（含焦点陷阱与焦点归还） */
+  /* 7. 里程碑联动高亮 */
+  function syncMilestoneState() {
+    document.querySelectorAll(".milestone-pill").forEach(function(pill) {
+      var t = pill.getAttribute("data-tag");
+      var on = activeTag === t;
+      pill.classList.toggle("active", on);
+      pill.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    document.querySelectorAll(".milestone-segment").forEach(function(seg) {
+      var t = seg.getAttribute("data-tag");
+      var on = activeTag === t;
+      seg.style.opacity = activeTag ? (on ? "1" : "0.35") : "1";
+    });
+  }
+
+  function bindMilestones() {
+    document.querySelectorAll(".milestone-pill, .milestone-segment").forEach(function(el) {
+      el.addEventListener("click", function() {
+        var t = el.getAttribute("data-tag");
+        if (!t) return;
+        onTagClick(t);
+
+        // 平滑滚动到卡片区
+        var targetSection = document.querySelector(".sites-section-header");
+        if (targetSection) {
+          var y = targetSection.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      });
+    });
+  }
+
+  /* 8. 搜索弹窗逻辑 */
   var lastFocused = null;
+  var expanded = false;
 
   function focusable() {
     if (!searchModal) return [];
@@ -195,7 +276,7 @@
     var allBtn = document.createElement("button");
     allBtn.type = "button";
     allBtn.className = "s-tag-pill" + (modalFilterTag === null ? " active" : "");
-    allBtn.textContent = "全部";
+    allBtn.textContent = "全部 (" + sites.length + ")";
     allBtn.setAttribute("aria-pressed", modalFilterTag === null ? "true" : "false");
     allBtn.addEventListener("click", function() {
       modalFilterTag = null;
@@ -208,7 +289,7 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "s-tag-pill" + (modalFilterTag === t ? " active" : "");
-      btn.textContent = t;
+      btn.textContent = displayTag(t) + " (" + tagCounts[t] + ")";
       btn.setAttribute("aria-pressed", modalFilterTag === t ? "true" : "false");
       btn.addEventListener("click", function() {
         modalFilterTag = modalFilterTag === t ? null : t;
@@ -218,8 +299,6 @@
       searchModalTags.appendChild(btn);
     });
   }
-
-  var expanded = false;
 
   function renderSearchResults(q, forceExpand) {
     if (forceExpand) expanded = true;
@@ -231,7 +310,7 @@
     if (matched.length === 0) {
       var emptyEl = document.createElement("div");
       emptyEl.className = "search-empty";
-      emptyEl.textContent = "没有匹配的站点";
+      emptyEl.textContent = "没有匹配的独立站点";
       searchResults.appendChild(emptyEl);
       return;
     }
@@ -256,7 +335,7 @@
       more.className = "search-more";
       var moreBtn = document.createElement("button");
       moreBtn.type = "button";
-      moreBtn.textContent = "还有 " + (matched.length - limit) + " 个站点，显示全部";
+      moreBtn.textContent = "还有 " + (matched.length - limit) + " 个站点，展开全部";
       moreBtn.addEventListener("click", function() {
         renderSearchResults(searchInput.value, true);
       });
@@ -278,7 +357,7 @@
   function updateSearchChip() {
     if (!searchChip) return;
     searchChip.hidden = !searchQuery;
-    if (searchQuery) searchChipText.textContent = "搜: " + searchQuery;
+    if (searchQuery) searchChipText.textContent = "搜索: " + searchQuery;
   }
 
   if (searchChip) {
@@ -290,8 +369,8 @@
     });
   }
 
-  /* 7. 主页标签栏：优先展示高频标签，长尾折叠进搜索弹窗 */
-  var TOP_TAGS = 10;
+  /* 9. 主页标签过滤栏 */
+  var TOP_TAGS = 9;
 
   function tagButton(tag, label, count) {
     var btn = document.createElement("button");
@@ -323,12 +402,10 @@
     tagsBar.appendChild(allBtn);
 
     var shown = allTags.slice(0, TOP_TAGS);
-
-    // 当前选中的标签若在长尾里，也要显示出来，否则用户看不到自己筛了什么
     if (activeTag && shown.indexOf(activeTag) === -1) shown.push(activeTag);
 
     shown.forEach(function(tag) {
-      tagsBar.appendChild(tagButton(tag, tag, tagCounts[tag]));
+      tagsBar.appendChild(tagButton(tag, displayTag(tag), tagCounts[tag]));
     });
 
     var rest = allTags.filter(function(t) { return shown.indexOf(t) === -1; });
@@ -336,14 +413,14 @@
       var more = document.createElement("button");
       more.type = "button";
       more.className = "tag-btn tag-more-btn";
-      more.textContent = "更多 " + rest.length + " 个标签";
-      more.title = "在搜索弹窗里查看全部标签";
+      more.textContent = "更多 +" + rest.length;
+      more.title = "查看全部标签";
       more.addEventListener("click", openSearch);
       tagsBar.appendChild(more);
     }
   }
 
-  /* 8. 辅助函数 */
+  /* 10. 文本与复制 */
   function escapeHtml(str) {
     return String(str || "").replace(/[&<>"']/g, function(m) {
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
@@ -358,7 +435,6 @@
       );
       return;
     }
-    // 非安全上下文（如 file:// 本地预览）下 Clipboard API 不可用
     var helper = document.createElement("textarea");
     helper.value = value;
     helper.setAttribute("readonly", "");
@@ -375,27 +451,29 @@
     document.body.removeChild(helper);
   }
 
-  /* 9. 卡片操作按钮（卡片本身是静态 HTML，这里只挂事件） */
+  /* 11. 卡片操作绑定 */
   grid.addEventListener("click", function(e) {
     var trigger = e.target.closest("[data-copy]");
     if (!trigger) return;
     e.preventDefault();
-    copyText(trigger.getAttribute("data-copy"), trigger.getAttribute("data-copy-label") || "已复制");
+    e.stopPropagation();
+    copyText(trigger.getAttribute("data-copy"), trigger.getAttribute("data-copy-label") || "已复制 RSS 订阅源");
   });
 
-  /* 10. 随机漫游 */
+  /* 12. 随机漫游 */
   function handleShuffle() {
     if (!sites.length) return;
     var site = sites[Math.floor(Math.random() * sites.length)];
-    showToast("前往：" + site.name);
+    showToast("🎲 前往创作者：" + site.name);
     setTimeout(function() {
       window.open(site.url, "_blank", "noopener,noreferrer");
-    }, 250);
+    }, 300);
   }
 
   if (btnShuffle) btnShuffle.addEventListener("click", handleShuffle);
+  if (heroBtnShuffle) heroBtnShuffle.addEventListener("click", handleShuffle);
 
-  /* 11. 事件绑定 */
+  /* 13. 重置与排序 */
   if (btnReset) {
     btnReset.addEventListener("click", function() {
       searchQuery = "";
@@ -424,19 +502,20 @@
     });
   });
 
+  /* 14. 全局快捷键 */
   window.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
       if (searchModal && !searchModal.hidden) closeSearch();
       return;
     }
-    if (e.key === "/" && (!searchModal || searchModal.hidden) &&
+    if ((e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) &&
+        (!searchModal || searchModal.hidden) &&
         document.activeElement.tagName !== "INPUT" &&
         document.activeElement.tagName !== "TEXTAREA") {
       e.preventDefault();
       openSearch();
       return;
     }
-    // 焦点陷阱：弹窗打开时 Tab 不逃逸到背后的页面
     if (e.key === "Tab" && searchModal && !searchModal.hidden) {
       var items = focusable();
       if (!items.length) return;
@@ -452,6 +531,8 @@
     }
   });
 
+  // 初始化
+  bindMilestones();
   renderTagsBar();
   render();
 })();

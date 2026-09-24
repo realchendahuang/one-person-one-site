@@ -221,9 +221,9 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **24** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
-- 收录新站点：**9** 次，最近一次「feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）」。
-- 功能：**16** 次，最近一次「feat: README 底部新增 git history 自动区块；收录 MuRong（mrong.me）；修复 feeds.opml 死链」。
+- 自 **2026-09-23** 以来共 **25** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 收录新站点：**10** 次，最近一次「feat: 收录 4 个新站点（老杨的知识荒原、Canmi Wu、Alliot's blog、XuYi，issue #11 #12）」。
+- 功能：**17** 次，最近一次「feat: 收录 4 个新站点（老杨的知识荒原、Canmi Wu、Alliot's blog、XuYi，issue #11 #12）」。
 - 修复：**4** 次，最近一次「fix: validate.yml 改用 --check 检查生成物并拉取完整历史」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->
