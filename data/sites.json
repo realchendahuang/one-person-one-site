@@ -500,5 +500,22 @@
       "game",
       "ai"
     ]
+  },
+  {
+    "name": "Wutong Yu",
+    "url": "https://www.wutongyu.site",
+    "owner": "梧桐雨",
+    "description": "梧桐雨的独立博客：记录技术、工具、生活与思考。",
+    "languages": [
+      "zh-CN"
+    ],
+    "region": "China",
+    "tags": [
+      "blog",
+      "developer",
+      "ai",
+      "notes"
+    ],
+    "feed": "https://www.wutongyu.site/rss.xml"
   }
 ]

@@ -27,10 +27,10 @@
 This is a **content directory** — not a showcase, not a software project. It does one thing: gather personal sites that real people have been running for a long time, so that others can find them, read them, and subscribe to them.
 
 <!-- STATS:START -->
-- **32** independent sites from **5** regions, written in 5 languages.
-- **10** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
-- Content types: blog (21), digital-garden (3), notes (5), portfolio (11).
-- Common topics: developer (24), maker (9), indie-hacker (9), designer (4), ai (4), open-source (3), security (2), writer (2).
+- **33** independent sites from **5** regions, written in 5 languages.
+- **11** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
+- Content types: blog (22), digital-garden (3), notes (6), portfolio (11).
+- Common topics: developer (25), maker (9), indie-hacker (9), ai (5), designer (4), open-source (3), security (2), writer (2).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out hard-won lessons on RAG and backend systems. They write about different things. What they share is that they **never handed their voice over to an algorithm**.
@@ -123,6 +123,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
+| [Wutong Yu](https://www.wutongyu.site) | 梧桐雨 | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 关于游戏开发、AI领域都兼顾的个人博客。 | zh-CN | developer, blog, game, ai |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -221,9 +222,9 @@ Scripts and documentation in this repository are released under the [MIT License
 ## Project history
 
 <!-- HISTORY:START -->
-- **24** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
-- New site listings: **9** commits, latest: “feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）”.
-- Features: **16** commits, latest: “feat: README 底部新增 git history 自动区块；收录 MuRong（mrong.me）；修复 feeds.opml 死链”.
+- **26** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- New site listings: **11** commits, latest: “feat: 收录 Wutong Yu（wutongyu.site）”.
+- Features: **18** commits, latest: “feat: 收录 Wutong Yu（wutongyu.site）”.
 - Fixes: **4** commits, latest: “fix: validate.yml 改用 --check 检查生成物并拉取完整历史”.
 - Refactors: **2** commits, latest: “refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐”.
 <!-- HISTORY:END -->

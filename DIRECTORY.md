@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **32** 个站点。
+当前共收录 **33** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -28,6 +28,7 @@
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
+| [Wutong Yu](https://www.wutongyu.site) | 梧桐雨 | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 关于游戏开发、AI领域都兼顾的个人博客。 | zh-CN | developer, blog, game, ai |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -41,4 +42,4 @@
 
 ## 标签统计
 
-`developer` (24) · `blog` (21) · `portfolio` (11) · `indie-hacker` (9) · `maker` (9) · `notes` (5) · `ai` (4) · `designer` (4) · `digital-garden` (3) · `open-source` (3) · `security` (2) · `writer` (2) · `agent` (1) · `devops` (1) · `game` (1) · `personal-website` (1) · `photographer` (1) · `research` (1) · `sre` (1)
+`developer` (25) · `blog` (22) · `portfolio` (11) · `indie-hacker` (9) · `maker` (9) · `notes` (6) · `ai` (5) · `designer` (4) · `digital-garden` (3) · `open-source` (3) · `security` (2) · `writer` (2) · `agent` (1) · `devops` (1) · `game` (1) · `personal-website` (1) · `photographer` (1) · `research` (1) · `sre` (1)

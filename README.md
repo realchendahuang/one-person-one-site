@@ -27,10 +27,10 @@
 这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
 <!-- STATS:START -->
-- 目前收录 **32** 个站点，来自 **5** 个地区，使用 5 种语言写作。
-- 其中 **10** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (21)、`digital-garden` (3)、`notes` (5)、`portfolio` (11)。
-- 常见主题：`developer` (24)、`maker` (9)、`indie-hacker` (9)、`designer` (4)、`ai` (4)、`open-source` (3)、`security` (2)、`writer` (2)。
+- 目前收录 **33** 个站点，来自 **5** 个地区，使用 5 种语言写作。
+- 其中 **11** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
+- 内容形态：`blog` (22)、`digital-garden` (3)、`notes` (6)、`portfolio` (11)。
+- 常见主题：`developer` (25)、`maker` (9)、`indie-hacker` (9)、`ai` (5)、`designer` (4)、`open-source` (3)、`security` (2)、`writer` (2)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
@@ -123,6 +123,7 @@
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
+| [Wutong Yu](https://www.wutongyu.site) | 梧桐雨 | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 关于游戏开发、AI领域都兼顾的个人博客。 | zh-CN | developer, blog, game, ai |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -221,9 +222,9 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **24** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
-- 收录新站点：**9** 次，最近一次「feat: 收录 5 个新站点（ltpp.vip、Niapya、tcdw、Zachary Zhang、船长的角落，issue #9）」。
-- 功能：**16** 次，最近一次「feat: README 底部新增 git history 自动区块；收录 MuRong（mrong.me）；修复 feeds.opml 死链」。
+- 自 **2026-09-23** 以来共 **26** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 收录新站点：**11** 次，最近一次「feat: 收录 Wutong Yu（wutongyu.site）」。
+- 功能：**18** 次，最近一次「feat: 收录 Wutong Yu（wutongyu.site）」。
 - 修复：**4** 次，最近一次「fix: validate.yml 改用 --check 检查生成物并拉取完整历史」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->
