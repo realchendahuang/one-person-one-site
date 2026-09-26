@@ -27,10 +27,10 @@
 This is a **content directory** — not a showcase, not a software project. It does one thing: gather personal sites that real people have been running for a long time, so that others can find them, read them, and subscribe to them.
 
 <!-- STATS:START -->
-- **43** independent sites from **5** regions, written in 5 languages.
-- **13** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
-- Content types: blog (28), digital-garden (5), notes (9), portfolio (14).
-- Common topics: developer (30), indie-hacker (10), maker (9), ai (8), designer (4), open-source (3), security (2), writer (2).
+- **44** independent sites from **5** regions, written in 5 languages.
+- **14** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
+- Content types: blog (29), digital-garden (5), notes (9), portfolio (14), newsletter (1).
+- Common topics: developer (30), indie-hacker (10), maker (9), ai (8), designer (4), open-source (3), writer (3), security (2).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out hard-won lessons on RAG and backend systems. They write about different things. What they share is that they **never handed their voice over to an algorithm**.
@@ -118,6 +118,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
 | [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personal-website |
+| [Leon Lin](https://leonlins.com) | Leon Lin | Personal essays on investing, technology, decision-making, and the systems used to research and understand uncertain problems. | en | blog, writer, researcher, tech, newsletter |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
@@ -232,7 +233,7 @@ Scripts and documentation in this repository are released under the [MIT License
 ## Project history
 
 <!-- HISTORY:START -->
-- **27** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **28** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **11** commits, latest: “feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）”.
 - Features: **19** commits, latest: “feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）”.
 - Fixes: **4** commits, latest: “fix: validate.yml 改用 --check 检查生成物并拉取完整历史”.

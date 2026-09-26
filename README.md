@@ -27,10 +27,10 @@
 这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
 <!-- STATS:START -->
-- 目前收录 **43** 个站点，来自 **5** 个地区，使用 5 种语言写作。
-- 其中 **13** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (28)、`digital-garden` (5)、`notes` (9)、`portfolio` (14)。
-- 常见主题：`developer` (30)、`indie-hacker` (10)、`maker` (9)、`ai` (8)、`designer` (4)、`open-source` (3)、`security` (2)、`writer` (2)。
+- 目前收录 **44** 个站点，来自 **5** 个地区，使用 5 种语言写作。
+- 其中 **14** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
+- 内容形态：`blog` (29)、`digital-garden` (5)、`notes` (9)、`portfolio` (14)、`newsletter` (1)。
+- 常见主题：`developer` (30)、`indie-hacker` (10)、`maker` (9)、`ai` (8)、`designer` (4)、`open-source` (3)、`writer` (3)、`security` (2)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
@@ -118,6 +118,7 @@
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
 | [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personal-website |
+| [Leon Lin](https://leonlins.com) | Leon Lin | Personal essays on investing, technology, decision-making, and the systems used to research and understand uncertain problems. | en | blog, writer, researcher, tech, newsletter |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
 | [Mike Lam](https://mc9world.com) | Mike Lam | 正在创业的个人主页，分享餐饮、投资、猎头和 Marketing 的事业经验。 | zh-CN | blog, maker |
 | [MoonInAI](https://mooninai.top) | MoonInAI | 传统企业 AI 系统顾问 / AI 副业陪跑者。用 AI 改造真实业务，用系统拆解学习、副业和增长。 | zh-CN | developer, notes, indie-hacker |
@@ -232,7 +233,7 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **27** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **28** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**11** 次，最近一次「feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）」。
 - 功能：**19** 次，最近一次「feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）」。
 - 修复：**4** 次，最近一次「fix: validate.yml 改用 --check 检查生成物并拉取完整历史」。
