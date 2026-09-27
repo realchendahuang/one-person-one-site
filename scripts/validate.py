@@ -25,6 +25,9 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA = ROOT / "data" / "sites.json"
 
+sys.path.insert(0, str(ROOT / "scripts"))
+from siteutil import has_placeholder  # noqa: E402
+
 # README 里由 git log 生成的历史区块：内容允许落后一个提交，检查时整块豁免
 HISTORY_BLOCK_RE = re.compile(
     r"<!-- HISTORY:START -->.*?<!-- HISTORY:END -->", re.DOTALL
@@ -117,6 +120,15 @@ def check_site(site: object, index: int) -> None:
     if feed is not None:
         if not isinstance(feed, str) or not valid_http_url(feed):
             raise Invalid(f"{where} 的 feed 不是有效的 http/https 地址: {feed}")
+
+    # 文本里不能出现 __X__ 形状的内容：generate_site.py 用同形状的标记做模板
+    # 占位符，数据里混进同名标记会让替换链错位，整站构建失败。
+    for field in ("name", "owner", "description"):
+        if has_placeholder(site[field]):
+            raise Invalid(
+                f"{where} 的 {field} 含有 `__大写__` 形式的保留标记: {site[field]!r}"
+                "（该形状与构建期模板占位符冲突，请换一个名称）"
+            )
 
 
 def canonical(url: str) -> str:

@@ -29,7 +29,10 @@ jobs:
         run: python3 scripts/validate.py
 
       - name: Run rule tests
-        run: python3 tests/test_validate.py
+        run: |
+          python3 tests/test_validate.py
+          python3 tests/test_ingest.py
+          python3 tests/test_health.py
 
       - name: Regenerate directory
         run: python3 scripts/generate_directory.py

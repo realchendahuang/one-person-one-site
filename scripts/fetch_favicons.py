@@ -40,6 +40,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "sites.json"
 OUT_DIR = ROOT / "data" / "favicons"
 
+sys.path.insert(0, str(ROOT / "scripts"))
+from siteutil import domain_of, slug_for  # noqa: E402
+
 TIMEOUT = 15
 CANVAS = 64
 MAX_BYTES = 2_000_000
@@ -48,19 +51,6 @@ BROWSER_UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 )
-
-
-def slug_for(domain: str) -> str:
-    """把域名转成稳定的文件名，例如 blackman99.github.io → blackman99-github-io。"""
-    slug = re.sub(r"[^a-z0-9]+", "-", domain.lower()).strip("-")
-    return slug or "site"
-
-
-def domain_of(url: str) -> str:
-    match = re.match(r"^https?://([^/]+)", url, re.IGNORECASE)
-    if not match:
-        return ""
-    return match.group(1).split(":")[0].lower()
 
 
 def sources_for(domain: str) -> list[str]:

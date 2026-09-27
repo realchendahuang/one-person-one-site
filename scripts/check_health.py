@@ -8,7 +8,10 @@
 
 - 先用 HEAD，失败再退回 GET（大量站点不接受 HEAD）；
 - 带浏览器 UA，避免被当作爬虫直接拒绝；
-- 区分「明确失效」（404/410，域名不存在）与「无法确认」（403/429/超时/证书问题）；
+- 校验 TLS 证书：证书过期 / 自签名 / 域名不匹配的站点单独归为「证书问题」，
+  既不静默放行，也不误判为失效——访客在浏览器里同样会遇到警告，值得让站长知道；
+- 区分「明确失效」（404/410，域名不存在）、「证书问题」与「无法确认」
+  （403/429/超时等）；
 - 只有连续多次巡检都明确失效的站点才建议下架，且仍由维护者决定。
 
 用法：
@@ -45,8 +48,17 @@ GONE_STATUS = {404, 410, 451}
 # 无法确认的信号：站点可能正常，只是不欢迎脚本访问
 UNCERTAIN_STATUS = {401, 403, 405, 406, 418, 429, 503}
 
+# 报告里的排序：失效最需要处理，证书问题次之
+STATUS_ORDER = {"gone": 0, "tls": 1, "uncertain": 2, "ok": 3}
 
-def request(url: str, method: str) -> tuple[int, str]:
+
+def request(url: str, method: str, verify: bool = True) -> tuple[int, str]:
+    """发一次请求，返回 (状态码, 最终 URL)。
+
+    verify=True 时校验证书链与主机名。历史上这里用的是 CERT_NONE，
+    等于放弃了对中间人的防护：被劫持的站点会伪装成一切正常。
+    现在默认严格校验，证书问题改由 probe() 单独归类报告。
+    """
     req = urllib.request.Request(
         url,
         method=method,
@@ -57,26 +69,62 @@ def request(url: str, method: str) -> tuple[int, str]:
         },
     )
     context = ssl.create_default_context()
-    context.check_hostname = False
-    context.verify_mode = ssl.CERT_NONE
+    if not verify:
+        # 仅用于「证书坏了但想知道站点是否还活着」这一次补充探测，
+        # 结论只影响分类，绝不作为证书可信的证据。
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
     with urllib.request.urlopen(req, timeout=TIMEOUT, context=context) as response:
         return response.status, response.geturl()
 
 
+def cert_problem(exc: BaseException) -> str:
+    """判断异常是否为证书校验失败，是则返回可读的说明，否则返回空串。"""
+    if isinstance(exc, ssl.SSLCertVerificationError):
+        reason = getattr(exc, "verify_message", "") or str(exc)
+        if "hostname mismatch" in str(exc) or "doesn't match" in str(exc):
+            return "证书与域名不匹配"
+        if "expired" in reason.lower() or "expired" in str(exc).lower():
+            return "证书已过期"
+        if "self signed" in reason.lower() or "self-signed" in str(exc).lower():
+            return "自签名证书"
+        if "unable to get local issuer" in reason.lower():
+            return "证书链不完整"
+        return f"证书校验失败（{reason}）"
+    if isinstance(exc, ssl.SSLError) and "CERTIFICATE_VERIFY_FAILED" in str(exc):
+        return "证书校验失败"
+    return ""
+
+
+def classify(status: int, final_url: str, url: str) -> dict:
+    """把一次成功握手的响应归类。"""
+    if status in GONE_STATUS:
+        return {"status": "gone", "code": status, "detail": f"HTTP {status}"}
+    if status in UNCERTAIN_STATUS:
+        return {"status": "uncertain", "code": status, "detail": f"HTTP {status}"}
+    if 200 <= status < 400:
+        redirected = "" if final_url.rstrip("/") == url.rstrip("/") else f"（跳转到 {final_url}）"
+        return {"status": "ok", "code": status, "detail": f"HTTP {status}{redirected}"}
+    return {"status": "uncertain", "code": status, "detail": f"HTTP {status}"}
+
+
 def probe(url: str) -> dict:
-    """探测单个站点，返回 {status, code, detail}。"""
+    """探测单个站点，返回 {status, code, detail}。
+
+    status 有四类：
+        gone       明确失效（404/410/451、域名无法解析）
+        tls        证书有问题，但站点本身可能仍然活着
+        uncertain  无法确认（拒绝脚本、限流、超时等）
+        ok         正常
+    """
     last_error = ""
+    tls_detail = ""
+
+    # 第一轮：严格校验证书。既判断存活，也顺带发现证书问题
     for method in ("HEAD", "GET"):
         try:
-            status, final_url = request(url, method)
-            if status in GONE_STATUS:
-                return {"status": "gone", "code": status, "detail": f"HTTP {status}"}
-            if status in UNCERTAIN_STATUS:
-                return {"status": "uncertain", "code": status, "detail": f"HTTP {status}"}
-            if 200 <= status < 400:
-                redirected = "" if final_url.rstrip("/") == url.rstrip("/") else f"（跳转到 {final_url}）"
-                return {"status": "ok", "code": status, "detail": f"HTTP {status}{redirected}"}
-            return {"status": "uncertain", "code": status, "detail": f"HTTP {status}"}
+            status, final_url = request(url, method, verify=True)
+            return classify(status, final_url, url)
         except urllib.error.HTTPError as exc:
             if exc.code in GONE_STATUS:
                 return {"status": "gone", "code": exc.code, "detail": f"HTTP {exc.code}"}
@@ -85,14 +133,41 @@ def probe(url: str) -> dict:
             reason = exc.reason
             if isinstance(reason, socket.gaierror):
                 return {"status": "gone", "code": 0, "detail": "域名无法解析"}
+            tls_detail = cert_problem(reason) or ""
+            if tls_detail:
+                break
             last_error = f"连接失败（{type(reason).__name__}）"
         except (TimeoutError, socket.timeout):
             last_error = "请求超时"
         except (ssl.SSLError, OSError) as exc:
+            tls_detail = cert_problem(exc) or ""
+            if tls_detail:
+                break
             last_error = f"{type(exc).__name__}"
+
+    # 证书有问题时不直接判失效：关掉校验再探一次，只为区分
+    # 「站点真的没了」和「站点还在，只是证书过期/不匹配」。
+    if tls_detail:
+        alive = _reachable_ignoring_cert(url)
+        suffix = "（站点仍可访问）" if alive else "（站点未响应）"
+        return {"status": "tls", "code": 0, "detail": f"{tls_detail}{suffix}"}
 
     # 两种方法都没能确认状态：归入「无法确认」，交给人工判断
     return {"status": "uncertain", "code": 0, "detail": last_error or "无法确认"}
+
+
+def _reachable_ignoring_cert(url: str) -> bool:
+    """忽略证书校验再试一次，只回答「站点是否还在」。"""
+    for method in ("HEAD", "GET"):
+        try:
+            request(url, method, verify=False)
+            return True
+        except urllib.error.HTTPError:
+            # 有 HTTP 响应说明服务器活着，只是证书有问题
+            return True
+        except Exception:  # noqa: BLE001 —— 这次探测的结论不重要，失败就当没活着
+            continue
+    return False
 
 
 def check_all(sites: list[dict]) -> list[dict]:
@@ -106,17 +181,21 @@ def check_all(sites: list[dict]) -> list[dict]:
             except Exception as exc:  # noqa: BLE001
                 outcome = {"status": "uncertain", "code": 0, "detail": type(exc).__name__}
             results.append({"name": site.get("name", ""), "url": site["url"], **outcome})
-    return sorted(results, key=lambda r: (r["status"] != "gone", r["name"].lower()))
+    return sorted(
+        results,
+        key=lambda r: (STATUS_ORDER.get(r["status"], 9), r["name"].lower()),
+    )
 
 
 def build_report(results: list[dict]) -> str:
     gone = [r for r in results if r["status"] == "gone"]
+    tls = [r for r in results if r["status"] == "tls"]
     uncertain = [r for r in results if r["status"] == "uncertain"]
     ok = [r for r in results if r["status"] == "ok"]
 
     lines = [
         f"巡检完成：共 {len(results)} 个站点，正常 {len(ok)}，"
-        f"疑似失效 {len(gone)}，无法确认 {len(uncertain)}。",
+        f"疑似失效 {len(gone)}，证书问题 {len(tls)}，无法确认 {len(uncertain)}。",
         "",
     ]
 
@@ -135,6 +214,23 @@ def build_report(results: list[dict]) -> str:
             "",
         ]
 
+    if tls:
+        lines += [
+            "## 证书问题（站点多半仍在，只是不安全）",
+            "",
+            "以下站点的 HTTPS 证书无法通过校验：可能已过期、自签名，或与域名不匹配。",
+            "浏览器会显示不安全提示，但站点内容通常还能访问，因此**不计入失效**。",
+            "",
+            "| 站点 | 地址 | 证书情况 |",
+            "|---|---|---|",
+        ]
+        lines += [f"| {r['name']} | {r['url']} | {r['detail']} |" for r in tls]
+        lines += [
+            "",
+            "> 提醒站长更新证书即可；本目录不会因此下架这些站点。",
+            "",
+        ]
+
     if uncertain:
         lines += [
             "## 无法确认（多数属于正常站点）",
@@ -147,8 +243,8 @@ def build_report(results: list[dict]) -> str:
         lines += [f"| {r['name']} | {r['url']} | {r['detail']} |" for r in uncertain]
         lines += [""]
 
-    if not gone and not uncertain:
-        lines += ["所有站点均可正常访问。", ""]
+    if not gone and not tls and not uncertain:
+        lines += ["所有站点均可正常访问，且证书校验通过。", ""]
 
     return "\n".join(lines)
 

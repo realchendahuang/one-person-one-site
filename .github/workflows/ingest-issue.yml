@@ -41,10 +41,12 @@ jobs:
         id: gate
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 一律经 env 传入：${{ }} 的值会在 bash 解析前被直接替换进脚本文本，
+          # 只有环境变量能保证内容不被当作命令执行。
+          number: ${{ github.event.issue.number }}
+          repo: ${{ github.repository }}
         run: |
           set -euo pipefail
-          number="${{ github.event.issue.number }}"
-          repo="${{ github.repository }}"
 
           # 维护者打上 accepted 标签 → 人工放行，跳过探测与排除清单
           labels=$(gh api "repos/${repo}/issues/${number}/labels" --jq '.[].name' 2>/dev/null || true)
@@ -64,15 +66,21 @@ jobs:
 
       - name: Parse submission
         id: parse
+        env:
+          ISSUE_NUMBER: ${{ steps.gate.outputs.number }}
+          FORCE: ${{ steps.gate.outputs.force }}
         run: |
           set -euo pipefail
+          # --force 由 env 里的布尔值决定，避免把表达式拼进命令行
+          force_flag=""
+          [ "$FORCE" = "true" ] && force_flag="--force"
           python3 scripts/ingest_issue.py /tmp/issue-body.md \
             --result /tmp/ingest-result.json \
             --comment-file /tmp/comment.md \
             --marker-file /tmp/marker.txt \
             --github-output "$GITHUB_OUTPUT" \
-            --issue-number "${{ steps.gate.outputs.number }}" \
-            ${{ steps.gate.outputs.force == 'true' && '--force' || '' }}
+            --issue-number "$ISSUE_NUMBER" \
+            $force_flag
           echo "--- 解析结果 ---"
           sed -n '1,20p' /tmp/ingest-result.json
 
@@ -92,18 +100,27 @@ jobs:
           python3 scripts/validate.py
           python3 scripts/generate_directory.py
           python3 tests/test_validate.py
+          python3 tests/test_ingest.py
+          python3 tests/test_health.py
           python3 scripts/generate_site.py
           python3 tests/test_build.py
 
       - name: Commit
         if: steps.parse.outputs.status == 'accepted'
+        env:
+          # 必须走 env 而不是直接写进 run: —— ${{ }} 是在 bash 解析之前做文本替换的，
+          # 站点名里的 $(...) 或反引号会被当作命令执行（提交者是任意 Issue 作者）。
+          # 环境变量的值不会被 shell 二次解析。
+          COMMIT_MESSAGE: ${{ steps.parse.outputs.commit_message }}
+          GIT_AUTHOR_NAME: ${{ github.actor }}
+          GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
         run: |
           set -euo pipefail
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "$GIT_AUTHOR_NAME"
+          git config user.email "$GIT_AUTHOR_EMAIL"
           # site/ 已被 .gitignore 忽略，这里只提交数据、生成物与新抓取的图标
           git add data/sites.json data/favicons assets DIRECTORY.md README.md README_EN.md
-          git commit -m "${{ steps.parse.outputs.commit_message }}"
+          git commit -m "$COMMIT_MESSAGE"
           # 兼容期间可能出现的其他人推送：先变基再推送
           git pull --rebase --autostash origin main
           git push origin main
@@ -140,10 +157,13 @@ jobs:
         if: steps.comment_gate.outputs.comment == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ steps.gate.outputs.number }}
         run: |
           set -euo pipefail
+          # 评论正文从文件读入，不经过 ${{ }} 替换
           gh api --method POST \
-            "repos/${{ github.repository }}/issues/${{ steps.gate.outputs.number }}/comments" \
+            "repos/${REPO}/issues/${ISSUE_NUMBER}/comments" \
             -f body="$(cat /tmp/comment.md)" > /dev/null
           echo "已发布评论"
 
@@ -151,9 +171,11 @@ jobs:
         if: steps.parse.outputs.is_accepted == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ steps.gate.outputs.number }}
         run: |
           set -euo pipefail
           gh api --method PATCH \
-            "repos/${{ github.repository }}/issues/${{ steps.gate.outputs.number }}" \
+            "repos/${REPO}/issues/${ISSUE_NUMBER}" \
             -f state=closed > /dev/null
           echo "已关闭 Issue"

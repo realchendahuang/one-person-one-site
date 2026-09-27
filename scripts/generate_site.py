@@ -27,6 +27,7 @@ import html
 import json
 import re
 import shutil
+import sys
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -37,6 +38,9 @@ FAVICON_DIR = ROOT / "data" / "favicons"
 TEMPLATES = ROOT / "scripts" / "templates"
 ASSETS = ROOT / "assets"
 OUT = ROOT / "site"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from siteutil import domain_of, slug_for  # noqa: E402
 
 SITE_URL = "https://realchendahuang.github.io/one-person-one-site/"
 REPO_URL = "https://github.com/realchendahuang/one-person-one-site"
@@ -96,17 +100,6 @@ EAGER_ICONS = 12
 
 def esc(value: object) -> str:
     return html.escape(str(value if value is not None else ""), quote=True)
-
-
-def domain_of(url: str) -> str:
-    match = re.match(r"^https?://([^/]+)", url or "", re.IGNORECASE)
-    if not match:
-        return ""
-    return match.group(1).split(":")[0].lower()
-
-
-def slug_for(domain: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", domain.lower()).strip("-") or "site"
 
 
 def first_char(name: str, domain: str) -> str:
@@ -452,6 +445,26 @@ def build_robots() -> str:
     return f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n"
 
 
+def render_template(template: str, values: dict[str, str]) -> str:
+    """单遍替换 __NAME__ 占位符。
+
+    刻意不用一连串 str.replace：那类写法按替换顺序生效，替换结果会被后续
+    规则再次扫描，站点数据里只要含有 __CARDS__ 之类的 token，就会被当成
+    占位符处理，把别人的站点名当模板改写。单遍 re.sub 只扫模板一次，
+    替换进去的内容不会被回头解析。
+
+    模板里的 /*__STYLES__*/ 与 //__APP__ 借助前后注释字符保持合法语法，
+    这里只替换中间的标识符本体。
+    """
+    def substitute(match: re.Match[str]) -> str:
+        key = match.group(1)
+        if key not in values:
+            raise SystemExit(f"模板占位符没有对应取值: __{key}__")
+        return values[key]
+
+    return re.sub(r"__([A-Z][A-Z_]*)__", substitute, template)
+
+
 def main() -> None:
     sites = json.loads(DATA.read_text(encoding="utf-8"))
     styles = (TEMPLATES / "styles.css").read_text(encoding="utf-8")
@@ -476,26 +489,32 @@ def main() -> None:
 
     bar_html, pills_html = build_milestones_markup(sites)
 
-    page = template
-    page = page.replace("/*__STYLES__*/", styles)
-    page = page.replace("//__APP__", app_js)
-    page = page.replace("__JSONLD__", build_jsonld(sites))
-    page = page.replace("__SITE_COUNT__", str(len(sites)))
-    page = page.replace("__FEED_COUNT__", str(feeds_count))
-    page = page.replace("__FEED_PERCENT__", feed_percent)
-    page = page.replace("__DOMAIN_PERCENT__", domain_percent)
-    page = page.replace("__OWNER_COUNT__", str(owners_count))
-    page = page.replace("__TAG_COUNT__", str(tag_count))
-    page = page.replace("__MILESTONE_BAR__", bar_html)
-    page = page.replace("__MILESTONE_TAGS__", pills_html)
-    page = page.replace(
-        "__CARDS__", "\n".join(card_html(site, i) for i, site in enumerate(sites))
-    )
-    page = page.replace("__SITES_DATA__", payload)
+    values = {
+        "STYLES": styles,
+        "APP": app_js,
+        "JSONLD": build_jsonld(sites),
+        "SITE_COUNT": str(len(sites)),
+        "FEED_COUNT": str(feeds_count),
+        "FEED_PERCENT": feed_percent,
+        "DOMAIN_PERCENT": domain_percent,
+        "OWNER_COUNT": str(owners_count),
+        "TAG_COUNT": str(tag_count),
+        "MILESTONE_BAR": bar_html,
+        "MILESTONE_TAGS": pills_html,
+        "CARDS": "\n".join(card_html(site, i) for i, site in enumerate(sites)),
+        "SITES_DATA": payload,
+    }
+    page = render_template(template, values)
 
-    leftovers = sorted(set(re.findall(r"__[A-Z_]+__", page)))
-    if leftovers:
-        raise SystemExit(f"模板占位符未全部替换: {', '.join(leftovers)}")
+    # 残留检查针对「模板」，而不是渲染结果：收录数据里出现 __X__ 形状的
+    # 普通文本是合法内容（validate.py 只拦截它落在 name/owner/description
+    # 上的情况），不该让整站构建失败。render_template 找不到取值的占位符
+    # 时已经直接报错，这里只做一次冗余确认。
+    unused = sorted(
+        key for key in re.findall(r"__([A-Z][A-Z_]*)__", template) if key not in values
+    )
+    if unused:
+        raise SystemExit(f"模板占位符未全部替换: {', '.join('__' + k + '__' for k in unused)}")
 
     OUT.mkdir(exist_ok=True)
     (OUT / "index.html").write_text(page, encoding="utf-8")

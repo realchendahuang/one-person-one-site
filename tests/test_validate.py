@@ -137,6 +137,18 @@ def test_non_string_owner():
     expect_invalid(site(description="   "), "空白字符串不算有内容")
 
 
+def test_placeholder_in_text_is_rejected():
+    """__X__ 形状的文本不能出现在 name/owner/description 里。
+
+    构建期用同形状的标记做模板占位符，数据里混进同名标记会让整站构建失败。
+    """
+    for field in ("name", "owner", "description"):
+        expect_invalid(site(**{field: "普通文本 __CARDS__ 普通文本"}), f"{field} 含占位符")
+        expect_invalid(site(**{field: "__MILESTONE_BAR__"}), f"{field} 整体是占位符")
+    # 小写或混合大小写不构成占位符，应当放行
+    assert validate([site(name="foo__bar__baz", owner="a__b__c")]) == 1
+
+
 def test_schema_matches_validator():
     """schema/site.schema.json 与 validate.py 必须描述同一套规则。
 
@@ -160,6 +172,25 @@ def test_schema_matches_validator():
 
     assert props["tags"]["items"]["pattern"] == TAG_RE.pattern
     assert props["languages"]["items"]["pattern"] == LANGUAGE_RE.pattern
+
+
+def test_schema_placeholder_rule_agrees_with_validator():
+    """schema 的占位符负向断言与校验器行为一致。"""
+    import re as _re
+
+    schema = json.loads(
+        (ROOT / "schema" / "site.schema.json").read_text(encoding="utf-8")
+    )
+    for field in ("name", "owner", "description"):
+        pattern = _re.compile(schema["properties"][field]["pattern"])
+        for value in ["正常名称", "foo__bar__baz", "含 __CARDS__ 标记", "__A__", "a__b__c"]:
+            entry = site(**{field: value if len(value) >= 15 else value + "a" * 20})
+            try:
+                validate([entry])
+                accepted = True
+            except Invalid:
+                accepted = False
+            assert bool(pattern.match(entry[field])) == accepted, (field, value)
 
 
 def test_schema_patterns_agree_with_validator():
