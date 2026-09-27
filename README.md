@@ -27,10 +27,10 @@
 这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
 <!-- STATS:START -->
-- 目前收录 **44** 个站点，来自 **5** 个地区，使用 5 种语言写作。
-- 其中 **14** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (29)、`digital-garden` (5)、`notes` (9)、`portfolio` (14)、`newsletter` (1)。
-- 常见主题：`developer` (30)、`indie-hacker` (10)、`maker` (9)、`ai` (8)、`designer` (4)、`open-source` (3)、`writer` (3)、`security` (2)。
+- 目前收录 **45** 个站点，来自 **6** 个地区，使用 5 种语言写作。
+- 其中 **15** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
+- 内容形态：`blog` (30)、`digital-garden` (5)、`notes` (9)、`portfolio` (15)、`newsletter` (1)。
+- 常见主题：`developer` (31)、`indie-hacker` (10)、`maker` (9)、`ai` (8)、`open-source` (4)、`writer` (4)、`designer` (4)、`security` (2)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
@@ -126,6 +126,7 @@
 | [Niapya](https://portfolio.niapya.deno.net/) | Niapya | 独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。 | en | designer, developer, portfolio, indie-hacker |
 | [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Rainey's Blog](https://rainey.space) | Rainey | Rainey 的个人博客，记录技术、产品与 AI，也分享生活、摄影和旅行。 | zh-CN | blog, developer, ai, notes |
+| [Schlaflied 的一间房](https://schlaflied-room.work/) | Schlaflied | 写作、AI、开源与生活痕迹放在同一张桌面上：一个仍在生长的教育项目 Plot Ark、career-ops 开源贡献、原创中文写作与随笔，以及零散的案件记录。 | zh-CN, en | blog, portfolio, writer, developer, open-source |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
@@ -233,9 +234,9 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **28** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
-- 收录新站点：**11** 次，最近一次「feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）」。
-- 功能：**19** 次，最近一次「feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）」。
+- 自 **2026-09-23** 以来共 **29** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 收录新站点：**12** 次，最近一次「feat: 收录新站点「Leon Lin」（issue #20）」。
+- 功能：**20** 次，最近一次「feat: 收录新站点「Leon Lin」（issue #20）」。
 - 修复：**4** 次，最近一次「fix: validate.yml 改用 --check 检查生成物并拉取完整历史」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->

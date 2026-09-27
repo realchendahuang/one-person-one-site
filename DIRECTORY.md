@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **44** 个站点。
+当前共收录 **45** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -31,6 +31,7 @@
 | [Niapya](https://portfolio.niapya.deno.net/) | Niapya | 独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。 | en | designer, developer, portfolio, indie-hacker |
 | [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Rainey's Blog](https://rainey.space) | Rainey | Rainey 的个人博客，记录技术、产品与 AI，也分享生活、摄影和旅行。 | zh-CN | blog, developer, ai, notes |
+| [Schlaflied 的一间房](https://schlaflied-room.work/) | Schlaflied | 写作、AI、开源与生活痕迹放在同一张桌面上：一个仍在生长的教育项目 Plot Ark、career-ops 开源贡献、原创中文写作与随笔，以及零散的案件记录。 | zh-CN, en | blog, portfolio, writer, developer, open-source |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
@@ -53,4 +54,4 @@
 
 ## 标签统计
 
-`developer` (30) · `blog` (29) · `portfolio` (14) · `indie-hacker` (10) · `maker` (9) · `notes` (9) · `ai` (8) · `digital-garden` (5) · `designer` (4) · `open-source` (3) · `writer` (3) · `security` (2) · `agent` (1) · `album` (1) · `cat` (1) · `creator` (1) · `devops` (1) · `doc` (1) · `game` (1) · `newsletter` (1) · `original-character` (1) · `personal-website` (1) · `photographer` (1) · `ranking` (1) · `research` (1) · `researcher` (1) · `social-media` (1) · `sre` (1) · `tech` (1) · `twitter` (1)
+`developer` (31) · `blog` (30) · `portfolio` (15) · `indie-hacker` (10) · `maker` (9) · `notes` (9) · `ai` (8) · `digital-garden` (5) · `designer` (4) · `open-source` (4) · `writer` (4) · `security` (2) · `agent` (1) · `album` (1) · `cat` (1) · `creator` (1) · `devops` (1) · `doc` (1) · `game` (1) · `newsletter` (1) · `original-character` (1) · `personal-website` (1) · `photographer` (1) · `ranking` (1) · `research` (1) · `researcher` (1) · `social-media` (1) · `sre` (1) · `tech` (1) · `twitter` (1)

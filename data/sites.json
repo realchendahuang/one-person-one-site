@@ -408,5 +408,15 @@
     "languages": ["zh-CN"],
     "region": "China",
     "tags": ["digital-garden"]
+  },
+  {
+    "name": "Schlaflied 的一间房",
+    "url": "https://schlaflied-room.work/",
+    "owner": "Schlaflied",
+    "description": "写作、AI、开源与生活痕迹放在同一张桌面上：一个仍在生长的教育项目 Plot Ark、career-ops 开源贡献、原创中文写作与随笔，以及零散的案件记录。",
+    "languages": ["zh-CN", "en"],
+    "region": "Canada",
+    "tags": ["blog", "portfolio", "writer", "developer", "open-source"],
+    "feed": "https://schlaflied-room.work/rss.xml"
   }
 ]

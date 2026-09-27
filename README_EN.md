@@ -27,10 +27,10 @@
 This is a **content directory** — not a showcase, not a software project. It does one thing: gather personal sites that real people have been running for a long time, so that others can find them, read them, and subscribe to them.
 
 <!-- STATS:START -->
-- **44** independent sites from **5** regions, written in 5 languages.
-- **14** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
-- Content types: blog (29), digital-garden (5), notes (9), portfolio (14), newsletter (1).
-- Common topics: developer (30), indie-hacker (10), maker (9), ai (8), designer (4), open-source (3), writer (3), security (2).
+- **45** independent sites from **6** regions, written in 5 languages.
+- **15** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](./site/feeds.opml).
+- Content types: blog (30), digital-garden (5), notes (9), portfolio (15), newsletter (1).
+- Common topics: developer (31), indie-hacker (10), maker (9), ai (8), open-source (4), writer (4), designer (4), security (2).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out hard-won lessons on RAG and backend systems. They write about different things. What they share is that they **never handed their voice over to an algorithm**.
@@ -126,6 +126,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [Niapya](https://portfolio.niapya.deno.net/) | Niapya | 独立设计师兼开发者的个人作品集，专注设计与开发 AI 原生产品，并记录构建实验与思考。 | en | designer, developer, portfolio, indie-hacker |
 | [QianFan 千帆](https://blog.mapin.net/) | QianFan | 00 后开发者的技术博客：FastAPI、LangChain、Flutter 与工程实践的系统整理。 | zh-CN | blog, developer, notes |
 | [Rainey's Blog](https://rainey.space) | Rainey | Rainey 的个人博客，记录技术、产品与 AI，也分享生活、摄影和旅行。 | zh-CN | blog, developer, ai, notes |
+| [Schlaflied 的一间房](https://schlaflied-room.work/) | Schlaflied | 写作、AI、开源与生活痕迹放在同一张桌面上：一个仍在生长的教育项目 Plot Ark、career-ops 开源贡献、原创中文写作与随笔，以及零散的案件记录。 | zh-CN, en | blog, portfolio, writer, developer, open-source |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
@@ -233,9 +234,9 @@ Scripts and documentation in this repository are released under the [MIT License
 ## Project history
 
 <!-- HISTORY:START -->
-- **28** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
-- New site listings: **11** commits, latest: “feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）”.
-- Features: **19** commits, latest: “feat: 收录 11 个新站点并修复 Issue 自动收录流水线校验问题（issue #13 #14 #15 #16 #19, PR #17）”.
+- **29** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- New site listings: **12** commits, latest: “feat: 收录新站点「Leon Lin」（issue #20）”.
+- Features: **20** commits, latest: “feat: 收录新站点「Leon Lin」（issue #20）”.
 - Fixes: **4** commits, latest: “fix: validate.yml 改用 --check 检查生成物并拉取完整历史”.
 - Refactors: **2** commits, latest: “refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐”.
 <!-- HISTORY:END -->
