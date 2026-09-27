@@ -145,9 +145,15 @@ def test_local_favicons_copied():
 
 
 def test_no_template_placeholders():
-    html = (SITE / "index.html").read_text(encoding="utf-8")
-    leftover = re.findall(r"__[A-Z_]+__", html)
-    assert not leftover, f"模板占位符残留: {leftover}"
+    """产物里不应残留构建期占位符。
+
+    只认全大写形状：站点描述里出现 Python 的 __name__ 这类合法小写双下划线
+    是正常内容，不能误判。
+    """
+    for name in ("index.html", "directory/index.html"):
+        html = (SITE / name).read_text(encoding="utf-8")
+        leftover = re.findall(r"__[A-Z][A-Z_]*__", html)
+        assert not leftover, f"{name} 模板占位符残留: {leftover}"
 
 
 def main() -> None:

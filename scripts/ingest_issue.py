@@ -47,6 +47,7 @@ from validate import (  # noqa: E402
     MIN_DESCRIPTION,
     TAG_RE,
 )
+from siteutil import has_placeholder  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = Path(os.environ.get("OPOS_SITES_FILE", ROOT / "data" / "sites.json"))
@@ -162,6 +163,17 @@ def clamp(text: str, limit: int) -> str:
     if len(text) <= limit:
         return text
     return text[: limit - 1].rstrip() + "…"
+
+
+# 站点名会进入 commit message、Issue 评论和构建产物，属于不可信输入。
+# 这里剥掉 shell 元字符与控制字符：CI 里它会被拼进命令行，即使工作流已改用
+# env 传递（不会被二次解析），也不该依赖下游一直这么写。
+UNSAFE_CHARS_RE = re.compile(r"[`$<>&|;()\[\]{}\\!*?~\"'\\\n\r\t\x00-\x1f\x7f]")
+
+
+def sanitize_label(text: str) -> str:
+    """清洗会流入命令行或评论的短文本（站点名、站长名）。"""
+    return collapse(UNSAFE_CHARS_RE.sub("", collapse(text)))
 
 
 def normalize_url(raw: str) -> str:
@@ -393,9 +405,9 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
             revision=revision,
         )
 
-    name = clamp(pick(fields, FIELD_KEYWORDS["name"]), MAX_NAME)
+    name = clamp(sanitize_label(pick(fields, FIELD_KEYWORDS["name"])), MAX_NAME)
     url = normalize_url(pick(fields, FIELD_KEYWORDS["url"]))
-    owner = clamp(pick(fields, FIELD_KEYWORDS["owner"]), MAX_OWNER)
+    owner = clamp(sanitize_label(pick(fields, FIELD_KEYWORDS["owner"])), MAX_OWNER)
     description = clamp(pick(fields, FIELD_KEYWORDS["description"]), MAX_DESCRIPTION)
     languages = normalize_languages(pick(fields, FIELD_KEYWORDS["languages"]))
     region = normalize_region(pick(fields, FIELD_KEYWORDS["region"]))
@@ -444,6 +456,10 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
     ]
     if len(name) > MAX_NAME:
         problems.append(f"网站名称超过 {MAX_NAME} 字")
+    # __X__ 形状的文本会与构建期的模板占位符冲突，导致整站构建失败
+    for label, value in (("网站名称", name), ("站长 / 创作者", owner), ("一句话介绍", description)):
+        if has_placeholder(value):
+            problems.append(f"{label} 里含有 `__大写__` 形式的保留标记，请换一个名称")
 
     if problems:
         return make_result(

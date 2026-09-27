@@ -11,7 +11,8 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 40,
-      "description": "站点全称或常用名称"
+      "pattern": "^(?!.*__[A-Z][A-Z_]*__).+$",
+      "description": "站点全称或常用名称。不得包含 __大写__ 形状的文本（与构建期模板占位符冲突）"
     },
     "url": {
       "type": "string",
@@ -21,13 +22,15 @@
     "owner": {
       "type": "string",
       "minLength": 1,
-      "description": "站长或创作者的常用名"
+      "pattern": "^(?!.*__[A-Z][A-Z_]*__).+$",
+      "description": "站长或创作者的常用名。不得包含 __大写__ 形状的文本"
     },
     "description": {
       "type": "string",
       "minLength": 15,
       "maxLength": 240,
-      "description": "客观简洁的一到两句话介绍"
+      "pattern": "^(?!.*__[A-Z][A-Z_]*__).+$",
+      "description": "客观简洁的一到两句话介绍。不得包含 __大写__ 形状的文本"
     },
     "languages": {
       "type": "array",
