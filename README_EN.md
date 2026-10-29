@@ -238,7 +238,7 @@ Scripts and documentation in this repository are released under the [MIT License
 ## Project history
 
 <!-- HISTORY:START -->
-- **43** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **44** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **13** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
 - Features: **23** commits, latest: “feat: feed 支持多订阅源并修复子路径站点图标抓取”.
 - Fixes: **7** commits, latest: “fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404”.

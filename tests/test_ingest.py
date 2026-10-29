@@ -77,6 +77,28 @@ def body_with_name(name: str) -> str:
     return GOOD_BODY.format(name=name)
 
 
+# 手写列表提交：官方模板之外最自然的写法，没有「提交确认」区。
+# 之前这类 Issue 会被判定为 skipped 而无法自动收录（实际发生在 issue #29）。
+LIST_BODY = """- **Website name / title:** Example List Site
+- **URL:** https://list-example.com
+- **Owner:** List Owner
+- **Description:** a hand written submission that does not use the official issue form
+- **Languages:** en
+- **Region:** US
+- **Tags:** blog, developer
+- **Feed:** https://list-example.com/feed.xml
+"""
+
+
+def run_ingest_body(body: str, data_file: Path, force: bool = True) -> dict:
+    original = ingest_issue.DATA
+    ingest_issue.DATA = data_file
+    try:
+        return ingest(body, force=force, issue_number="1")
+    finally:
+        ingest_issue.DATA = original
+
+
 def run_ingest(name: str, data_file: Path) -> dict:
     """在临时数据文件上跑一次收录，返回结果字典。
 
@@ -220,6 +242,53 @@ def test_placeholder_in_name_rejected_by_validator():
         except Invalid:
             continue
         raise AssertionError(f"{field} 含占位符 token 时应当被拒绝: {value!r}")
+
+
+def test_list_style_submission_is_accepted():
+    """手写 `- **字段:**` 列表提交（非官方模板）也要能收录。
+
+    issue #29 就是这么提交的：没有「提交确认」勾选区，曾经被判成 skipped，
+    只能手工写脚本入库。现在只有官方模板才要求确认区。
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        data_file = Path(tmp) / "sites.json"
+        data_file.write_text("[]\n", encoding="utf-8")
+        result = run_ingest_body(LIST_BODY, data_file)
+        saved = json.loads(data_file.read_text(encoding="utf-8"))
+
+    assert result["status"] == "accepted", result
+    assert saved[0]["name"] == "Example List Site"
+    assert saved[0]["url"] == "https://list-example.com"
+    assert saved[0]["feed"] == "https://list-example.com/feed.xml"
+
+
+def test_list_style_detects_multiple_feeds():
+    """手写提交里的多条订阅源（换行分隔）要全部保留。"""
+    body = LIST_BODY.replace(
+        "- **Feed:** https://list-example.com/feed.xml",
+        "- **Feed:** https://list-example.com/feed.xml, https://list-example.com/en/feed.xml",
+    )
+    with tempfile.TemporaryDirectory() as tmp:
+        data_file = Path(tmp) / "sites.json"
+        data_file.write_text("[]\n", encoding="utf-8")
+        result = run_ingest_body(body, data_file)
+        saved = json.loads(data_file.read_text(encoding="utf-8"))
+
+    assert result["status"] == "accepted", result
+    assert saved[0]["feed"] == [
+        "https://list-example.com/feed.xml",
+        "https://list-example.com/en/feed.xml",
+    ]
+
+
+def test_non_submission_issue_is_skipped():
+    """普通 bug 反馈（没有站点字段）仍然静默跳过。"""
+    with tempfile.TemporaryDirectory() as tmp:
+        data_file = Path(tmp) / "sites.json"
+        data_file.write_text("[]\n", encoding="utf-8")
+        result = run_ingest_body("## 页面有个错别字\n\n在第三段。\n", data_file)
+
+    assert result["status"] == "skipped", result
 
 
 def test_ingest_rejects_placeholder_name():

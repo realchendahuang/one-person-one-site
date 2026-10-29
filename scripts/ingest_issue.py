@@ -74,18 +74,20 @@ BROWSER_UA = (
 )
 
 HEADER_RE = re.compile(r"^###\s+(.+?)\s*$", re.MULTILINE)
+# 手写提交里的 `- **字段名:** 值`：粗体里可能带冒号，也可能冒号在粗体外
+LIST_FIELD_RE = re.compile(r"^[-*]\s+\*\*([^*]+?)\*\*\s*[:：]?\s*(.*)$")
 CHECKBOX_RE = re.compile(r"-\s*\[x\]", re.IGNORECASE)
 NO_RESPONSE = {"_no response_", "no response", "-", "—"}
 
 FIELD_KEYWORDS = {
-    "name": ("site name", "网站名称"),
-    "url": ("url", "网站地址"),
-    "owner": ("owner", "站长"),
-    "description": ("description", "介绍"),
+    "name": ("site name", "website name", "网站名称", "站点名称"),
+    "url": ("url", "网站地址", "网址"),
+    "owner": ("owner", "站长", "作者"),
+    "description": ("description", "介绍", "简介"),
     "languages": ("languages", "语言"),
     "region": ("region", "地区"),
     "tags": ("tags", "标签"),
-    "feed": ("rss", "atom", "订阅"),
+    "feed": ("rss", "atom", "订阅", "feed"),
     "confirm": ("提交确认",),
 }
 
@@ -125,13 +127,41 @@ def body_hash(body: str) -> str:
 # ---------------------------------------------------------------- 表单解析
 
 def parse_form(body: str) -> dict[str, str]:
-    """把 Issue 表单正文拆成 {字段标题: 字段值}。"""
+    """把 Issue 表单正文拆成 {字段标题: 字段值}。
+
+    支持两种常见写法：
+      1. Issue 表单生成的 `### 字段标题` 分节；
+      2. 提交者手写的 `- **字段标题:** 值` 列表（官方表单之外的自然写法）。
+    第二种在没有 `###` 分节时才启用，避免把表单里的普通列表当成字段。
+    """
     fields: dict[str, str] = {}
     matches = list(HEADER_RE.finditer(body or ""))
-    for index, match in enumerate(matches):
-        start = match.end()
-        end = matches[index + 1].start() if index + 1 < len(matches) else len(body)
-        fields[match.group(1).strip()] = body[start:end].strip()
+    if matches:
+        for index, match in enumerate(matches):
+            start = match.end()
+            end = matches[index + 1].start() if index + 1 < len(matches) else len(body)
+            fields[match.group(1).strip()] = body[start:end].strip()
+        return fields
+    return parse_list_form(body)
+
+
+def parse_list_form(body: str) -> dict[str, str]:
+    """解析 `- **字段标题:** 值` 形式的列表，值为空时取后续缩进行。"""
+    fields: dict[str, str] = {}
+    current = ""
+    for raw_line in (body or "").splitlines():
+        line = raw_line.strip()
+        match = LIST_FIELD_RE.match(line)
+        if match:
+            current = match.group(1).strip().rstrip(":：").strip()
+            value = match.group(2).strip()
+            if current and current not in fields:
+                fields[current] = value
+        elif current and line:
+            # 值的续行（手写列表里常见于较长的简介）
+            fields[current] = f"{fields[current]}\n{line}".strip()
+        elif not line:
+            current = ""
     return fields
 
 
@@ -386,26 +416,33 @@ def make_result(
 def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
     fields = parse_form(body)
     revision = body_hash(body)
+    # 官方模板（`###` 分节）带「提交确认」勾选区；手写列表提交没有这一段，
+    # 不能因此把它判成无效——只把确认区当作模板表单的额外要求。
+    is_template_form = bool(HEADER_RE.search(body or ""))
 
-    confirm = pick(fields, FIELD_KEYWORDS["confirm"])
-    if not confirm.strip():
-        # 不是站点提交（例如 bug 反馈），静默跳过，不打扰提交者
-        if recognize(fields) < 3:
-            return make_result("skipped", "")
-        return make_result(
-            "invalid",
-            "暂时没能收录 ⏳\n\n"
-            "没有识别到「提交一个网站」表单里的提交确认。请通过模板提交（"
-            f"{NOTICE}），或直接修改 `data/sites.json` 发 Pull Request。",
-            revision=revision,
-        )
-    if len(CHECKBOX_RE.findall(confirm)) < 2:
-        return make_result(
-            "invalid",
-            "暂时没能收录 ⏳\n\n"
-            "请先勾选表单底部的两项确认：站点是真实个人长期维护的网站，且当前可以正常访问。",
-            revision=revision,
-        )
+    if is_template_form:
+        confirm = pick(fields, FIELD_KEYWORDS["confirm"])
+        if not confirm.strip():
+            # 不是站点提交（例如 bug 反馈），静默跳过，不打扰提交者
+            if recognize(fields) < 3:
+                return make_result("skipped", "")
+            return make_result(
+                "invalid",
+                "暂时没能收录 ⏳\n\n"
+                "没有识别到「提交一个网站」表单里的提交确认。请通过模板提交（"
+                f"{NOTICE}），或直接修改 `data/sites.json` 发 Pull Request。",
+                revision=revision,
+            )
+        if len(CHECKBOX_RE.findall(confirm)) < 2:
+            return make_result(
+                "invalid",
+                "暂时没能收录 ⏳\n\n"
+                "请先勾选表单底部的两项确认：站点是真实个人长期维护的网站，且当前可以正常访问。",
+                revision=revision,
+            )
+    elif recognize(fields) < 3:
+        # 手写提交没有确认区，靠字段识别度判断这是不是一个站点提交
+        return make_result("skipped", "")
 
     name = clamp(sanitize_label(pick(fields, FIELD_KEYWORDS["name"])), MAX_NAME)
     url = normalize_url(pick(fields, FIELD_KEYWORDS["url"]))
