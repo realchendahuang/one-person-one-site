@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -57,22 +58,35 @@ def build() -> None:
 
 
 def stage_tree() -> str:
-    """把 site/ 的内容 + .nojekyll 写进临时 index，返回 tree 的 sha。"""
+    """把 site/ 的内容 + .nojekyll 写进临时 index，返回 tree 的 sha。
+
+    tree 的根必须直接是产物（index.html 在根上）：在仓库里直接
+    `git add site` 会把 `site/` 前缀带进 index，发布出去就是
+    根目录下多一层 site/，Pages 找不到 index.html 返回 404。
+    所以复制到临时目录后用 GIT_WORK_TREE 指过去再 add。
+    """
     if not (SITE / "index.html").exists():
         raise SystemExit(f"{SITE} 里没有 index.html，请先构建")
 
-    with tempfile.NamedTemporaryFile(prefix="opos-index-", delete=False) as handle:
-        index_path = handle.name
-    env = git_env({"GIT_INDEX_FILE": index_path})
-    try:
-        run(["git", "read-tree", "--empty"], env=env)
-        run(["git", "add", "--force", "--", SITE.relative_to(ROOT)], env=env)
+    with tempfile.TemporaryDirectory(prefix="opos-deploy-") as tmp:
+        work = Path(tmp) / "pub"
+        shutil.copytree(SITE, work)
         # .nojekyll 不属于构建产物，发布时补上
-        (SITE / NOJEKYLL).write_text("", encoding="utf-8")
-        run(["git", "add", "--force", "--", f"{SITE.relative_to(ROOT)}/{NOJEKYLL}"], env=env)
-        tree = run(["git", "write-tree"], env=env)
-    finally:
-        Path(index_path).unlink(missing_ok=True)
+        (work / NOJEKYLL).write_text("", encoding="utf-8")
+
+        with tempfile.NamedTemporaryFile(prefix="opos-index-", delete=False) as handle:
+            index_path = handle.name
+        env = git_env({
+            "GIT_INDEX_FILE": index_path,
+            "GIT_DIR": str(ROOT / ".git"),
+            "GIT_WORK_TREE": str(work),
+        })
+        try:
+            run(["git", "read-tree", "--empty"], env=env, cwd=work)
+            run(["git", "add", "--force", "--all", "."], env=env, cwd=work)
+            tree = run(["git", "write-tree"], env=env, cwd=work)
+        finally:
+            Path(index_path).unlink(missing_ok=True)
     return tree
 
 
