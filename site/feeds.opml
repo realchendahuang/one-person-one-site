@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>一人一站 · 订阅合集</title>
+    <dateCreated>2026-10-30</dateCreated>
+    <docs>https://realchendahuang.github.io/one-person-one-site/</docs>
+  </head>
+  <body>
+    <outline text="一人一站 · 收录站点" title="一人一站 · 收录站点">
+      <outline type="rss" text="只是一根毛" title="只是一根毛" xmlUrl="https://justmao.com/feed.xml" htmlUrl="https://justmao.com/"/>
+      <outline type="rss" text="皮普的数字花园" title="皮普的数字花园" xmlUrl="https://pipuwong.com/rss.xml" htmlUrl="https://pipuwong.com"/>
+      <outline type="rss" text="Jask" title="Jask" xmlUrl="https://blog.jask.dev/index.xml" htmlUrl="https://jask.dev/"/>
+      <outline type="rss" text="Huang&#x27;s Blog" title="Huang&#x27;s Blog" xmlUrl="https://blog.clothpath.com/rss.xml" htmlUrl="https://blog.clothpath.com/"/>
+      <outline type="rss" text="虫子樱桃" title="虫子樱桃" xmlUrl="https://czyt.tech/index.xml#feed" htmlUrl="https://czyt.tech"/>
+      <outline type="rss" text="Leon Lin" title="Leon Lin" xmlUrl="https://leonlins.com/rss.xml" htmlUrl="https://leonlins.com"/>
+      <outline type="rss" text="情報の灯台" title="情報の灯台" xmlUrl="https://joho-todai.com/pinterest-rss/" htmlUrl="https://joho-todai.com/"/>
+      <outline type="rss" text="Sulayman Bowles" title="Sulayman Bowles" xmlUrl="https://sulayman-bowles.dev/feed.xml" htmlUrl="https://sulayman-bowles.dev/"/>
+      <outline type="rss" text="Elliot Hu" title="Elliot Hu" xmlUrl="https://elliothu.me/feed.xml" htmlUrl="https://elliothu.me"/>
+      <outline type="rss" text="Kogitore" title="Kogitore" xmlUrl="https://kogitore.com/rss.xml" htmlUrl="https://kogitore.com"/>
+      <outline type="rss" text="陈大黄 - 作品与内容" title="陈大黄 - 作品与内容" xmlUrl="https://chendahuang.com/rss.xml" htmlUrl="https://chendahuang.com"/>
+      <outline type="rss" text="Niapya" title="Niapya" xmlUrl="https://portfolio.niapya.deno.net/rss.xml" htmlUrl="https://portfolio.niapya.deno.net/"/>
+      <outline type="rss" text="老杨的知识荒原" title="老杨的知识荒原" xmlUrl="https://awesomeyang.com/atom.xml" htmlUrl="https://awesomeyang.com"/>
+      <outline type="rss" text="Canmi Wu" title="Canmi Wu" xmlUrl="https://canmi.net/atom.xml" htmlUrl="https://canmi.net"/>
+      <outline type="rss" text="Alliot&#x27;s blog" title="Alliot&#x27;s blog" xmlUrl="https://blog.alliot.tech/atom.xml" htmlUrl="https://blog.alliot.tech"/>
+      <outline type="rss" text="Wutong Yu" title="Wutong Yu" xmlUrl="https://www.wutongyu.site/rss.xml" htmlUrl="https://www.wutongyu.site"/>
+      <outline type="rss" text="Rainey&#x27;s Blog" title="Rainey&#x27;s Blog" xmlUrl="https://rainey.space/rss.xml" htmlUrl="https://rainey.space"/>
+      <outline type="rss" text="AKai blog" title="AKai blog" xmlUrl="https://blog.akaii.top/blog/rss.xml" htmlUrl="https://blog.akaii.top"/>
+      <outline type="rss" text="Schlaflied 的一间房" title="Schlaflied 的一间房" xmlUrl="https://schlaflied-room.work/rss.xml" htmlUrl="https://schlaflied-room.work/"/>
+    </outline>
+  </body>
+</opml>

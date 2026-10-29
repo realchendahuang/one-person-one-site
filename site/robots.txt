@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://realchendahuang.github.io/one-person-one-site/sitemap.xml

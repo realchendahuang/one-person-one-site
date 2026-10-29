@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="149" y1="110" x2="892" y2="908" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#10261f"/>
+      <stop offset="0.48" stop-color="#12484b"/>
+      <stop offset="1" stop-color="#101319"/>
+    </linearGradient>
+    <radialGradient id="aurora" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(719 239) rotate(130) scale(565 502)">
+      <stop offset="0" stop-color="#5eead4" stop-opacity="0.72"/>
+      <stop offset="0.48" stop-color="#1b6470" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#0b0f14" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sailWarm" x1="318" y1="227" x2="551" y2="668" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7df"/>
+      <stop offset="0.58" stop-color="#ffd887"/>
+      <stop offset="1" stop-color="#ef9d4a"/>
+    </linearGradient>
+    <linearGradient id="sailCool" x1="516" y1="213" x2="735" y2="661" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d8fff8"/>
+      <stop offset="0.45" stop-color="#61d5c7"/>
+      <stop offset="1" stop-color="#1d8fa2"/>
+    </linearGradient>
+    <linearGradient id="hull" x1="247" y1="671" x2="782" y2="810" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffbf5f"/>
+      <stop offset="0.52" stop-color="#f47f4f"/>
+      <stop offset="1" stop-color="#3dd6c5"/>
+    </linearGradient>
+    <clipPath id="squircle">
+      <rect x="88" y="82" width="848" height="860" rx="198"/>
+    </clipPath>
+  </defs>
+  <rect x="88" y="82" width="848" height="860" rx="198" fill="url(#bg)"/>
+  <g clip-path="url(#squircle)">
+    <rect x="88" y="82" width="848" height="860" rx="198" fill="url(#aurora)"/>
+    <path d="M103 710C250 641 404 623 558 657C692 687 807 673 936 610V942H103V710Z" fill="#0a1115" fill-opacity="0.46"/>
+    <circle cx="784" cy="278" r="17" fill="#ffcf73"/>
+    <circle cx="842" cy="328" r="12" fill="#66f0df"/>
+    <path d="M784 278C808 290 827 307 842 328" stroke="#f8e6ad" stroke-opacity="0.7" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <path d="M501 206C411 320 342 474 306 646C372 604 438 577 512 563L501 206Z" fill="url(#sailWarm)"/>
+  <path d="M536 207C642 316 714 466 743 647C672 604 599 578 520 563L536 207Z" fill="url(#sailCool)"/>
+  <path d="M512 224L511 709" stroke="#fff7df" stroke-opacity="0.78" stroke-width="18" stroke-linecap="round"/>
+  <path d="M276 685C397 744 626 751 766 682C737 766 641 817 516 817C390 817 302 768 276 685Z" fill="url(#hull)"/>
+  <path d="M319 693C420 722 610 724 724 692" stroke="#fff7df" stroke-opacity="0.5" stroke-width="14" stroke-linecap="round"/>
+  <rect x="91" y="85" width="842" height="854" rx="195" stroke="#fff7df" stroke-opacity="0.16" stroke-width="6"/>
+</svg>
