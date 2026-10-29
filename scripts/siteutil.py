@@ -36,3 +36,15 @@ def slug_for(domain: str) -> str:
 def has_placeholder(text: str) -> bool:
     """文本里是否含有 __X__ 形状的模板占位符。"""
     return bool(PLACEHOLDER_RE.search(text or ""))
+
+
+def feeds_of(site: dict) -> list[str]:
+    """取出站点的订阅源列表。
+
+    feed 字段兼容两种形状：单条字符串（历史数据与多数站点），或多条数组
+    （一个站点按语言/内容提供多个订阅源）。没有订阅源时返回空列表。
+    """
+    feed = site.get("feed")
+    if not feed:
+        return []
+    return [feed] if isinstance(feed, str) else list(feed)

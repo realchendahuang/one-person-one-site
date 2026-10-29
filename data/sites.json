@@ -211,7 +211,7 @@
     "languages": ["ja"],
     "region": "Japan",
     "tags": ["blog", "writer", "tech", "ai"],
-    "feed": "https://joho-todai.com/pinterest-rss/"
+    "feed": ["https://joho-todai.com/pinterest-rss/", "https://joho-todai.com/en/rss/"]
   },
   {
     "name": "Sulayman Bowles",

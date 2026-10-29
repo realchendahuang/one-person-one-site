@@ -162,7 +162,7 @@ See [DIRECTORY.md](./DIRECTORY.md) for the full list, tag statistics and RSS fee
 We would love to hear about new sites — especially ones that many people have not found yet.
 
 **Option 1: Open an issue (recommended)**
-Use the [**site submission form**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml) with your site name, URL, owner name and a one-line description. The form validates the format and probes availability; **your site usually appears in the live directory within a minute or two.**
+Use the [**site submission form**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml) with your site name, URL, owner name and a one-line description. The maintainer validates the format and probes availability; your site usually appears in the live directory **within a day or two**, and the result is replied to in your issue.
 
 **Option 2: Pull request**
 1. Fork and clone the repository;
@@ -211,7 +211,7 @@ Please reuse existing tags where you can — it keeps the directory browsable by
 
 ## Maintaining the list
 
-- **Found a dead site?** A health check runs weekly and opens a summary issue; you are also welcome to report one directly.
+- **Found a dead site?** The maintainer periodically audits listed sites with a health-check script and follows up; you are also welcome to report one directly.
 - **Need a correction?** Descriptions, tags and feed URLs can all be updated via issue or pull request.
 - **Want to discuss what belongs here?** Open an issue and explain your reasoning — we are happy to talk it through.
 
@@ -224,7 +224,6 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the detailed workflow.
 - [x] A first seed set of independent blogs and personal sites
 - [x] Live directory with tag filters, full-text search and random wandering
 - [x] Aggregated RSS feeds with one-click import (OPML)
-- [x] Automatic ingestion on submission and a weekly health check
 - [ ] Curated thematic collections, so good writing is easier to find
 - [ ] An annual roundup of independent personal sites
 
@@ -239,10 +238,10 @@ Scripts and documentation in this repository are released under the [MIT License
 ## Project history
 
 <!-- HISTORY:START -->
-- **40** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **42** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **13** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
 - Features: **22** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
-- Fixes: **5** commits, latest: “fix: 修复 Issue 自动收录的命令注入、模板占位符污染与证书校验缺失 (#22)”.
+- Fixes: **7** commits, latest: “fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404”.
 - Refactors: **2** commits, latest: “refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐”.
 <!-- HISTORY:END -->
 

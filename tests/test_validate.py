@@ -22,6 +22,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from validate import (  # noqa: E402
     LANGUAGE_RE,
     MAX_DESCRIPTION,
+    MAX_FEEDS,
     MAX_NAME,
     MAX_TAGS,
     MIN_DESCRIPTION,
@@ -128,6 +129,20 @@ def test_feed_optional_but_validated():
     expect_invalid(site(feed="not-a-url"), "feed 必须是有效地址")
 
 
+def test_feed_accepts_multiple_entries():
+    """多订阅源数组：双语站点可以同时提供日文与英文 RSS。"""
+    feeds = ["https://example.com/rss.xml", "https://example.com/en/rss/"]
+    assert validate([site(feed=feeds)]) == 1
+    expect_invalid(site(feed=[]), "空数组应当拒绝")
+    expect_invalid(site(feed=["https://example.com/rss.xml", "not-a-url"]), "数组内非法地址应当拒绝")
+    expect_invalid(site(feed=["https://example.com/rss.xml"] * 2), "重复条目应当拒绝")
+    expect_invalid(
+        site(feed=[f"https://example.com/{i}/rss.xml" for i in range(MAX_FEEDS + 1)]),
+        "超出条数上限应当拒绝",
+    )
+    expect_invalid(site(feed=42), "非字符串非数组应当拒绝")
+
+
 def test_unsupported_field():
     expect_invalid(site(star=5), "不支持的字段应当拒绝")
 
@@ -169,6 +184,11 @@ def test_schema_matches_validator():
     assert props["tags"]["maxItems"] == MAX_TAGS
     assert props["tags"]["uniqueItems"] is True
     assert props["languages"]["uniqueItems"] is True
+
+    feed_schema = props["feed"]["anyOf"]
+    feed_array = next(part for part in feed_schema if part.get("type") == "array")
+    assert feed_array["maxItems"] == MAX_FEEDS
+    assert feed_array["uniqueItems"] is True
 
     assert props["tags"]["items"]["pattern"] == TAG_RE.pattern
     assert props["languages"]["items"]["pattern"] == LANGUAGE_RE.pattern

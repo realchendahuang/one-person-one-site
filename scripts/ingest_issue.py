@@ -42,6 +42,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate import (  # noqa: E402
     LANGUAGE_RE,
     MAX_DESCRIPTION,
+    MAX_FEEDS,
     MAX_NAME,
     MAX_TAGS,
     MIN_DESCRIPTION,
@@ -412,7 +413,14 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
     languages = normalize_languages(pick(fields, FIELD_KEYWORDS["languages"]))
     region = normalize_region(pick(fields, FIELD_KEYWORDS["region"]))
     tags = normalize_tags(pick(fields, FIELD_KEYWORDS["tags"]))
-    feed = normalize_url(pick(fields, FIELD_KEYWORDS["feed"]))
+    # feed 支持多条（换行或逗号分隔，如双语站点的日文/英文 RSS）；
+    # 不能复用 SPLIT_RE——它按斜杠切分，会把 URL 本身切碎
+    feed_field = pick(fields, FIELD_KEYWORDS["feed"])
+    feeds = [
+        url
+        for url in (normalize_url(part) for part in re.split(r"[,\n，]+", feed_field))
+        if url
+    ][:MAX_FEEDS]
 
     missing = [
         label
@@ -536,8 +544,9 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
         "region": region,
         "tags": tags,
     }
-    if feed:
-        entry["feed"] = feed
+    if feeds:
+        # 单条保持字符串形状（与既有数据一致），多条才是数组
+        entry["feed"] = feeds[0] if len(feeds) == 1 else feeds
 
     insert_before_home(sites, entry)
     DATA.write_text(render(sites), encoding="utf-8")

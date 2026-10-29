@@ -40,7 +40,7 @@ ASSETS = ROOT / "assets"
 OUT = ROOT / "site"
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from siteutil import domain_of, slug_for  # noqa: E402
+from siteutil import domain_of, feeds_of, slug_for  # noqa: E402
 
 SITE_URL = "https://realchendahuang.github.io/one-person-one-site/"
 REPO_URL = "https://github.com/realchendahuang/one-person-one-site"
@@ -137,9 +137,13 @@ def card_html(site: dict, index: int) -> str:
     )
 
     actions = ""
-    if site.get("feed"):
+    feeds = feeds_of(site)
+    if feeds:
+        # 多订阅源的站点（如中英双语言的日文/英文 RSS）按钮复制第一条；
+        # 全部订阅源都在订阅合集 feeds.opml 里，可以整包导入阅读器
+        primary = feeds[0]
         actions += (
-            f'<button type="button" class="mini-action-btn" data-copy="{esc(site["feed"])}"'
+            f'<button type="button" class="mini-action-btn" data-copy="{esc(primary)}"'
             f' data-copy-label="已复制 RSS 订阅源" title="复制 RSS 订阅源"'
             f' aria-label="复制 {esc(site["name"])} 的 RSS 订阅源">{ICON_RSS}</button>'
         )
@@ -245,10 +249,11 @@ def build_opml(sites: list[dict]) -> str:
     ]
     for site in feeds:
         name = esc(site.get("name", ""))
-        lines.append(
-            f'      <outline type="rss" text="{name}" title="{name}"'
-            f' xmlUrl="{esc(site["feed"])}" htmlUrl="{esc(site.get("url", ""))}"/>'
-        )
+        for feed_url in feeds_of(site):
+            lines.append(
+                f'      <outline type="rss" text="{name}" title="{name}"'
+                f' xmlUrl="{esc(feed_url)}" htmlUrl="{esc(site.get("url", ""))}"/>'
+            )
     lines += ["    </outline>", "  </body>", "</opml>", ""]
     return "\n".join(lines)
 

@@ -59,9 +59,17 @@
       }
     },
     "feed": {
-      "type": "string",
-      "pattern": "^https?://",
-      "description": "RSS / Atom / JSON Feed 订阅源地址（可选）"
+      "description": "RSS / Atom / JSON Feed 订阅源地址（可选；单条字符串，或多条数组，最多 5 条）",
+      "anyOf": [
+        { "type": "string", "pattern": "^https?://" },
+        {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^https?://" }
+        }
+      ]
     }
   }
 }

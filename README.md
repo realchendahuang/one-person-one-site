@@ -162,7 +162,7 @@
 我们很希望收到新的站点，尤其是那些还没被很多人发现的。
 
 **方式一：Issue 提交（推荐）**
-打开 [**提交网站表单**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)，填网站名称、网址、站长名和一句话简介。表单会校验格式并探测站点可用性，**通常一两分钟内就会出现在线上目录里**。
+打开 [**提交网站表单**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)，填网站名称、网址、站长名和一句话简介。维护者会校验格式并探测站点可用性，通常**一两天内**就会出现在线上目录，结果会回复在你的 Issue 里。
 
 **方式二：Pull Request**
 1. Fork 并 Clone 仓库；
@@ -211,7 +211,7 @@
 
 ## 参与维护
 
-- **发现站点失效？** 每周会自动巡检一次并开 Issue 汇总，也欢迎你直接指出。
+- **发现站点失效？** 维护者会定期用巡检脚本检查收录站点的可用性并汇总处理，也欢迎你直接指出。
 - **信息需要修正？** 简介、标签、RSS 地址都可以改，提 Issue 或 PR 均可。
 - **想讨论收录边界？** 在 Issue 里说明你的判断依据，我们愿意听。
 
@@ -224,7 +224,6 @@
 - [x] 第一批独立博客与个人站点种子库
 - [x] 在线目录：标签筛选、全文搜索与随机漫游
 - [x] RSS 订阅源聚合与一键导入（OPML）
-- [x] 提交后的自动收录与每周可用性巡检
 - [ ] 按主题整理的精选专题，让好内容更容易被读到
 - [ ] 年度独立个人站点巡礼
 
@@ -239,10 +238,10 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **40** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **42** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**13** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
 - 功能：**22** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
-- 修复：**5** 次，最近一次「fix: 修复 Issue 自动收录的命令注入、模板占位符污染与证书校验缺失 (#22)」。
+- 修复：**7** 次，最近一次「fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->
 

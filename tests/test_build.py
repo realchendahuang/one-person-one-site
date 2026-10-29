@@ -23,6 +23,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 DATA = ROOT / "data" / "sites.json"
 
+sys.path.insert(0, str(ROOT / "scripts"))
+from siteutil import feeds_of  # noqa: E402
+
 VOID_TAGS = {
     "area", "base", "br", "col", "embed", "hr", "img", "input",
     "link", "meta", "param", "source", "track", "wbr",
@@ -112,14 +115,15 @@ def test_well_formed_html():
 
 def test_feeds_opml():
     sites = load_sites()
-    with_feed = [s for s in sites if s.get("feed")]
+    # feed 兼容字符串与数组两种形状；多订阅源在 OPML 里展开为多条 outline
+    all_feeds = [u for s in sites for u in feeds_of(s)]
     root = ET.fromstring((SITE / "feeds.opml").read_text(encoding="utf-8"))
     outlines = root.findall(".//outline[@xmlUrl]")
-    assert len(outlines) == len(with_feed), \
-        f"OPML 条目数 {len(outlines)} 与带 feed 的站点数 {len(with_feed)} 不一致"
+    assert len(outlines) == len(all_feeds), \
+        f"OPML 条目数 {len(outlines)} 与订阅源总数 {len(all_feeds)} 不一致"
     urls = {o.get("xmlUrl") for o in outlines}
-    for site in with_feed:
-        assert site["feed"] in urls, f"OPML 缺少 {site['feed']}"
+    for feed_url in all_feeds:
+        assert feed_url in urls, f"OPML 缺少 {feed_url}"
 
 
 def test_sitemap_and_robots():

@@ -53,11 +53,18 @@ BROWSER_UA = (
 )
 
 
-def sources_for(domain: str) -> list[str]:
+def sources_for(site_url: str, domain: str) -> list[str]:
+    """按优先级排列的候选图标地址。
+
+    相对路径的候选拼在站点 URL 后面而不是域名根上：GitHub Pages 项目页等
+    子路径托管的站点（如 https://x.github.io/repo/），favicon 在子路径下，
+    域名根上往往 404——按域名探测会让这类站点永远抓不到图标。
+    """
+    base = site_url if site_url.endswith("/") else site_url + "/"
     return [
-        f"https://{domain}/favicon.svg",
+        f"{base}favicon.svg",
         f"https://www.google.com/s2/favicons?domain={domain}&sz=128",
-        f"https://{domain}/favicon.ico",
+        f"{base}favicon.ico",
         f"https://icons.duckduckgo.com/ip3/{domain}.ico",
     ]
 
@@ -71,14 +78,15 @@ ICON_LINK_RE = re.compile(
 )
 
 
-def declared_icon_urls(domain: str) -> list[str]:
+def declared_icon_urls(page_url: str) -> list[str]:
     """从站点 HTML 的 <link rel="icon"> 里取出图标地址，支持 data: URI。
 
     有些站点（例如用 data: URI 内联 SVG 的）没有可抓取的 /favicon.ico，
-    只有这一条路能拿到它的真实图标。相对路径（./favicon.svg、/icon.png）用
-    urljoin 按站点根解析，否则会被当成非法 URL 直接抛错。
+    只有这一条路能拿到它的真实图标。相对路径（./favicon.svg、icon.png）按
+    页面 URL 解析，与浏览器行为一致；绝对路径（/favicon.ico）解析到域名根。
+    page_url 传完整站点 URL，子路径托管的站点才能找到自己的图标。
     """
-    base = f"https://{domain}/"
+    base = page_url
     request = urllib.request.Request(base, headers={"User-Agent": BROWSER_UA})
     try:
         with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
@@ -183,9 +191,15 @@ def normalize(raw: bytes) -> bytes | None:
         return None
 
 
-def fetch_one(domain: str) -> tuple[str, bytes] | None:
-    """返回 (扩展名, 文件内容)，抓不到返回 None。"""
-    candidates = declared_icon_urls(domain) + sources_for(domain)
+def fetch_one(site_url: str, domain: str) -> tuple[str, bytes] | None:
+    """返回 (扩展名, 文件内容)，抓不到返回 None。
+
+    site_url 是收录的完整站点 URL（可能带子路径），domain 是域名——
+    域级图标服务（Google s2、DuckDuckGo）只认域名。
+    """
+    candidates = declared_icon_urls(site_url) + sources_for(site_url, domain)
+    seen: set[str] = set()
+    candidates = [u for u in candidates if not (u in seen or seen.add(u))]
     for url in candidates:
         raw = download(url)
         if not raw:
@@ -205,17 +219,20 @@ def main() -> None:
     check_only = "--check" in sys.argv
 
     sites = json.loads(DATA.read_text(encoding="utf-8"))
-    domains: list[str] = []
+    # 图标按域名缓存一份（与浏览器 favicon 语义一致）；同一域名下若有多个
+    # 子路径站点，探测用先出现的站点 URL——子路径站的 favicon 在子路径下。
+    domains: dict[str, str] = {}
     for site in sites:
-        domain = domain_of(site.get("url", ""))
+        url = site.get("url", "")
+        domain = domain_of(url)
         if domain and domain not in domains:
-            domains.append(domain)
+            domains[domain] = url
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     fetched: list[str] = []
     missing: list[str] = []
-    for domain in domains:
+    for domain, site_url in domains.items():
         slug = slug_for(domain)
         if not force and not check_only and (
             (OUT_DIR / f"{slug}.png").exists() or (OUT_DIR / f"{slug}.svg").exists()
@@ -227,7 +244,7 @@ def main() -> None:
             ):
                 missing.append(domain)
             continue
-        result = fetch_one(domain)
+        result = fetch_one(site_url, domain)
         if result:
             ext, payload = result
             # 同一域名只保留一个文件，否则换过来源后会留下旧格式的孤儿图标，

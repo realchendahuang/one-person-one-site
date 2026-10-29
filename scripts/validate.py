@@ -41,6 +41,7 @@ MAX_NAME = 40
 MIN_DESCRIPTION = 15
 MAX_DESCRIPTION = 240
 MAX_TAGS = 8
+MAX_FEEDS = 5
 
 # 标签统一小写、多词用中划线，便于全站聚合筛选
 TAG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -116,10 +117,25 @@ def check_site(site: object, index: int) -> None:
     if len(tags) != len(set(tags)):
         raise Invalid(f"{where} 的 tags 存在重复项")
 
+    # feed 兼容两种形状：单条字符串（历史数据与多数站点），或数组（一个站点
+    # 按语言/内容提供多个订阅源，例如中日双语博客的日文与英文 RSS）
     feed = site.get("feed")
     if feed is not None:
-        if not isinstance(feed, str) or not valid_http_url(feed):
-            raise Invalid(f"{where} 的 feed 不是有效的 http/https 地址: {feed}")
+        if isinstance(feed, str):
+            if not valid_http_url(feed):
+                raise Invalid(f"{where} 的 feed 不是有效的 http/https 地址: {feed}")
+        elif isinstance(feed, list):
+            if not feed:
+                raise Invalid(f"{where} 的 feed 是空数组；没有订阅源请直接去掉该字段")
+            if len(feed) > MAX_FEEDS:
+                raise Invalid(f"{where} 的 feed 最多 {MAX_FEEDS} 条")
+            for item in feed:
+                if not isinstance(item, str) or not valid_http_url(item):
+                    raise Invalid(f"{where} 的 feed 不是有效的 http/https 地址: {item}")
+            if len(feed) != len(set(feed)):
+                raise Invalid(f"{where} 的 feed 存在重复项")
+        else:
+            raise Invalid(f"{where} 的 feed 必须是地址字符串或地址数组: {feed!r}")
 
     # 文本里不能出现 __X__ 形状的内容：generate_site.py 用同形状的标记做模板
     # 占位符，数据里混进同名标记会让替换链错位，整站构建失败。

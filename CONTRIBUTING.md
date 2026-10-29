@@ -13,26 +13,9 @@
 直接使用 GitHub Issue 模板提交：
 👉 [**Submit a site / 提交网站**](https://github.com/realchendahuang/one-person-one-site/issues/new?template=submit-site.yml)
 
-按表单提示填写网站名称、网址、站长/作者与一句话简介。**提交后由 GitHub Actions 自动处理**：
+按表单提示填写网站名称、网址、站长/作者与一句话简介。提交后由维护者处理：格式校验、可用性探测与收录都是用仓库内的脚本完成的，通常**一两天内**就会出现在线上目录，处理结果会回复在你的 Issue 里。
 
-1. 解析表单字段并做格式校验；
-2. 自动探测站点是否可访问（HTTP 状态码）；
-3. 通过后写入 `data/sites.json`、重新生成目录、提交并部署到 GitHub Pages；
-4. 在 Issue 下回复结果并自动关闭。
-
-正常情况下**一两分钟内即可在线上看到你的站点**，无需人工干预。
-
-以下情况会收到提示而非直接收录：
-
-| 提示 | 原因 | 处理方式 |
-|---|---|---|
-| 缺少必填内容 | 表单有字段未填写 | 直接编辑 Issue 正文补齐，会自动重新处理 |
-| 未能访问站点 | 探测失败（地域限制 / 反爬 / 临时故障） | 维护者添加 `accepted` 标签即可跳过探测 |
-| 判定为平台账号页 | 命中了不支持的类型（如小红书、X 主页） | 如有误判，维护者添加 `accepted` 标签放行 |
-| 判定为商业落地页 | 首页同时出现明码价格、销售文案与独立定价页 | 同上；本目录不收产品转化页面 |
-| 已收录 | 站点已在目录中 | 无需处理，可直接查看线上效果 |
-
-> 维护者放行方式：在 Issue 上添加 `accepted` 标签，工作流会自动跳过探测与类型检查重新收录。
+如果缺少必填内容，维护者会在 Issue 里指出，直接编辑 Issue 正文补齐即可。
 
 ---
 
@@ -53,7 +36,7 @@
 4. **提交代码并创建 PR**：
    将 `data/sites.json` 与自动同步更新的 `DIRECTORY.md`、`README.md`、`README_EN.md` 一并提交。
 
-> 💡 **提示**：GitHub Actions 会在每次推送至 `main` 分支时自动构建并部署到 GitHub Pages，你无需手动提交 `site/` 目录中的生成文件（该目录已被忽略）。
+> 💡 **提示**：`site/` 是构建产物（已被 gitignore），PR 里只需要提交 `data/sites.json` 与生成器同步更新的 `DIRECTORY.md`、`README.md`、`README_EN.md`；构建与部署由维护者完成。
 
 ---
 
@@ -74,6 +57,12 @@
 }
 ```
 
+多订阅源时 `feed` 用数组：
+
+```json
+"feed": ["https://example.com/rss.xml", "https://example.com/en/rss/"]
+```
+
 ### 字段说明与约束：
 
 | 字段 | 类型 | 是否必填 | 规范说明 |
@@ -85,7 +74,7 @@
 | `languages` | string[] | **必填** | 语言代码，主语言小写、地区大写：`zh-CN`、`zh-TW`、`en`、`ja`（至少 1 项，不可重复） |
 | `region` | string | **必填** | 所属地区或国家，例如 `China`, `Global`, `US`, `Japan` 等 |
 | `tags` | string[] | **必填** | 1 到 8 个标签，全小写，多词以中划线连接（如 `indie-hacker`），不可重复 |
-| `feed` | string | 可选 | RSS / Atom / JSON Feed 订阅源 URL（需为有效 http/https 链接） |
+| `feed` | string \| string[] | 可选 | RSS / Atom / JSON Feed 订阅源 URL（需为有效 http/https 链接）；多订阅源（如双语站点的日文/英文 RSS）可用数组，最多 5 条 |
 
 > 这些约束由 `scripts/validate.py` 执行，机读版本在 [`schema/site.schema.json`](./schema/site.schema.json)。
 > 两者的一致性由 `tests/test_validate.py` 保证——改了一边而没改另一边，测试会失败。
@@ -129,18 +118,24 @@
 
 ---
 
-## 维护与自动化
+## 维护与本地流程
 
-仓库里有三条自动化链路，都围绕同一份 `data/sites.json`：
+项目当前**不依赖 GitHub Actions**：校验、构建、部署与巡检全部用仓库内的脚本在本地完成，`data/sites.json` 是唯一的数据源。
 
-| 工作流 | 触发 | 作用 |
-|---|---|---|
-| `validate.yml` | PR 与 push `main` | 数据校验、规则测试、检查生成物已提交 |
-| `deploy.yml` | push `main` / 手动 | 构建静态站点并发布到 GitHub Pages |
-| `ingest-issue.yml` | 新增或编辑提交 Issue | 解析表单、校验、探测可用性、自动收录并部署 |
-| `health-check.yml` | 每周一 | 巡检站点可用性，汇总到 Issue 供人工复核 |
+维护者处理一个新收录 Issue 的完整流程：
 
-关于巡检：脚本**只报告，不删数据**。很多正常站点会对脚本请求返回 403/429、拒绝 HEAD 或按地域限流，自动下架极易误伤。只有返回明确失效信号（404/410、域名无法解析）的站点会被列为「疑似失效」，最终仍由维护者手动确认后移除。
+```bash
+python3 scripts/ingest_issue.py issue-body.md   # 解析 Issue 表单并写入 data/sites.json
+python3 scripts/fetch_favicons.py               # 抓取新站图标（需 pillow，抓不到自动兜底）
+python3 scripts/validate.py                     # 数据格式与收录规范校验
+python3 scripts/generate_directory.py           # 同步 DIRECTORY.md 与 README 表格、统计
+python3 scripts/generate_site.py                # 构建 site/
+python3 tests/test_validate.py && python3 tests/test_build.py  # 规则与产物测试
+git push                                        # 推送 main
+python3 scripts/deploy.py                       # 构建并发布到 gh-pages 分支（Pages 从该分支上线）
+```
+
+巡检用 `scripts/check_health.py`（可加 `--issue-body report.md` 产出可直接贴到 Issue 的报告）。脚本**只报告，不删数据**：很多正常站点会对脚本请求返回 403/429、拒绝 HEAD 或按地域限流，自动下架极易误伤。只有返回明确失效信号（404/410、域名无法解析）的站点会被列为「疑似失效」，最终仍由维护者手动确认后移除。
 
 ### 本地复现构建
 
