@@ -239,9 +239,9 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **39** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
-- 收录新站点：**12** 次，最近一次「feat: 收录新站点「Leon Lin」（issue #20）」。
-- 功能：**21** 次，最近一次「feat: add Schlaflied's personal site (#21)」。
+- 自 **2026-09-23** 以来共 **40** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 收录新站点：**13** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
+- 功能：**22** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
 - 修复：**5** 次，最近一次「fix: 修复 Issue 自动收录的命令注入、模板占位符污染与证书校验缺失 (#22)」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->

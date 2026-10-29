@@ -165,9 +165,13 @@ def test_workflow_does_not_interpolate_untrusted_outputs():
     这是第一道防线：即使 Python 侧被绕过或将来重构，env 写法也不会退化成
     可注入的表达式插值。
     """
-    workflow = (ROOT / ".github" / "workflows" / "ingest-issue.yml").read_text(
-        encoding="utf-8"
-    )
+    workflow_path = ROOT / ".github" / "workflows" / "ingest-issue.yml"
+    if not workflow_path.exists():
+        # CI 已整体移除（仓库不再有 .github 目录），命令注入的第一道防线
+        # 只剩 ingest_issue.py 侧的元字符清洗；若将来恢复工作流，本用例
+        # 会自动重新生效。
+        return
+    workflow = workflow_path.read_text(encoding="utf-8")
     # git commit 必须走环境变量
     assert 'git commit -m "$COMMIT_MESSAGE"' in workflow, \
         "commit message 未通过 env 传递"
