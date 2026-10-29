@@ -27,10 +27,10 @@
 这里是一份**内容目录**，不是作品展示，也不是技术项目。它只做一件事：把分散在互联网各处、由真人长期经营的个人站点聚到一起，让人能找到它们、读到它们、订阅它们。
 
 <!-- STATS:START -->
-- 目前收录 **45** 个站点，来自 **6** 个地区，使用 5 种语言写作。
-- 其中 **15** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (30)、`digital-garden` (5)、`notes` (9)、`portfolio` (15)、`newsletter` (1)。
-- 常见主题：`developer` (31)、`indie-hacker` (10)、`maker` (9)、`ai` (8)、`open-source` (4)、`writer` (4)、`designer` (4)、`security` (2)。
+- 目前收录 **50** 个站点，来自 **9** 个地区，使用 5 种语言写作。
+- 其中 **19** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](./site/feeds.opml) 一次性导入阅读器。
+- 内容形态：`blog` (34)、`digital-garden` (6)、`notes` (10)、`portfolio` (18)、`newsletter` (1)。
+- 常见主题：`developer` (35)、`ai` (12)、`indie-hacker` (12)、`maker` (10)、`open-source` (5)、`writer` (5)、`designer` (4)、`security` (2)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西不一样，共同点是**没有把表达权交给平台算法**。
@@ -109,6 +109,8 @@
 | [Dongsheng Zhao (赵东升)](https://blackman99.github.io/me/) | Dongsheng Zhao | AI 全栈工程师，Sveltepress 作者，把 LLM 落地到生产合规系统，记录生产 Agent 与开源工具。 | en, zh-CN | developer, portfolio, open-source |
 | [eastspire (LTPP)](https://ltpp.vip/) | eastspire | LTPP 在线开发平台的个人文档站：在线编辑器、代码运行、批量转 PDF 等自研工具的使用说明，以及 hyperlane Rust Web 框架的完整文档。 | zh-CN | developer, open-source, notes |
 | [Edison AI Workshop](https://edison-zwteam.pages.dev) | Edison | AI 产品开发者，专注信息流自动化、研究效率工具、内容分发系统和 Discord 自动化。 | zh-CN | developer, portfolio, indie-hacker |
+| [Elliot Hu](https://elliothu.me) | Elliot Hu @elliothux | Elliot Hu 的个人网站与技术博客，展示软件工程、AI 与云基础设施相关项目，并持续记录 Agent、Cloudflare、开源与产品工程实践。 | zh-CN, en | blog, developer, portfolio, ai, open-source |
+| [Francis Luz](https://entry.fyi/francisluz) | Francis Luz | Personal page for Francis Luz, a software engineer in Dublin. Work history, projects, and what he is building now, kept on Entry. | en | portfolio, developer, indie-hacker, maker |
 | [froQ's Space](https://froq.me) | froQ | 预备役设计工程师的数字花园，记录日常日志、日记、技术博文、思考与摘抄。 | zh-CN, en | blog, digital-garden |
 | [Gdemoni's World](https://zshgdemoni.me) | Gdemoni | 一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。 | zh-CN, en | digital-garden, developer, blog |
 | [GPT88 博客](https://doc.gpt88.cc/docs/blog/) | 草莽码农 | 围绕模型接入、图片生成、API 集成与工程实践的实用文章。 | zh-CN, en | blog, doc |
@@ -117,6 +119,7 @@
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
 | [Jasper Wei](https://jasper-wei.vast-beech-4429.chatgpt.site) | Jasper Wei | 前汽车工程师，AI Innovation Consultant，记录项目、想法与生活。 | zh-CN | portfolio, blog, maker |
 | [Kim AI Workshop](https://kim-ai-workshop.com) | Kim | Practical AI systems, market intelligence, reusable Skills and automated workflows. | en | developer, indie-hacker, maker |
+| [Kogitore](https://kogitore.com) | Yeee | Yeee 的數位花園：從 ERP 顧問、後端工程師，一路轉職 AI 傳教士的旅途。記錄每日 TIL、想清楚才寫的長文，以及用 AI agents 打造個人 control tower 的實作筆記。 | zh-TW | developer, indie-hacker, blog, notes, ai, game, digital-garden |
 | [Learnmore_smart website](https://www.rateministere.com) | learnmore_smart | 我的个人主页，值得被收录。后续持续更新我的项目 | en, zh-CN, fr | blog, developer, personal-website |
 | [Leon Lin](https://leonlins.com) | Leon Lin | Personal essays on investing, technology, decision-making, and the systems used to research and understand uncertain problems. | en | blog, writer, researcher, tech, newsletter |
 | [LINC.WANG](https://linc.wang) | Linc Wang | 室内设计师、设计公司负责人，也在持续构建自己的 AI 产品。 | zh-CN | designer, portfolio, indie-hacker |
@@ -129,6 +132,7 @@
 | [Schlaflied 的一间房](https://schlaflied-room.work/) | Schlaflied | 写作、AI、开源与生活痕迹放在同一张桌面上：一个仍在生长的教育项目 Plot Ark、career-ops 开源贡献、原创中文写作与随笔，以及零散的案件记录。 | zh-CN, en | blog, portfolio, writer, developer, open-source |
 | [Station Cat](https://wwwstationcat.org) | Station Cat | 一座深夜还亮着灯的个人小站，收集猫、早餐、文章与观察、工具和奇怪想法。 | zh-TW, en, ja | blog, writer, notes |
 | [Su · AI Structure & Workflow Studio](https://su-uni.cc) | Su | AI 结构与工作流工作室：定制工作流 / Agent / 自动化，兼顾架构、原型与商业物料。 | zh-CN, en | designer, portfolio, indie-hacker |
+| [Sulayman Bowles](https://sulayman-bowles.dev/) | Sulayman Bowles | Personal projects and essays on software, AI, and markets by Sulayman Bowles, a finance student at UT Austin working in product and growth. | en | blog, portfolio, developer, ai |
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
 | [Wutong Yu](https://www.wutongyu.site) | 梧桐雨（WutongRain） | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 关于游戏开发、AI领域都兼顾的个人博客。 | zh-CN | developer, blog, game, ai |
@@ -137,6 +141,7 @@
 | [三花猫啾啾和咩咩](https://cafe3310.github.io/chocho-miemie-album/) | cafe3310 | 我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。 | zh-CN | cat, original-character, album |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
 | [嘿小喵](https://heixiaomiao.topnod.art/) | 嗨皮的小玉米 | 不被定义，自在做猫。嘿小喵，用他专属的喵式哲学与生活和解。生活有点黑，但只要我眼里有光，处处皆光明。 | zh-CN | digital-garden |
+| [情報の灯台](https://joho-todai.com/) | 岬 徹（Toru Misaki） | Japanese-language technology news, explanations and commentary by Toru Misaki, covering PCs, semiconductors, operating systems, AI and security with links to sources. | ja | blog, writer, tech, ai |
 | [权小白](https://quanxb.art/) | 权小白 | 05 后的个人站，只写亲自试过的 AI 工具与实践，记录持续更新的思考与判断。 | zh-CN | developer, writer, ai |
 | [皮普的数字花园](https://pipuwong.com) | Pipu | 设计师与摄影师，记录摄影、设计、代码，以及 NAS 自托管与建站实践。 | zh-CN, en | blog, designer, photographer, digital-garden |
 | [老杨的知识荒原](https://awesomeyang.com) | 老杨 AwesomeYang | 全干工程师、aiwith.me 创始人老杨的个人站：记录十年编程到出海独立开发的历程，附博客与真实运转的作品矩阵。 | zh-CN | developer, blog, indie-hacker, maker |
@@ -234,10 +239,10 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **29** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **39** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**12** 次，最近一次「feat: 收录新站点「Leon Lin」（issue #20）」。
-- 功能：**20** 次，最近一次「feat: 收录新站点「Leon Lin」（issue #20）」。
-- 修复：**4** 次，最近一次「fix: validate.yml 改用 --check 检查生成物并拉取完整历史」。
+- 功能：**21** 次，最近一次「feat: add Schlaflied's personal site (#21)」。
+- 修复：**5** 次，最近一次「fix: 修复 Issue 自动收录的命令注入、模板占位符污染与证书校验缺失 (#22)」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->
 

@@ -204,6 +204,55 @@
     "feed": "https://leonlins.com/rss.xml"
   },
   {
+    "name": "情報の灯台",
+    "url": "https://joho-todai.com/",
+    "owner": "岬 徹（Toru Misaki）",
+    "description": "Japanese-language technology news, explanations and commentary by Toru Misaki, covering PCs, semiconductors, operating systems, AI and security with links to sources.",
+    "languages": ["ja"],
+    "region": "Japan",
+    "tags": ["blog", "writer", "tech", "ai"],
+    "feed": "https://joho-todai.com/pinterest-rss/"
+  },
+  {
+    "name": "Sulayman Bowles",
+    "url": "https://sulayman-bowles.dev/",
+    "owner": "Sulayman Bowles",
+    "description": "Personal projects and essays on software, AI, and markets by Sulayman Bowles, a finance student at UT Austin working in product and growth.",
+    "languages": ["en"],
+    "region": "US",
+    "tags": ["blog", "portfolio", "developer", "ai"],
+    "feed": "https://sulayman-bowles.dev/feed.xml"
+  },
+  {
+    "name": "Elliot Hu",
+    "url": "https://elliothu.me",
+    "owner": "Elliot Hu @elliothux",
+    "description": "Elliot Hu 的个人网站与技术博客，展示软件工程、AI 与云基础设施相关项目，并持续记录 Agent、Cloudflare、开源与产品工程实践。",
+    "languages": ["zh-CN", "en"],
+    "region": "China",
+    "tags": ["blog", "developer", "portfolio", "ai", "open-source"],
+    "feed": "https://elliothu.me/feed.xml"
+  },
+  {
+    "name": "Kogitore",
+    "url": "https://kogitore.com",
+    "owner": "Yeee",
+    "description": "Yeee 的數位花園：從 ERP 顧問、後端工程師，一路轉職 AI 傳教士的旅途。記錄每日 TIL、想清楚才寫的長文，以及用 AI agents 打造個人 control tower 的實作筆記。",
+    "languages": ["zh-TW"],
+    "region": "Taiwan",
+    "tags": ["developer", "indie-hacker", "blog", "notes", "ai", "game", "digital-garden"],
+    "feed": "https://kogitore.com/rss.xml"
+  },
+  {
+    "name": "Francis Luz",
+    "url": "https://entry.fyi/francisluz",
+    "owner": "Francis Luz",
+    "description": "Personal page for Francis Luz, a software engineer in Dublin. Work history, projects, and what he is building now, kept on Entry.",
+    "languages": ["en"],
+    "region": "Ireland",
+    "tags": ["portfolio", "developer", "indie-hacker", "maker"]
+  },
+  {
     "name": "陈大黄 - 作品与内容",
     "url": "https://chendahuang.com",
     "owner": "陈大黄",
