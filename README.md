@@ -238,9 +238,9 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **42** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **43** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**13** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
-- 功能：**22** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
+- 功能：**23** 次，最近一次「feat: feed 支持多订阅源并修复子路径站点图标抓取」。
 - 修复：**7** 次，最近一次「fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404」。
 - 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
 <!-- HISTORY:END -->

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """解析 GitHub Issue 表单里的站点提交，追加写入 data/sites.json。
 
-配套 .github/workflows/ingest-issue.yml 使用：提交者填完「提交一个网站」
-Issue 表单后，工作流调用本脚本解析结构化字段、做格式校验与可用性探测，
-通过则提交、部署并回复关闭 Issue，全程无人参与。
+提交者填完「提交一个网站」Issue 表单后，维护者把 Issue 正文导出成本脚本
+的输入（`gh issue view N --json body -q .body > body.md`），脚本解析结构化
+字段、做格式校验与可用性探测，通过则写入数据，并产出可直接回复到 Issue
+的评论与幂等标记。CI 已移除，全流程在本地由维护者执行。
 
 用法：
     python3 scripts/ingest_issue.py <issue-body.md> --result <result.json> \
@@ -11,7 +12,7 @@ Issue 表单后，工作流调用本脚本解析结构化字段、做格式校�
         [--github-output <outputs.txt>] [--issue-number N] [--force]
 
 结果状态：
-    skipped      不是站点提交（例如 bug 反馈），工作流不应做任何回应
+    skipped      不是站点提交（例如 bug 反馈），无需回应
     invalid      解析失败或必填字段缺失，需要提交者补充（--force 不覆盖）
     blocked      命中公开排除清单（平台账号页、商业产品落地页），--force 可覆盖
     unreachable  可用性探测失败，--force 可覆盖
@@ -21,7 +22,7 @@ Issue 表单后，工作流调用本脚本解析结构化字段、做格式校�
 环境变量：
     OPOS_SITES_FILE  覆盖数据文件路径（供测试使用）
 
---force 供维护者在 Issue 上添加 accepted 标签后人工放行。
+--force 供维护者确认放行（站点反爬导致探测失败、或排除清单误判）时使用。
 """
 from __future__ import annotations
 
@@ -486,7 +487,7 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
             "暂时没能收录 ⏳\n\n"
             f"`{url}` 看起来是第三方平台的账号主页，本目录只收录拥有独立域名或稳定托管服务的个人网站"
             "（详见收录标准）。\n\n"
-            "如果判断有误，请维护者在本 Issue 上添加 `accepted` 标签，工作流会跳过检查并重新收录。",
+            "如果判断有误，维护者可以确认后放行收录。",
             name=name,
             url=url,
             revision=revision,
@@ -515,7 +516,7 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
                 "unreachable",
                 f"暂时没能收录 ⏳\n\n自动探测 `{url}` 失败：{detail}\n\n"
                 "如果站点确实可以正常访问（可能是地域限制、反爬拦截或临时故障），"
-                "请维护者在本 Issue 上添加 `accepted` 标签，工作流会跳过探测并重新收录。",
+                "维护者可以确认后跳过探测放行收录。",
                 name=name,
                 url=url,
                 revision=revision,
