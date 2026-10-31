@@ -3,7 +3,7 @@
     "name": "CouCouYa 可可鸭",
     "url": "https://coucouya.com",
     "owner": "CouCouYa",
-    "description": "KOSX.ai 社群增长操盘手，分享 AI、Web3、金融与公开学习。",
+    "description": "KOSX.ai 社群增长负责人的个人站，记录 AI、Web3、金融方面的学习与实践。",
     "languages": ["zh-CN"],
     "region": "China",
     "tags": ["blog", "maker", "notes"]
@@ -105,7 +105,7 @@
     "description": "一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。",
     "languages": ["zh-CN"],
     "region": "Global",
-    "tags": ["developer", "research", "blog"]
+    "tags": ["developer", "researcher", "blog"]
   },
   {
     "name": "只是一根毛",
@@ -165,19 +165,19 @@
     "tags": ["blog", "developer", "notes"]
   },
   {
-    "name": "Learnmore_smart website",
+    "name": "Noah Zixin Zhang",
     "url": "https://www.rateministere.com",
-    "owner": "learnmore_smart",
-    "description": "我的个人主页，值得被收录。后续持续更新我的项目",
+    "owner": "Noah Zixin Zhang (learnmore_smart)",
+    "description": "蒙特利尔学生开发者 Noah Zixin Zhang 的个人站：展示 supastack、LearnX 等自研项目，以及他的钢琴教学频道 Noah's Piano Journey。",
     "languages": ["en", "zh-CN", "fr"],
     "region": "Global",
-    "tags": ["blog", "developer", "personal-website"]
+    "tags": ["portfolio", "developer", "maker"]
   },
   {
     "name": "Huang's Blog",
     "url": "https://blog.clothpath.com/",
     "owner": "huanglizhuo",
-    "description": "独立开发者的个人博客与项目集(build in public):记录并展示 OctoCounts、EchoPod、QwenASR、Ketsuin 等自己从零构建的项目,以及学习笔记。",
+    "description": "独立开发者的个人博客与项目集（Build in Public）：记录 OctoCounts、EchoPod、QwenASR、Ketsuin 等从零构建的项目，以及学习笔记。",
     "languages": ["en"],
     "region": "China",
     "tags": ["developer", "indie-hacker", "maker", "blog"],
@@ -187,10 +187,10 @@
     "name": "虫子樱桃",
     "url": "https://czyt.tech",
     "owner": "czyt",
-    "description": "一个关注编程、ai和linux的博客",
+    "description": "关注编程、AI 与 Linux 的个人技术博客。",
     "languages": ["zh-CN"],
     "region": "China",
-    "tags": ["blog", "developer", "agent", "ai"],
+    "tags": ["blog", "developer", "ai"],
     "feed": "https://czyt.tech/index.xml#feed"
   },
   {
@@ -321,7 +321,7 @@
     "name": "老杨的知识荒原",
     "url": "https://awesomeyang.com",
     "owner": "老杨 AwesomeYang",
-    "description": "全干工程师、aiwith.me 创始人老杨的个人站：记录十年编程到出海独立开发的历程，附博客与真实运转的作品矩阵。",
+    "description": "全干工程师、aiwith.me 创始人老杨的个人站：记录从十年编程到出海独立开发的历程，附博客与仍在运营的作品。",
     "languages": ["zh-CN"],
     "region": "China",
     "tags": ["developer", "blog", "indie-hacker", "maker"],
@@ -341,17 +341,17 @@
     "name": "Alliot's blog",
     "url": "https://blog.alliot.tech",
     "owner": "Alliot",
-    "description": "Alliot个人博客, 记录工作、学习与生活，内容以 DevOps、云原生和架构设计为主, 也会分享一些硬件折腾。",
+    "description": "Alliot 的个人博客，记录工作、学习与生活，内容以 DevOps、云原生和架构设计为主，也会分享一些硬件折腾。",
     "languages": ["zh-CN"],
     "region": "Global",
-    "tags": ["blog", "developer", "devops", "sre"],
+    "tags": ["blog", "developer", "devops"],
     "feed": "https://blog.alliot.tech/atom.xml"
   },
   {
     "name": "XuYi",
     "url": "https://xuyi.dev",
     "owner": "xuyi",
-    "description": "关于游戏开发、AI领域都兼顾的个人博客。",
+    "description": "兼顾游戏开发与 AI 的个人技术博客。",
     "languages": ["zh-CN"],
     "region": "China",
     "tags": ["developer", "blog", "game", "ai"]
@@ -429,7 +429,7 @@
     "description": "围绕模型接入、图片生成、API 集成与工程实践的实用文章。",
     "languages": ["zh-CN", "en"],
     "region": "Global",
-    "tags": ["blog", "doc"]
+    "tags": ["blog", "developer", "ai"]
   },
   {
     "name": "三花猫啾啾和咩咩",
@@ -438,7 +438,7 @@
     "description": "我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。",
     "languages": ["zh-CN"],
     "region": "Global",
-    "tags": ["cat", "original-character", "album"]
+    "tags": ["life", "ai"]
   },
   {
     "name": "X排名",
@@ -447,7 +447,7 @@
     "description": "一个专注于 X（Twitter）账号排名与数据发现的网站，帮助用户发现值得关注的创作者、独立开发者和优质账号。",
     "languages": ["zh-CN"],
     "region": "Global",
-    "tags": ["twitter", "ranking", "social-media", "indie-hacker", "creator"]
+    "tags": ["indie-hacker", "tech"]
   },
   {
     "name": "嘿小喵",
@@ -456,7 +456,7 @@
     "description": "不被定义，自在做猫。嘿小喵，用他专属的喵式哲学与生活和解。生活有点黑，但只要我眼里有光，处处皆光明。",
     "languages": ["zh-CN"],
     "region": "China",
-    "tags": ["digital-garden"]
+    "tags": ["digital-garden", "life"]
   },
   {
     "name": "Schlaflied 的一间房",

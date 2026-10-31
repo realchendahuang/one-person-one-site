@@ -38,7 +38,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-# 收录上限与格式规则直接取自校验器：自动流水线必须和 CI 用同一套标准，
+# 收录上限与格式规则直接取自校验器：收录脚本必须和 validate.py 用同一套标准，
 # 否则会写出通过自身检查、却被 validate.py 拒绝的数据。
 from validate import (  # noqa: E402
     LANGUAGE_RE,
@@ -198,8 +198,8 @@ def clamp(text: str, limit: int) -> str:
 
 
 # 站点名会进入 commit message、Issue 评论和构建产物，属于不可信输入。
-# 这里剥掉 shell 元字符与控制字符：CI 里它会被拼进命令行，即使工作流已改用
-# env 传递（不会被二次解析），也不该依赖下游一直这么写。
+# 这里剥掉 shell 元字符与控制字符：它会被维护者拼进 git commit 等命令行，
+# 不该依赖下游每次都正确转义。
 UNSAFE_CHARS_RE = re.compile(r"[`$<>&|;()\[\]{}\\!*?~\"'\\\n\r\t\x00-\x1f\x7f]")
 
 
@@ -484,7 +484,7 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
         )
 
     # 与 validate.py 同一套规则：这里先拦下来，才能给出可操作的提示，
-    # 而不是让数据写进去之后在 CI 里变成一次构建失败。
+    # 而不是让数据写进去之后在 validate.py 里才失败。
     problems = []
     if len(description) < MIN_DESCRIPTION:
         problems.append(
@@ -590,7 +590,7 @@ def ingest(body: str, force: bool = False, issue_number: str = "") -> dict:
     DATA.write_text(render(sites), encoding="utf-8")
 
     comment = (
-        f"已收录 ✅ 感谢提交！\n\n「{name}」已加入目录，本次自动构建完成后即可在线看到。\n\n"
+        f"已收录 ✅ 感谢提交！\n\n「{name}」已加入目录，维护者发布后即可在线看到。\n\n"
         f"- 站点：{url}\n"
         f"- 可用性探测：{probe}\n\n"
         f"线上浏览：{SITE_URL}\n\n"

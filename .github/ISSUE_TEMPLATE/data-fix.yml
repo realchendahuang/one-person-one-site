@@ -1,0 +1,19 @@
+name: 数据纠错 / Report an issue
+description: 报告失效链接、信息错误、重复收录，或不再符合收录标准的站点
+title: "[Fix] "
+labels: ["data-fix"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: 相关网站 / Related URL
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 问题说明 / What is wrong?
+      description: 例如：网站打不开、简介过时、RSS 地址变了、站点已变成营销页。
+    validations:
+      required: true

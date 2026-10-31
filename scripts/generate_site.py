@@ -40,7 +40,7 @@ ASSETS = ROOT / "assets"
 OUT = ROOT / "site"
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from siteutil import domain_of, feeds_of, slug_for  # noqa: E402
+from siteutil import TAG_LABELS, domain_of, feeds_of, slug_for  # noqa: E402
 
 SITE_URL = "https://realchendahuang.github.io/one-person-one-site/"
 REPO_URL = "https://github.com/realchendahuang/one-person-one-site"
@@ -61,27 +61,6 @@ ICON_ARROW = (
     '<path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>'
 )
 
-TAG_DISPLAY_NAMES = {
-    "developer": "开发者",
-    "blog": "独立博客",
-    "portfolio": "作品集",
-    "maker": "创作者",
-    "indie-hacker": "独立开发",
-    "notes": "数字笔记",
-    "designer": "设计师",
-    "ai": "人工智能",
-    "digital-garden": "数字花园",
-    "open-source": "开源作品",
-    "writer": "文字创作者",
-    "security": "网络安全",
-    "photographer": "摄影日常",
-    "game": "独立游戏",
-    "research": "学术研究",
-    "devops": "DevOps",
-    "sre": "SRE 运维",
-    "agent": "AI Agent",
-    "personal-website": "个人主页",
-}
 
 TAG_COLORS = [
     "var(--tag-violet)",
@@ -177,7 +156,7 @@ def build_milestones_markup(sites: list[dict]) -> tuple[str, str]:
     bar_segments = []
     for idx, (tag, count) in enumerate(top_tags):
         color = TAG_COLORS[idx % len(TAG_COLORS)]
-        label = TAG_DISPLAY_NAMES.get(tag, tag)
+        label = TAG_LABELS.get(tag, tag)
         pct = max(1, round(count / total_tags_instances * 100))
         bar_segments.append(
             f'<button type="button" class="milestone-segment" data-tag="{esc(tag)}" '
@@ -191,13 +170,13 @@ def build_milestones_markup(sites: list[dict]) -> tuple[str, str]:
         bar_segments.append(
             f'<button type="button" class="milestone-segment" data-tag="" '
             f'style="flex-grow:{remaining_count};flex-basis:0;background:var(--tag-slate)" '
-            f'aria-label="其他赛道 {remaining_count} 个" title="其他赛道: {remaining_count} 个"></button>'
+            f'aria-label="其他标签 {remaining_count} 个" title="其他标签: {remaining_count} 个"></button>'
         )
 
     milestone_pills = []
     for idx, (tag, count) in enumerate(sorted_tags[:14]):
         color = TAG_COLORS[idx % len(TAG_COLORS)] if idx < len(top_tags) else "var(--tag-slate)"
-        label = TAG_DISPLAY_NAMES.get(tag, tag)
+        label = TAG_LABELS.get(tag, tag)
         milestone_pills.append(
             f'<button type="button" class="milestone-pill" data-tag="{esc(tag)}">'
             f'<span class="milestone-dot" style="background:{color}" aria-hidden="true"></span>'
@@ -264,7 +243,7 @@ def build_directory_page(sites: list[dict], style: str) -> str:
 
     by_tag: list[str] = []
     for tag, count in sorted(tag_counts.items(), key=lambda kv: (-kv[1], kv[0])):
-        label = TAG_DISPLAY_NAMES.get(tag, tag)
+        label = TAG_LABELS.get(tag, tag)
         members = [s for s in sites if tag in s.get("tags", [])]
         items = "".join(
             f'<li><a href="{esc(s.get("url", ""))}" target="_blank" rel="noopener noreferrer">'
@@ -357,7 +336,7 @@ h2 {{ font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 2re
 
 <main class="main-wrapper">
   <h1>完整目录</h1>
-  <p class="dir-intro">共收录 {len(sites)} 个站点，均来自真实创作者独立经营的博客、数字花园或作品集。其中 {len(feeds)} 个提供 RSS 订阅源，可通过 <a href="../feeds.opml">订阅合集</a> 一键导入阅读器。</p>
+  <p class="dir-intro">共收录 {len(sites)} 个站点，都是由真人经营的博客、数字花园或作品集。其中 {len(feeds)} 个提供 RSS 订阅源，可通过 <a href="../feeds.opml">订阅合集</a> 一键导入阅读器。</p>
   <p class="dir-nav"><a href="../">← 返回首页</a></p>
 
   <h2>按标签浏览</h2>
@@ -377,7 +356,7 @@ h2 {{ font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 2re
     <span aria-hidden="true">·</span>
     <a href="{SUBMIT_URL}" target="_blank" rel="noopener">提交新站</a>
   </div>
-  <div class="footer-motto">{SITE_TITLE} · 属于每一个人的独立互联网家园</div>
+  <div class="footer-motto">{SITE_TITLE} · 让认真写字的人被找到</div>
 </footer>
 </body>
 </html>
@@ -476,7 +455,7 @@ def main() -> None:
     template = (TEMPLATES / "index.html").read_text(encoding="utf-8")
     app_js = (TEMPLATES / "app.js").read_text(encoding="utf-8")
 
-    payload = json.dumps({"sites": sites}, ensure_ascii=False, separators=(",", ":"))
+    payload = json.dumps({"sites": sites, "tagNames": TAG_LABELS}, ensure_ascii=False, separators=(",", ":"))
     payload = payload.replace("</", "<\\/")
 
     feeds_count = sum(1 for s in sites if s.get("feed"))
@@ -489,6 +468,8 @@ def main() -> None:
     domain_percent = f"{(custom_domains / len(sites) * 100):.1f}" if sites else "0.0"
 
     owners_count = len(set(s.get("owner", "") for s in sites if s.get("owner")))
+    region_count = len(set(s.get("region", "") for s in sites if s.get("region")))
+    lang_count = len(set(code for s in sites for code in s.get("languages", [])))
     tag_counts = Counter(tag for site in sites for tag in site.get("tags", []))
     tag_count = len(tag_counts)
 
@@ -503,6 +484,8 @@ def main() -> None:
         "FEED_PERCENT": feed_percent,
         "DOMAIN_PERCENT": domain_percent,
         "OWNER_COUNT": str(owners_count),
+        "REGION_COUNT": str(region_count),
+        "LANG_COUNT": str(lang_count),
         "TAG_COUNT": str(tag_count),
         "MILESTONE_BAR": bar_html,
         "MILESTONE_TAGS": pills_html,

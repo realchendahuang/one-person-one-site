@@ -24,10 +24,16 @@ README 中的维护区间（脚本只替换区间内部，区间外的内容不�
 import json
 import re
 import subprocess
+import sys
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from siteutil import TAG_GROUPS  # noqa: E402
+
+# site/ 是构建产物、不进仓库，README 里的订阅合集必须链到线上地址
+OPML_URL = "https://realchendahuang.github.io/one-person-one-site/feeds.opml"
 DATA = ROOT / "data" / "sites.json"
 OUT = ROOT / "DIRECTORY.md"
 README_FILES = {
@@ -52,7 +58,7 @@ HISTORY_PATTERN = re.compile(
 )
 
 # 代表「内容形态」的标签；其余标签视为身份或主题，避免两类混在一起展示
-FORM_TAGS = ["blog", "digital-garden", "notes", "portfolio", "newsletter"]
+FORM_TAGS = list(TAG_GROUPS["form"])
 
 
 def esc(text: str) -> str:
@@ -104,7 +110,7 @@ def build_stats_block(sites: list, lang: str) -> str:
             f"- **{len(sites)}** independent sites from **{len(regions)}** regions, "
             f"written in {len(lang_counts)} languages.",
             f"- **{feeds}** of them publish an RSS / Atom feed — import the whole list "
-            "at once with [feeds.opml](./site/feeds.opml).",
+            f"at once with [feeds.opml]({OPML_URL}).",
             "- Content types: " + ", ".join(f"{t} ({c})" for t, c in forms) + ".",
             "- Common topics: " + ", ".join(f"{t} ({c})" for t, c in topics) + ".",
         ]
@@ -113,7 +119,7 @@ def build_stats_block(sites: list, lang: str) -> str:
             f"- 目前收录 **{len(sites)}** 个站点，来自 **{len(regions)}** 个地区，"
             f"使用 {len(lang_counts)} 种语言写作。",
             f"- 其中 **{feeds}** 个提供 RSS / Atom 订阅源，可通过 "
-            "[feeds.opml](./site/feeds.opml) 一次性导入阅读器。",
+            f"[feeds.opml]({OPML_URL}) 一次性导入阅读器。",
             "- 内容形态：" + "、".join(f"`{t}` ({c})" for t, c in forms) + "。",
             "- 常见主题：" + "、".join(f"`{t}` ({c})" for t, c in topics) + "。",
         ]
@@ -200,7 +206,7 @@ def main() -> None:
 
     if not sites:
         lines += [
-            "暂无站点。欢迎成为第一批贡献者：请使用 Issue 模板或修改 `data/sites.json` 提交 PR。",
+            "暂无站点。欢迎成为第一批贡献者：用 Issue 表单提交，或修改 `data/sites.json` 提交 PR。",
             "",
         ]
     else:

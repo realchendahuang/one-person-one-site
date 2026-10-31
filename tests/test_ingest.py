@@ -189,8 +189,8 @@ def test_workflow_does_not_interpolate_untrusted_outputs():
     """
     workflow_path = ROOT / ".github" / "workflows" / "ingest-issue.yml"
     if not workflow_path.exists():
-        # CI 已整体移除（仓库不再有 .github 目录），命令注入的第一道防线
-        # 只剩 ingest_issue.py 侧的元字符清洗；若将来恢复工作流，本用例
+        # CI 已移除（.github 里只保留 Issue / PR 模板，没有 workflows），命令注入的
+        # 第一道防线只剩 ingest_issue.py 侧的元字符清洗；若将来恢复工作流，本用例
         # 会自动重新生效。
         return
     workflow = workflow_path.read_text(encoding="utf-8")

@@ -48,3 +48,39 @@ def feeds_of(site: dict) -> list[str]:
     if not feed:
         return []
     return [feed] if isinstance(feed, str) else list(feed)
+
+
+# 推荐标签与中文显示名，分「内容形态 / 作者身份 / 主题」三组。
+# 这是标签的唯一来源：generate_site.py 用它渲染中文名并注入前端，
+# validate.py 用它提示不在推荐表里的标签，文档里的标签表也应与它一致。
+TAG_GROUPS: dict[str, dict[str, str]] = {
+    "form": {
+        "blog": "博客",
+        "digital-garden": "数字花园",
+        "notes": "笔记",
+        "portfolio": "作品集",
+        "newsletter": "通讯",
+    },
+    "role": {
+        "developer": "开发者",
+        "designer": "设计师",
+        "writer": "写作者",
+        "maker": "创客",
+        "indie-hacker": "独立开发",
+        "photographer": "摄影师",
+        "researcher": "研究者",
+    },
+    "topic": {
+        "ai": "AI",
+        "open-source": "开源",
+        "security": "安全",
+        "devops": "DevOps",
+        "game": "游戏",
+        "tech": "科技",
+        "life": "生活",
+    },
+}
+
+TAG_LABELS: dict[str, str] = {
+    tag: label for group in TAG_GROUPS.values() for tag, label in group.items()
+}

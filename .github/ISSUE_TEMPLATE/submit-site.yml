@@ -1,0 +1,96 @@
+# 只是 Issue 表单模板，不是 CI。收录由维护者在本地运行 scripts/ingest_issue.py 处理。
+# 字段标题里的关键词（网站名称、网站地址、站长、介绍、语言、地区、标签、RSS、提交确认）
+# 是 ingest_issue.py 识别字段的依据，改标题时请保留这些词。
+name: 提交一个网站 / Submit a site
+description: 推荐一个由真人长期经营的个人网站、独立博客或数字花园
+title: "[Submit] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        收录前请先看一眼 [收录标准](https://github.com/realchendahuang/one-person-one-site#收录标准)。
+        公司官网、产品落地页、社交平台账号页不在收录范围内。维护者通常会在一两天内处理，结果会回复在这个 Issue 里。
+
+  - type: input
+    id: name
+    attributes:
+      label: 网站名称 / Site name
+      description: 不超过 40 个字符。
+      placeholder: Example Blog
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 网站地址 / URL
+      description: 填首页地址，不要填某一篇文章。
+      placeholder: https://example.com
+    validations:
+      required: true
+
+  - type: input
+    id: owner
+    attributes:
+      label: 站长 / 创作者 / Owner
+      placeholder: 你的常用名或昵称
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 一句话介绍 / Description
+      description: 15~240 个字符。用第三人称客观写：这是谁的站、主要写什么。不要写「值得收录」这类话。
+      placeholder: 一位后端工程师的技术博客，记录分布式系统与数据库的实践笔记。
+    validations:
+      required: true
+
+  - type: input
+    id: languages
+    attributes:
+      label: 主要语言 / Languages
+      placeholder: zh-CN, en
+    validations:
+      required: true
+
+  - type: input
+    id: region
+    attributes:
+      label: 地区 / Region
+      placeholder: China / Taiwan / Japan / US / Global
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: 标签 / Tags
+      description: |
+        1~8 个，尽量从推荐标签里选：
+        形态 blog, digital-garden, notes, portfolio, newsletter；
+        身份 developer, designer, writer, maker, indie-hacker, photographer, researcher；
+        主题 ai, open-source, security, devops, game, tech, life。
+      placeholder: blog, developer, ai
+    validations:
+      required: true
+
+  - type: input
+    id: feed
+    attributes:
+      label: RSS / Atom（可选）
+      description: 有订阅源的站点会进入订阅合集 feeds.opml。
+      placeholder: https://example.com/feed.xml
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交确认
+      options:
+        - label: 这是由个人长期经营的网站，不是公司官网、产品落地页或接单服务页。
+          required: true
+        - label: 网站上已经有原创内容（文章、笔记或作品），不是刚搭好的空站。
+          required: true
+        - label: 网站现在可以正常访问。
+          required: true

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """校验 data/sites.json 的结构与收录规范。
 
-这里是收录数据的唯一守门人：本地提交、CI 校验、Issue 自动收录三条路径
-最终都要经过它。校验规则与 CONTRIBUTING.md 的字段说明保持一致。
+这里是收录数据的唯一守门人：PR 提交与 Issue 收录（ingest_issue.py）两条路径
+最终都要经过它，全部在本地执行。校验规则与 CONTRIBUTING.md 的字段说明保持一致。
 
 用法：
     python3 scripts/validate.py
@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA = ROOT / "data" / "sites.json"
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from siteutil import has_placeholder  # noqa: E402
+from siteutil import TAG_LABELS, has_placeholder  # noqa: E402
 
 # README 里由 git log 生成的历史区块：内容允许落后一个提交，检查时整块豁免
 HISTORY_BLOCK_RE = re.compile(
@@ -239,6 +239,13 @@ def main() -> None:
     except Invalid as exc:
         print(f"ERROR: {exc}")
         sys.exit(1)
+
+    # 推荐标签表之外的标签只提示、不拦截：标签表会随收录演进，
+    # 但一次性的私有标签会把首页的标签分布切得很碎，值得维护者看一眼
+    for site in sites:
+        extra = [tag for tag in site["tags"] if tag not in TAG_LABELS]
+        if extra:
+            print(f"WARN: {site['name']} 使用了推荐表之外的标签: {', '.join(extra)}")
 
     print(f"OK: validated {count} site(s)")
 

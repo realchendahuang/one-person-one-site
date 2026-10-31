@@ -46,7 +46,7 @@
 </head>
 <body>
 
-<!-- 顶栏：KOSX 风格磨砂导航栏 -->
+<!-- 顶栏 -->
 <header class="site-header">
   <div class="header-inner">
     <a href="./" class="brand" aria-label="一人一站 首页">
@@ -93,45 +93,45 @@
 <main class="main-wrapper">
   <!-- Hero 标题 -->
   <div class="hero-header">
-    <h1 class="hero-title">一人一站 · 独立博客计划</h1>
-    <p class="hero-desc">收录真实创作者独立经营的博客与个人作品集 · 平台围墙之外的自由书写与真实表达</p>
+    <h1 class="hero-title">一人一站 · 个人网站目录</h1>
+    <p class="hero-desc">收录由真人长期经营的独立博客、数字花园与作品集。可以按标签找、全文搜，也可以随机去一个陌生人的站点看看。</p>
   </div>
 
-  <!-- Bento 核心数据总览 (Row 1) -->
+  <!-- 总览 -->
   <div class="bento-row-top">
     <!-- 左侧总览 -->
     <div class="panel-card bento-hero-left">
-      <div class="bento-label">社群收录独立站点</div>
+      <div class="bento-label">已收录站点</div>
       <div class="bento-big-stat" aria-live="polite">__SITE_COUNT__</div>
       <div class="bento-sub-metrics">
         <div class="bento-sub-item">
-          <span class="sub-label">RSS 订阅覆盖</span>
+          <span class="sub-label">提供 RSS</span>
           <span class="sub-val">__FEED_PERCENT__%</span>
         </div>
         <div class="bento-sub-item">
-          <span class="sub-label">独立域名占比</span>
+          <span class="sub-label">使用自有域名</span>
           <span class="sub-val">__DOMAIN_PERCENT__%</span>
         </div>
         <div class="bento-sub-item">
-          <span class="sub-label">独立创作者</span>
+          <span class="sub-label">作者</span>
           <span class="sub-val">__OWNER_COUNT__ 位</span>
         </div>
       </div>
     </div>
 
-    <!-- 右侧探索 -->
+    <!-- 随机漫游 -->
     <div class="panel-card bento-hero-right">
-      <div class="bento-label">自由漫游 &amp; 探索</div>
-      <div class="bento-big-stat text-signal" aria-live="polite">+100% 独立</div>
+      <div class="bento-label">随便逛逛</div>
+      <div class="bento-big-stat text-signal">去串个门</div>
       <div class="bento-desc-row">
-        <span>__SITE_COUNT__ 位真实创作者 · 零算法推荐 · 偶遇每一个鲜活思想</span>
+        <span>这里没有排行榜，也没有推荐算法。点一下，随机打开一个收录的站点。</span>
       </div>
       <div class="bento-actions-row">
         <button id="hero-btn-shuffle" type="button" class="hero-action-btn primary" title="随机漫游一个站点">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m16 3 5 5-5 5"/><path d="M4 20L21 3"/><path d="m21 16-5 5-5-5"/><path d="M15 15l-5 5H4"/><path d="M4 4l5 5"/></svg>
-          <span>随机漫游一个站点</span>
+          <span>随机打开一个站点</span>
         </button>
-        <a href="./feeds.opml" download class="hero-action-btn secondary" title="一键导入 RSS 阅读器">
+        <a href="./feeds.opml" download class="hero-action-btn secondary" title="下载 OPML，导入 RSS 阅读器">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
           <span>订阅合集 (OPML)</span>
         </a>
@@ -139,37 +139,37 @@
     </div>
   </div>
 
-  <!-- Bento 细分四指标 (Row 2) -->
+  <!-- 细分数据 -->
   <div class="bento-stats-grid">
     <div class="panel-card card-lift stat-item">
-      <div class="stat-item-label">独立博主</div>
-      <div class="stat-item-val">__OWNER_COUNT__</div>
-      <div class="stat-item-sub">真实创作者</div>
+      <div class="stat-item-label">地区</div>
+      <div class="stat-item-val">__REGION_COUNT__</div>
+      <div class="stat-item-sub">作者所在地</div>
+    </div>
+    <div class="panel-card card-lift stat-item">
+      <div class="stat-item-label">写作语言</div>
+      <div class="stat-item-val">__LANG_COUNT__</div>
+      <div class="stat-item-sub">中文、英文、日文等</div>
     </div>
     <div class="panel-card card-lift stat-item">
       <div class="stat-item-label">RSS 订阅源</div>
       <div class="stat-item-val">__FEED_COUNT__</div>
-      <div class="stat-item-sub">一键导入阅读器</div>
-    </div>
-    <div class="panel-card card-lift stat-item">
-      <div class="stat-item-label">赛道标签</div>
-      <div class="stat-item-val">__TAG_COUNT__</div>
-      <div class="stat-item-sub">多元领域沉淀</div>
+      <div class="stat-item-sub">打包在订阅合集里</div>
     </div>
     <div class="panel-card card-lift stat-item">
       <div class="stat-item-label">开放数据</div>
-      <div class="stat-item-val">JSON · CC0</div>
-      <div class="stat-item-sub">开放可复用</div>
+      <div class="stat-item-val">JSON</div>
+      <div class="stat-item-sub">MIT 许可，随意复用</div>
     </div>
   </div>
 
-  <!-- Bento 里程碑分布 (Row 3) -->
+  <!-- 标签分布 -->
   <section class="panel-card milestone-section">
     <div class="milestone-header">
-      <h2 class="milestone-title">赛道与生态分布</h2>
-      <span class="milestone-count">__SITE_COUNT__ 座独立站点 · 涵盖 __TAG_COUNT__ 个探索方向</span>
+      <h2 class="milestone-title">大家在写什么</h2>
+      <span class="milestone-count">按标签统计 · 共 __TAG_COUNT__ 个标签，点击可筛选</span>
     </div>
-    <div class="milestone-bar-wrap" role="group" aria-label="赛道比例分布">
+    <div class="milestone-bar-wrap" role="group" aria-label="标签分布">
       __MILESTONE_BAR__
     </div>
     <div class="milestone-pills-wrap">
@@ -192,7 +192,7 @@
 
     <!-- 排序分段按钮 -->
     <div class="sort-group" role="group" aria-label="排序方式">
-      <button type="button" class="sort-btn active" data-sort="default" aria-pressed="true">推荐</button>
+      <button type="button" class="sort-btn active" data-sort="default" aria-pressed="true">默认</button>
       <button type="button" class="sort-btn" data-sort="name" aria-pressed="false">字母序</button>
       <button type="button" class="sort-btn" data-sort="random" aria-pressed="false">随机</button>
     </div>
@@ -253,7 +253,7 @@ __CARDS__
     <span aria-hidden="true">·</span>
     <a href="https://github.com/realchendahuang/one-person-one-site/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>
   </div>
-  <div class="footer-motto">一人一站 · 属于每一个人的独立互联网家园</div>
+  <div class="footer-motto">一人一站 · 让认真写字的人被找到</div>
 </footer>
 
 <!-- 站点数据 -->

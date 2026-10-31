@@ -2,9 +2,9 @@
   "use strict";
 
   /* ============================================================
-     一人一站 · KOSX Bento 客户端交互引擎
+     一人一站 · 前端交互
      渐进增强：卡片在构建期由 HTML 静态渲染，禁用 JS 依然全量可读；
-     JS 增强：瞬时检索、标签聚合、Bento 里程碑联动、随机漫游。
+     JS 只负责搜索、标签筛选、标签分布条联动、排序与随机漫游。
      ============================================================ */
 
   /* 1. 主题切换与系统跟随 */
@@ -28,7 +28,7 @@
       var current = document.documentElement.getAttribute("data-theme-mode") || "system";
       var next = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
       applyTheme(next);
-      showToast("主题切换为: " + (next === "system" ? "跟随系统" : next === "dark" ? "深色模式" : "浅色模式"));
+      showToast("已切换为" + (next === "system" ? "跟随系统" : next === "dark" ? "深色模式" : "浅色模式"));
     });
   }
 
@@ -42,37 +42,16 @@
     });
   }
 
-  /* 2. 标签中文名称映射 */
-  var TAG_NAMES = {
-    "developer": "开发者",
-    "blog": "独立博客",
-    "portfolio": "作品集",
-    "maker": "创作者",
-    "indie-hacker": "独立开发",
-    "notes": "数字笔记",
-    "designer": "设计师",
-    "ai": "人工智能",
-    "digital-garden": "数字花园",
-    "open-source": "开源作品",
-    "writer": "文字创作者",
-    "security": "网络安全",
-    "photographer": "摄影日常",
-    "game": "独立游戏",
-    "research": "学术研究",
-    "devops": "DevOps",
-    "sre": "SRE 运维",
-    "agent": "AI Agent",
-    "personal-website": "个人主页"
-  };
+  /* 2. 数据与标签中文名（中文名由构建脚本从 scripts/siteutil.py 注入，前后端共用一份） */
+  var rawData = JSON.parse(document.getElementById("sites-data").textContent || '{"sites":[]}');
+  var sites = rawData.sites || [];
+  var TAG_NAMES = rawData.tagNames || {};
 
   function displayTag(tag) {
     return TAG_NAMES[tag] || tag;
   }
 
-  /* 3. 数据与元素引用 */
-  var rawData = JSON.parse(document.getElementById("sites-data").textContent || '{"sites":[]}');
-  var sites = rawData.sites || [];
-
+  /* 3. 元素引用 */
   var tagsBar = document.getElementById("tags-bar");
   var grid = document.getElementById("sites-grid");
   var emptyState = document.getElementById("empty-state");
@@ -199,7 +178,7 @@
     });
   }
 
-  /* 7. 里程碑联动高亮 */
+  /* 7. 标签分布条联动高亮 */
   function syncMilestoneState() {
     document.querySelectorAll(".milestone-pill").forEach(function(pill) {
       var t = pill.getAttribute("data-tag");
@@ -310,7 +289,7 @@
     if (matched.length === 0) {
       var emptyEl = document.createElement("div");
       emptyEl.className = "search-empty";
-      emptyEl.textContent = "没有匹配的独立站点";
+      emptyEl.textContent = "没有匹配的站点";
       searchResults.appendChild(emptyEl);
       return;
     }
@@ -464,7 +443,7 @@
   function handleShuffle() {
     if (!sites.length) return;
     var site = sites[Math.floor(Math.random() * sites.length)];
-    showToast("🎲 前往创作者：" + site.name);
+    showToast("正在打开：" + site.name);
     setTimeout(function() {
       window.open(site.url, "_blank", "noopener,noreferrer");
     }, 300);
