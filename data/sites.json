@@ -423,15 +423,6 @@
     "tags": ["blog", "digital-garden"]
   },
   {
-    "name": "GPT88 博客",
-    "url": "https://doc.gpt88.cc/docs/blog/",
-    "owner": "草莽码农",
-    "description": "围绕模型接入、图片生成、API 集成与工程实践的实用文章。",
-    "languages": ["zh-CN", "en"],
-    "region": "Global",
-    "tags": ["blog", "developer", "ai"]
-  },
-  {
     "name": "三花猫啾啾和咩咩",
     "url": "https://cafe3310.github.io/chocho-miemie-album/",
     "owner": "cafe3310",
@@ -439,15 +430,6 @@
     "languages": ["zh-CN"],
     "region": "Global",
     "tags": ["life", "ai"]
-  },
-  {
-    "name": "X排名",
-    "url": "https://xpaiming.com/",
-    "owner": "Harries",
-    "description": "一个专注于 X（Twitter）账号排名与数据发现的网站，帮助用户发现值得关注的创作者、独立开发者和优质账号。",
-    "languages": ["zh-CN"],
-    "region": "Global",
-    "tags": ["indie-hacker", "tech"]
   },
   {
     "name": "嘿小喵",

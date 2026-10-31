@@ -27,10 +27,10 @@
 这里把分散在互联网各处、由真人经营的个人站点收到一起，让人能找到它们、读到它们、订阅它们。每个站点都由维护者看过之后才收录，每一条都写明这是谁的站、主要在写什么或做什么。
 
 <!-- STATS:START -->
-- 目前收录 **50** 个站点，来自 **9** 个地区，使用 5 种语言写作。
+- 目前收录 **48** 个站点，来自 **9** 个地区，使用 5 种语言写作。
 - 其中 **19** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (33)、`digital-garden` (6)、`notes` (10)、`portfolio` (19)、`newsletter` (1)。
-- 常见主题：`developer` (36)、`ai` (14)、`indie-hacker` (12)、`maker` (11)、`open-source` (5)、`writer` (5)、`designer` (4)、`tech` (3)。
+- 内容形态：`blog` (32)、`digital-garden` (6)、`notes` (10)、`portfolio` (19)、`newsletter` (1)。
+- 常见主题：`developer` (35)、`ai` (13)、`maker` (11)、`indie-hacker` (11)、`open-source` (5)、`writer` (5)、`designer` (4)、`security` (2)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西各不相同，共同点是把自己的东西放在自己的站点上，而不是只交给平台。
@@ -132,7 +132,6 @@
 | [Francis Luz](https://entry.fyi/francisluz) | Francis Luz | Personal page for Francis Luz, a software engineer in Dublin. Work history, projects, and what he is building now, kept on Entry. | en | portfolio, developer, indie-hacker, maker |
 | [froQ's Space](https://froq.me) | froQ | 预备役设计工程师的数字花园，记录日常日志、日记、技术博文、思考与摘抄。 | zh-CN, en | blog, digital-garden |
 | [Gdemoni's World](https://zshgdemoni.me) | Gdemoni | 一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。 | zh-CN, en | digital-garden, developer, blog |
-| [GPT88 博客](https://doc.gpt88.cc/docs/blog/) | 草莽码农 | 围绕模型接入、图片生成、API 集成与工程实践的实用文章。 | zh-CN, en | blog, developer, ai |
 | [Huang's Blog](https://blog.clothpath.com/) | huanglizhuo | 独立开发者的个人博客与项目集（Build in Public）：记录 OctoCounts、EchoPod、QwenASR、Ketsuin 等从零构建的项目，以及学习笔记。 | en | developer, indie-hacker, maker, blog |
 | [Jack Flux](https://jack0813y.github.io) | Jack | 一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。 | zh-CN | blog, developer, digital-garden |
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
@@ -155,7 +154,6 @@
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
 | [Wutong Yu](https://www.wutongyu.site) | 梧桐雨（WutongRain） | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 兼顾游戏开发与 AI 的个人技术博客。 | zh-CN | developer, blog, game, ai |
-| [X排名](https://xpaiming.com/) | Harries | 一个专注于 X（Twitter）账号排名与数据发现的网站，帮助用户发现值得关注的创作者、独立开发者和优质账号。 | zh-CN | indie-hacker, tech |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [三花猫啾啾和咩咩](https://cafe3310.github.io/chocho-miemie-album/) | cafe3310 | 我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。 | zh-CN | life, ai |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -260,11 +258,11 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **45** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **46** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**13** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
 - 功能：**24** 次，最近一次「feat: ingest_issue 支持手写列表格式的站点提交」。
 - 修复：**7** 次，最近一次「fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404」。
-- 重构：**2** 次，最近一次「refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐」。
+- 重构：**3** 次，最近一次「refactor: 统一标签与文案，恢复 Issue/PR 模板（不含 CI），整理收录数据」。
 <!-- HISTORY:END -->
 
 <p align="center">

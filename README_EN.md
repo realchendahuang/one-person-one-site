@@ -27,10 +27,10 @@
 This directory gathers personal sites run by real people, scattered across the web, so that others can find them, read them and subscribe to them. The maintainer looks at every site before listing it, and each entry says whose site it is and what they write or make.
 
 <!-- STATS:START -->
-- **50** independent sites from **9** regions, written in 5 languages.
+- **48** independent sites from **9** regions, written in 5 languages.
 - **19** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml).
-- Content types: blog (33), digital-garden (6), notes (10), portfolio (19), newsletter (1).
-- Common topics: developer (36), ai (14), indie-hacker (12), maker (11), open-source (5), writer (5), designer (4), tech (3).
+- Content types: blog (32), digital-garden (6), notes (10), portfolio (19), newsletter (1).
+- Common topics: developer (35), ai (13), maker (11), indie-hacker (11), open-source (5), writer (5), designer (4), security (2).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out lessons on RAG and backend systems. They write about different things. What they share is that their work lives on a site of their own, not only on a platform.
@@ -132,7 +132,6 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [Francis Luz](https://entry.fyi/francisluz) | Francis Luz | Personal page for Francis Luz, a software engineer in Dublin. Work history, projects, and what he is building now, kept on Entry. | en | portfolio, developer, indie-hacker, maker |
 | [froQ's Space](https://froq.me) | froQ | 预备役设计工程师的数字花园，记录日常日志、日记、技术博文、思考与摘抄。 | zh-CN, en | blog, digital-garden |
 | [Gdemoni's World](https://zshgdemoni.me) | Gdemoni | 一名大三学生的个人数字花园：AI 编程项目、文章笔记与大学成长经历。 | zh-CN, en | digital-garden, developer, blog |
-| [GPT88 博客](https://doc.gpt88.cc/docs/blog/) | 草莽码农 | 围绕模型接入、图片生成、API 集成与工程实践的实用文章。 | zh-CN, en | blog, developer, ai |
 | [Huang's Blog](https://blog.clothpath.com/) | huanglizhuo | 独立开发者的个人博客与项目集（Build in Public）：记录 OctoCounts、EchoPod、QwenASR、Ketsuin 等从零构建的项目，以及学习笔记。 | en | developer, indie-hacker, maker, blog |
 | [Jack Flux](https://jack0813y.github.io) | Jack | 一个制造业工程师的 AI 探索记录：Agent、自动化、Vibe Coding 与真实构建过程。 | zh-CN | blog, developer, digital-garden |
 | [Jask](https://jask.dev/) | Jask | 独立开发者：AI 产品、Web3 安全研究与 SEO 工程，公开构建多条产品线并记录经历。 | en, zh-CN | developer, indie-hacker, security |
@@ -155,7 +154,6 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
 | [Wutong Yu](https://www.wutongyu.site) | 梧桐雨（WutongRain） | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 兼顾游戏开发与 AI 的个人技术博客。 | zh-CN | developer, blog, game, ai |
-| [X排名](https://xpaiming.com/) | Harries | 一个专注于 X（Twitter）账号排名与数据发现的网站，帮助用户发现值得关注的创作者、独立开发者和优质账号。 | zh-CN | indie-hacker, tech |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [三花猫啾啾和咩咩](https://cafe3310.github.io/chocho-miemie-album/) | cafe3310 | 我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。 | zh-CN | life, ai |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -260,11 +258,11 @@ Scripts, documentation and the listing data (`data/sites.json`) are released und
 ## Project history
 
 <!-- HISTORY:START -->
-- **45** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **46** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **13** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
 - Features: **24** commits, latest: “feat: ingest_issue 支持手写列表格式的站点提交”.
 - Fixes: **7** commits, latest: “fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404”.
-- Refactors: **2** commits, latest: “refactor: 静态渲染重构、无障碍修复、内容化 README 与自动化补齐”.
+- Refactors: **3** commits, latest: “refactor: 统一标签与文案，恢复 Issue/PR 模板（不含 CI），整理收录数据”.
 <!-- HISTORY:END -->
 
 <p align="center">
