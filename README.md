@@ -258,10 +258,10 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **46** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **47** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**13** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
 - 功能：**24** 次，最近一次「feat: ingest_issue 支持手写列表格式的站点提交」。
-- 修复：**7** 次，最近一次「fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404」。
+- 修复：**8** 次，最近一次「fix: 移除不符合收录标准的 X排名、GPT88 博客（平台型产品 / API 服务文档站）」。
 - 重构：**3** 次，最近一次「refactor: 统一标签与文案，恢复 Issue/PR 模板（不含 CI），整理收录数据」。
 <!-- HISTORY:END -->
 

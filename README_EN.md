@@ -258,10 +258,10 @@ Scripts, documentation and the listing data (`data/sites.json`) are released und
 ## Project history
 
 <!-- HISTORY:START -->
-- **46** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **47** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **13** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
 - Features: **24** commits, latest: “feat: ingest_issue 支持手写列表格式的站点提交”.
-- Fixes: **7** commits, latest: “fix: deploy.py 修复发布 tree 根多了 site/ 前缀导致 Pages 404”.
+- Fixes: **8** commits, latest: “fix: 移除不符合收录标准的 X排名、GPT88 博客（平台型产品 / API 服务文档站）”.
 - Refactors: **3** commits, latest: “refactor: 统一标签与文案，恢复 Issue/PR 模板（不含 CI），整理收录数据”.
 <!-- HISTORY:END -->
 
