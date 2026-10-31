@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **48** 个站点。
+当前共收录 **49** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -40,6 +40,7 @@
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
 | [Wutong Yu](https://www.wutongyu.site) | 梧桐雨（WutongRain） | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 兼顾游戏开发与 AI 的个人技术博客。 | zh-CN | developer, blog, game, ai |
+| [Yorben](https://yorben.me) | Yorben Vander Sleyen | Tactile native macOS software, RealityKit logistics simulations, and deep Apple platform engineering. | en | portfolio, developer, open-source |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [三花猫啾啾和咩咩](https://cafe3310.github.io/chocho-miemie-album/) | cafe3310 | 我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。 | zh-CN | life, ai |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -57,4 +58,4 @@
 
 ## 标签统计
 
-`developer` (35) · `blog` (32) · `portfolio` (19) · `ai` (13) · `indie-hacker` (11) · `maker` (11) · `notes` (10) · `digital-garden` (6) · `open-source` (5) · `writer` (5) · `designer` (4) · `game` (2) · `life` (2) · `researcher` (2) · `security` (2) · `tech` (2) · `devops` (1) · `newsletter` (1) · `photographer` (1)
+`developer` (36) · `blog` (32) · `portfolio` (20) · `ai` (13) · `indie-hacker` (11) · `maker` (11) · `notes` (10) · `digital-garden` (6) · `open-source` (6) · `writer` (5) · `designer` (4) · `game` (2) · `life` (2) · `researcher` (2) · `security` (2) · `tech` (2) · `devops` (1) · `newsletter` (1) · `photographer` (1)
