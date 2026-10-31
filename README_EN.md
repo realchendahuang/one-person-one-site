@@ -27,10 +27,10 @@
 This directory gathers personal sites run by real people, scattered across the web, so that others can find them, read them and subscribe to them. The maintainer looks at every site before listing it, and each entry says whose site it is and what they write or make.
 
 <!-- STATS:START -->
-- **48** independent sites from **9** regions, written in 5 languages.
-- **19** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml).
-- Content types: blog (32), digital-garden (6), notes (10), portfolio (19), newsletter (1).
-- Common topics: developer (35), ai (13), maker (11), indie-hacker (11), open-source (5), writer (5), designer (4), security (2).
+- **49** independent sites from **10** regions, written in 5 languages.
+- **20** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml).
+- Content types: blog (32), digital-garden (6), notes (10), portfolio (20), newsletter (1).
+- Common topics: developer (36), ai (13), maker (11), indie-hacker (11), open-source (6), writer (5), designer (4), security (2).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out lessons on RAG and backend systems. They write about different things. What they share is that their work lives on a site of their own, not only on a platform.
@@ -154,6 +154,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [tcdw 个人主页](https://im.tcdw.net/) | tcdw | 前端与移动端开发者的个人主页与博客「吐槽大王部落格」，展示塑料碗、雪乃碗、Bilisound 等自研项目。 | zh-CN | developer, blog, portfolio |
 | [Wutong Yu](https://www.wutongyu.site) | 梧桐雨（WutongRain） | 梧桐雨的独立博客：记录技术、工具、生活与思考。 | zh-CN | blog, developer, ai, notes |
 | [XuYi](https://xuyi.dev) | xuyi | 兼顾游戏开发与 AI 的个人技术博客。 | zh-CN | developer, blog, game, ai |
+| [Yorben](https://yorben.me) | Yorben Vander Sleyen | Tactile native macOS software, RealityKit logistics simulations, and deep Apple platform engineering. | en | portfolio, developer, open-source |
 | [Zachary Zhang](https://zacharyzhang.com/) | Zachary Zhang | AI 创业者与产品技术负责人的个人主页，展示 Agent 系统相关的作品、简历与博客，中英双语。 | en, zh-CN | developer, portfolio, maker, blog |
 | [三花猫啾啾和咩咩](https://cafe3310.github.io/chocho-miemie-album/) | cafe3310 | 我家有两个三花猫，非常可爱。猫命十五年，她们现在一只七岁一只九岁。我想在还可以的时候让 Gemini 一直记住她们。 | zh-CN | life, ai |
 | [只是一根毛](https://justmao.com/) | JustMao | 资深软件工程师的独立博客：记录 AI Agent、RAG、后端与信息安全的实践笔记与技术取舍。 | zh-TW | developer, blog, security |
@@ -258,7 +259,7 @@ Scripts, documentation and the listing data (`data/sites.json`) are released und
 ## Project history
 
 <!-- HISTORY:START -->
-- **47** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **48** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **13** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
 - Features: **24** commits, latest: “feat: ingest_issue 支持手写列表格式的站点提交”.
 - Fixes: **8** commits, latest: “fix: 移除不符合收录标准的 X排名、GPT88 博客（平台型产品 / API 服务文档站）”.
