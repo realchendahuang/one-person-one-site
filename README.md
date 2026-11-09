@@ -38,6 +38,7 @@
 ---
 
 ## 和其他目录有什么不同
+- [Yorben Vandersleyen - Needle](https://yorben.me/#needle) - 独立开发者原生 macOS 音乐播放挂件项目与个人主页。
 
 整理个人博客的项目已经有不少，各有侧重：
 
