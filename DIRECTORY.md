@@ -2,7 +2,7 @@
 
 > 此文件由 `data/sites.json` 自动生成，请不要直接编辑。
 
-当前共收录 **48** 个站点。
+当前共收录 **49** 个站点。
 
 | 网站 | 站长 / 创作者 | 简介 | 语言 | 标签 |
 |---|---|---|---|---|
@@ -50,6 +50,7 @@
 | [老杨的知识荒原](https://awesomeyang.com) | 老杨 AwesomeYang | 全干工程师、aiwith.me 创始人老杨的个人站：记录从十年编程到出海独立开发的历程，附博客与仍在运营的作品。 | zh-CN | developer, blog, indie-hacker, maker |
 | [船长的角落](https://www.mmdbb.org/) | 船长 | AI 博主「船长」的个人站点，分享 Agent 驱动的 Obsidian 项目搭建全流程视频与文章，附自研软件与小游戏。 | zh-CN | blog, maker, portfolio |
 | [虫子樱桃](https://czyt.tech) | czyt | 关注编程、AI 与 Linux 的个人技术博客。 | zh-CN | blog, developer, ai |
+| [运动营养健康指南](https://jiangweiqi001.github.io/sports-nutrition-health/) | jiangweiqi001 | jiangweiqi001 维护的中文运动营养健康知识库，收录 465 条可检索的跑步、力量训练、饮食和训练健康问答。回答优先参考权威指南、专业学会的立场声明和系统综述，每条都标注证据等级并附参考出处。 | zh-CN | notes, life |
 | [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, researcher, blog |
 | [郑壮](https://zhengz.cc/) | 郑壮 | 软件开发者，一边工作一边做自己的产品。在这里记录 AI、产品、技术实践与成长过程。 | zh-CN | developer, blog, portfolio |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
@@ -57,4 +58,4 @@
 
 ## 标签统计
 
-`developer` (35) · `blog` (32) · `portfolio` (19) · `ai` (13) · `indie-hacker` (11) · `maker` (11) · `notes` (10) · `digital-garden` (6) · `open-source` (5) · `writer` (5) · `designer` (4) · `game` (2) · `life` (2) · `researcher` (2) · `security` (2) · `tech` (2) · `devops` (1) · `newsletter` (1) · `photographer` (1)
+`developer` (35) · `blog` (32) · `portfolio` (19) · `ai` (13) · `indie-hacker` (11) · `maker` (11) · `notes` (11) · `digital-garden` (6) · `open-source` (5) · `writer` (5) · `designer` (4) · `life` (3) · `game` (2) · `researcher` (2) · `security` (2) · `tech` (2) · `devops` (1) · `newsletter` (1) · `photographer` (1)

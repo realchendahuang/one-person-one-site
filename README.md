@@ -27,10 +27,10 @@
 这里把分散在互联网各处、由真人经营的个人站点收到一起，让人能找到它们、读到它们、订阅它们。每个站点都由维护者看过之后才收录，每一条都写明这是谁的站、主要在写什么或做什么。
 
 <!-- STATS:START -->
-- 目前收录 **48** 个站点，来自 **9** 个地区，使用 5 种语言写作。
+- 目前收录 **49** 个站点，来自 **9** 个地区，使用 5 种语言写作。
 - 其中 **19** 个提供 RSS / Atom 订阅源，可通过 [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml) 一次性导入阅读器。
-- 内容形态：`blog` (32)、`digital-garden` (6)、`notes` (10)、`portfolio` (19)、`newsletter` (1)。
-- 常见主题：`developer` (35)、`ai` (13)、`maker` (11)、`indie-hacker` (11)、`open-source` (5)、`writer` (5)、`designer` (4)、`security` (2)。
+- 内容形态：`blog` (32)、`digital-garden` (6)、`notes` (11)、`portfolio` (19)、`newsletter` (1)。
+- 常见主题：`developer` (35)、`ai` (13)、`maker` (11)、`indie-hacker` (11)、`open-source` (5)、`writer` (5)、`designer` (4)、`life` (3)。
 <!-- STATS:END -->
 
 每一个条目背后都是一个具体的人：一位制造业工程师在记录他的 AI 实验，一位室内设计师在写他边做设计边做产品的经历，一位大三学生在把自己的学习和项目铺成一座数字花园，一位资深工程师在整理 RAG 与后端的技术取舍。他们写的东西各不相同，共同点是把自己的东西放在自己的站点上，而不是只交给平台。
@@ -164,6 +164,7 @@
 | [老杨的知识荒原](https://awesomeyang.com) | 老杨 AwesomeYang | 全干工程师、aiwith.me 创始人老杨的个人站：记录从十年编程到出海独立开发的历程，附博客与仍在运营的作品。 | zh-CN | developer, blog, indie-hacker, maker |
 | [船长的角落](https://www.mmdbb.org/) | 船长 | AI 博主「船长」的个人站点，分享 Agent 驱动的 Obsidian 项目搭建全流程视频与文章，附自研软件与小游戏。 | zh-CN | blog, maker, portfolio |
 | [虫子樱桃](https://czyt.tech) | czyt | 关注编程、AI 与 Linux 的个人技术博客。 | zh-CN | blog, developer, ai |
+| [运动营养健康指南](https://jiangweiqi001.github.io/sports-nutrition-health/) | jiangweiqi001 | jiangweiqi001 维护的中文运动营养健康知识库，收录 465 条可检索的跑步、力量训练、饮食和训练健康问答。回答优先参考权威指南、专业学会的立场声明和系统综述，每条都标注证据等级并附参考出处。 | zh-CN | notes, life |
 | [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, researcher, blog |
 | [郑壮](https://zhengz.cc/) | 郑壮 | 软件开发者，一边工作一边做自己的产品。在这里记录 AI、产品、技术实践与成长过程。 | zh-CN | developer, blog, portfolio |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
@@ -258,7 +259,7 @@
 ## 项目历史
 
 <!-- HISTORY:START -->
-- 自 **2026-09-23** 以来共 **47** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
+- 自 **2026-09-23** 以来共 **48** 次提交，完整记录见 [提交历史](https://github.com/realchendahuang/one-person-one-site/commits/main)。
 - 收录新站点：**13** 次，最近一次「feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）」。
 - 功能：**24** 次，最近一次「feat: ingest_issue 支持手写列表格式的站点提交」。
 - 修复：**8** 次，最近一次「fix: 移除不符合收录标准的 X排名、GPT88 博客（平台型产品 / API 服务文档站）」。

@@ -449,5 +449,14 @@
     "region": "Canada",
     "tags": ["blog", "portfolio", "writer", "developer", "open-source"],
     "feed": "https://schlaflied-room.work/rss.xml"
+  },
+  {
+    "name": "运动营养健康指南",
+    "url": "https://jiangweiqi001.github.io/sports-nutrition-health/",
+    "owner": "jiangweiqi001",
+    "description": "jiangweiqi001 维护的中文运动营养健康知识库，收录 465 条可检索的跑步、力量训练、饮食和训练健康问答。回答优先参考权威指南、专业学会的立场声明和系统综述，每条都标注证据等级并附参考出处。",
+    "languages": ["zh-CN"],
+    "region": "Global",
+    "tags": ["notes", "life"]
   }
 ]
