@@ -27,10 +27,10 @@
 This directory gathers personal sites run by real people, scattered across the web, so that others can find them, read them and subscribe to them. The maintainer looks at every site before listing it, and each entry says whose site it is and what they write or make.
 
 <!-- STATS:START -->
-- **48** independent sites from **9** regions, written in 5 languages.
+- **49** independent sites from **9** regions, written in 5 languages.
 - **19** of them publish an RSS / Atom feed — import the whole list at once with [feeds.opml](https://realchendahuang.github.io/one-person-one-site/feeds.opml).
-- Content types: blog (32), digital-garden (6), notes (10), portfolio (19), newsletter (1).
-- Common topics: developer (35), ai (13), maker (11), indie-hacker (11), open-source (5), writer (5), designer (4), security (2).
+- Content types: blog (32), digital-garden (6), notes (11), portfolio (19), newsletter (1).
+- Common topics: developer (35), ai (13), maker (11), indie-hacker (11), open-source (5), writer (5), designer (4), life (3).
 <!-- STATS:END -->
 
 Behind every entry is a specific person: a manufacturing engineer documenting his AI experiments, an interior designer writing about building products while running a studio, a university student growing his studies into a digital garden, a senior engineer sorting out lessons on RAG and backend systems. They write about different things. What they share is that their work lives on a site of their own, not only on a platform.
@@ -164,6 +164,7 @@ Being listed is not an endorsement. Opinions on those sites belong to their auth
 | [老杨的知识荒原](https://awesomeyang.com) | 老杨 AwesomeYang | 全干工程师、aiwith.me 创始人老杨的个人站：记录从十年编程到出海独立开发的历程，附博客与仍在运营的作品。 | zh-CN | developer, blog, indie-hacker, maker |
 | [船长的角落](https://www.mmdbb.org/) | 船长 | AI 博主「船长」的个人站点，分享 Agent 驱动的 Obsidian 项目搭建全流程视频与文章，附自研软件与小游戏。 | zh-CN | blog, maker, portfolio |
 | [虫子樱桃](https://czyt.tech) | czyt | 关注编程、AI 与 Linux 的个人技术博客。 | zh-CN | blog, developer, ai |
+| [运动营养健康指南](https://jiangweiqi001.github.io/sports-nutrition-health/) | jiangweiqi001 | jiangweiqi001 维护的中文运动营养健康知识库，收录 465 条可检索的跑步、力量训练、饮食和训练健康问答。回答优先参考权威指南、专业学会的立场声明和系统综述，每条都标注证据等级并附参考出处。 | zh-CN | notes, life |
 | [逐风Lab](https://zhufeng-lab.pages.dev/) | 逐风 | 一个研0学生的公开重建记录：用 AI 做研究和工具实测，把网站当第二张简历。 | zh-CN | developer, researcher, blog |
 | [郑壮](https://zhengz.cc/) | 郑壮 | 软件开发者，一边工作一边做自己的产品。在这里记录 AI、产品、技术实践与成长过程。 | zh-CN | developer, blog, portfolio |
 | [陈大黄 - 作品与内容](https://chendahuang.com) | 陈大黄 | 陈大黄的个人作品与内容陈列站。收录项目、文章和精选帖子。 | zh-CN | blog, developer, portfolio |
@@ -258,7 +259,7 @@ Scripts, documentation and the listing data (`data/sites.json`) are released und
 ## Project history
 
 <!-- HISTORY:START -->
-- **47** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
+- **48** commits since **2026-09-23** — see the full [commit history](https://github.com/realchendahuang/one-person-one-site/commits/main).
 - New site listings: **13** commits, latest: “feat: 收录 5 个新站点（情報の灯台、Sulayman Bowles、Elliot Hu、Kogitore、Francis Luz，issue #24 #25 #26 #27 #29）”.
 - Features: **24** commits, latest: “feat: ingest_issue 支持手写列表格式的站点提交”.
 - Fixes: **8** commits, latest: “fix: 移除不符合收录标准的 X排名、GPT88 博客（平台型产品 / API 服务文档站）”.
